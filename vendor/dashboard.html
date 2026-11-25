@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#ffddb8", "surface-tint": "#006e2d", "error-container": "#ffdad6", "surface-container-highest": "#d3e4fe", "surface-container-high": "#dce9ff", "tertiary": "#825100", "surface": "#f8f9ff", "primary-fixed": "#7ffc97", "on-secondary-container": "#347047", "on-secondary-fixed": "#00210d", "surface-container-low": "#eff4ff", "surface-bright": "#f8f9ff", "secondary-container": "#b1f2be", "inverse-surface": "#213145", "on-tertiary": "#ffffff", "secondary": "#2e6a41", "on-primary-fixed-variant": "#005320", "on-surface": "#0b1c30", "on-tertiary-fixed": "#2a1700", "on-tertiary-fixed-variant": "#653e00", "on-secondary": "#ffffff", "inverse-primary": "#62df7d", "surface-container-lowest": "#ffffff", "inverse-on-surface": "#eaf1ff", "on-primary-fixed": "#002109", "primary": "#006b2c", "primary-fixed-dim": "#62df7d", "primary-container": "#00873a", "background": "#f8f9ff", "on-secondary-fixed-variant": "#12512c", "on-primary": "#ffffff", "on-primary-container": "#f7fff2", "surface-dim": "#cbdbf5", "error": "#ba1a1a", "on-error-container": "#93000a", "secondary-fixed": "#b1f2be", "surface-variant": "#d3e4fe", "on-tertiary-container": "#fffbff", "secondary-fixed-dim": "#96d5a3", "tertiary-container": "#a36700", "tertiary-fixed-dim": "#ffb95f", "on-surface-variant": "#3e4a3d", "on-background": "#0b1c30", "on-error": "#ffffff", "outline-variant": "#bdcaba", "surface-container": "#e5eeff", "outline": "#6e7b6c" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "0.75rem", "margin-mobile": "1rem", "space-xl": "2.5rem", "margin": "2rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-lg": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "display": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "title-md": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "price-display": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "title-md": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "price-display": [ "20px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="p-space-lg flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">local_grocery_store</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-none">FreshMart</span><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider mt-space-xs">Merchant Portal</span></div></div><nav class="flex flex-col gap-space-md" data-active-classes="bg-secondary-container text-on-secondary-container font-label-lg rounded-xl"><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-outline px-space-sm py-space-xs uppercase tracking-wider">Main</span><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-secondary-container text-on-secondary-container font-label-lg rounded-xl" data-path="dashboard-overview" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Dashboard Overview</a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="live-incoming-orders" href="#"> <div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">notifications_active</span>Live Incoming Orders</div><span class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">12</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="order-fulfillment-and-packing" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span>Order Fulfillment &amp; Packing</a></div><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-outline px-space-sm py-space-xs uppercase tracking-wider">Catalog &amp; Inventory</span><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="catalog-and-products" href="#"><span class="material-symbols-outlined text-[20px]">nutrition</span>Catalog &amp; Products</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="stock-and-inventory-levels" href="#"><span class="material-symbols-outlined text-[20px]">shelves</span>Stock &amp; Inventory Levels</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="batch-and-expiry-tracker" href="#"><span class="material-symbols-outlined text-[20px]">event_available</span>Batch &amp; Expiry Tracker</a></div><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-outline px-space-sm py-space-xs uppercase tracking-wider">Performance</span><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="sales-analytics-and-reports" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span>Sales Analytics &amp; Reports</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="customer-reviews-and-ratings" href="#"><span class="material-symbols-outlined text-[20px]">reviews</span>Customer Reviews &amp; Ratings</a></div><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm text-outline px-space-sm py-space-xs uppercase tracking-wider">Payouts &amp; Billing</span><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="payouts-and-settlement" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>Payouts &amp; Settlement</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="store-settings" href="#"><span class="material-symbols-outlined text-[20px]">store</span>Store Settings</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="help-and-support" href="#"><span class="material-symbols-outlined text-[20px]">help_outline</span>Help &amp; Support</a></div></nav></div><div class="p-space-md m-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-surface-variant">SLA Fulfillment</span><span class="font-label-md text-label-md text-primary font-bold">98.4%</span></div><div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden"><div class="h-full bg-primary rounded-full w-[98.4%]"></div></div><span class="font-body-sm text-body-sm text-outline">Target &gt; 95% today</span></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 z-40 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer"><span class="material-symbols-outlined text-primary text-[20px]">storefront</span><div class="flex flex-col text-left"><span class="font-title-md text-title-md text-on-surface leading-tight">GreenField Organic Market</span><span class="font-body-sm text-body-sm text-outline">Flagship Store #104</span></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div><div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-secondary-container text-on-secondary-container"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm">Store Open &amp; Accepting Orders</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container text-on-surface"><span class="material-symbols-outlined text-tertiary text-[18px]">pending_actions</span><span class="font-label-md text-label-md"><strong class="text-primary">12</strong> Pending Orders</span></div><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface">Marcus Vance</span><div class="flex items-center justify-end gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[14px]">star</span><span class="font-label-sm text-label-sm text-on-surface-variant">4.92 (3.4k)</span></div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<div class="w-full max-w-[1360px] mx-auto px-margin py-space-lg flex flex-col gap-space-lg">
+<!-- Operational Alert Ticker Banner -->
+<div class="w-full rounded-xl bg-surface-container-high p-space-sm flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm px-space-xs">
+<span class="w-7 h-7 rounded-lg bg-tertiary text-on-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">High Demand Alert:</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Zone 4 e-Bike couriers experiencing surge. Packing target reduced to 12 mins to maintain cold-chain SLA.</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-lowest text-tertiary font-label-sm text-label-sm font-bold shadow-xs">SLA: 12 min Target</span>
+<button class="p-1 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" onclick="this.closest('.w-full').remove()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Executive Header & Quick Controls -->
+<div class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Merchant Command Center</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Bayside Terminal Bay #4</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Welcome back, Maria! <span class="font-headline-sm text-headline-sm text-outline font-normal">GreenField Organic Market (#104)</span>
+</h1>
+<div class="flex flex-wrap items-center gap-space-sm mt-space-xs">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold">Accepting Orders</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hours: 7:00 AM – 9:00 PM</span>
+<span class="text-outline">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Fast Packing SLA: <strong class="text-primary font-bold">98.4%</strong></span>
+<span class="text-outline">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cooling Bay: <strong class="text-on-surface font-semibold">37.1°F</strong></span>
+</div>
+</div>
+<!-- Quick Action Controls -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-label-lg text-label-lg flex items-center gap-1.5 shadow-sm" id="pauseOrdersBtn" onclick="togglePauseOrders()">
+<span class="material-symbols-outlined text-[18px] text-tertiary">pause_circle</span>
+<span id="pauseBtnText">Pause Orders (Surge)</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-label-lg text-label-lg flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary">print</span>
+<span>Print Slips (6 Ready)</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-transform active:scale-95 font-label-lg text-label-lg flex items-center gap-1.5 shadow-md">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>+ Add Product / SKU</span>
+</button>
+</div>
+</div>
+<!-- Commercial & Operational KPI Grid (Level 1) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Gross Revenue</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold mt-1">$4,820.50</span>
+</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center text-primary font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>18.2%
+            </span>
+<span class="font-body-sm text-body-sm text-outline">vs. yesterday ($4,078)</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-1">
+<span>142 Total Orders</span>
+<span class="font-semibold">Avg Basket: $33.95</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-fixed to-secondary"></div>
+</div>
+<!-- KPI 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Live Fulfillment</span>
+<span class="font-headline-lg text-headline-lg text-primary font-extrabold mt-1">14 Active</span>
+</div>
+<div class="w-10 h-10 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="w-full flex rounded-full h-2 bg-surface-container-highest overflow-hidden">
+<div class="bg-tertiary h-full w-[28%]" title="New Orders: 4"></div>
+<div class="bg-primary h-full w-[43%]" title="Packing: 6"></div>
+<div class="bg-secondary h-full w-[29%]" title="Ready Pickup: 4"></div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary"></span>4 New</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span>6 Packing</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span>4 Ready</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-tertiary via-primary to-secondary"></div>
+</div>
+<!-- KPI 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Cold-Chain Compliance</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold mt-1">99.4%</span>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">ac_unit</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Grade AAA</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">38 probed batches today</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-outline pt-1">
+<span>Avg Temp: <strong class="text-on-surface">37.1°F</strong></span>
+<span>Target: &lt; 40.0°F</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-primary"></div>
+</div>
+<!-- KPI 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Net Payout (Pending)</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold mt-1">$4,242.04</span>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">account_balance</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">ACH Batch #8812</span>
+<span class="font-body-sm text-body-sm text-outline">Releases 11:30 PM</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span>Platform Fee: 12.0%</span>
+<span class="text-primary font-semibold">Next Day Deposit</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Live Order Fulfillment Pipeline (Kanban Lanes) -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Live Order Fulfillment Flow</span>
+<span class="px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">14 Live Orders</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">sync</span>
+<span>Auto-refreshes every 15s</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Lane 1: New Orders (4) -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs py-1">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="font-title-md text-title-md text-on-surface font-bold">New Incoming</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">4</span>
+</div>
+<!-- Order Card #FM-9848 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs border-l-4 border-tertiary hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#FM-9848</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-fixed/40 px-2 py-0.5 rounded-full">3m ago</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Hannah Miller • Standard</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">8 items (Organic Milk, Kale, Strawberries...)</span>
+</div>
+<div class="flex items-center justify-between pt-1 font-body-sm text-body-sm">
+<span class="font-price-display text-price-display text-on-surface font-bold">$64.20</span>
+<span class="text-tertiary flex items-center gap-0.5 font-semibold">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 15m SLA
+              </span>
+</div>
+<button class="w-full mt-1 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Accept &amp; Send to Packing</span>
+</button>
+</div>
+<!-- Order Card #FM-9852 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs border-l-4 border-tertiary hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#FM-9852</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-fixed/40 px-2 py-0.5 rounded-full">Just now</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Rajesh Patel • Express Courier</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 items (Heirloom Tomatoes, Sourdough...)</span>
+</div>
+<div class="flex items-center justify-between pt-1 font-body-sm text-body-sm">
+<span class="font-price-display text-price-display text-on-surface font-bold">$38.00</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Express</span>
+</div>
+<button class="w-full mt-1 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Accept</span>
+</button>
+</div>
+<!-- Collapsed queue counter -->
+<div class="p-2 rounded-lg bg-surface-container text-center text-on-surface-variant font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-high transition-colors">
+            + 2 more orders waiting in queue
+          </div>
+</div>
+<!-- Lane 2: Currently Packing (6) -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs py-1">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-title-md text-title-md text-on-surface font-bold">In Packing</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">6</span>
+</div>
+<!-- Order Card #FM-9842 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs border-l-4 border-primary hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#FM-9842</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-[14px]">qr_code_scanner</span> 6/8 Scanned
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Sarah Jenkins • Delivery</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Picker: <strong class="text-on-surface">Marco (Station 2)</strong></span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full w-[75%]"></div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tote: #T-042 (Chilled)</span>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold transition-colors">
+                View Checklist
+              </button>
+</div>
+</div>
+<!-- Order Card #FM-9844 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs border-l-4 border-primary hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#FM-9844</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-[14px]">qr_code_scanner</span> 12/12 Scanned
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Evan Wright • Delivery</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Picker: <strong class="text-on-surface">Elena (Bakery &amp; Produce)</strong></span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full w-[100%]"></div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-body-sm text-primary font-semibold">Tote Sealed &amp; Probed</span>
+<button class="px-space-sm py-1 rounded bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm font-semibold transition-colors">
+                Move to Ready
+              </button>
+</div>
+</div>
+<div class="p-2 rounded-lg bg-surface-container text-center text-on-surface-variant font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-high transition-colors">
+            + 4 more active in packing stations
+          </div>
+</div>
+<!-- Lane 3: Ready for Courier Pickup (4) -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs py-1">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-title-md text-title-md text-on-surface font-bold">Ready for Pickup</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">4</span>
+</div>
+<!-- Order Card #FM-9839 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs border-l-4 border-secondary hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#FM-9839</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span> Arr. in 3 min
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">David K. (EV Bike)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cold Tote Sealed: <strong class="text-on-surface">#T-108</strong> (36.8°F)</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-body-sm text-outline">Staging Bay A3</span>
+<button class="px-space-md py-1.5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant font-label-md text-label-md transition-colors shadow-xs">
+                Handover Ready
+              </button>
+</div>
+</div>
+<!-- Order Card #FM-9837 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs border-l-4 border-secondary hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#FM-9837</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Waiting Courier</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Curbside Pickup (Liam B.)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Dry Bag #D-22 + Cold Box #C-04</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-body-sm text-outline">Staging Bay B1</span>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors">
+                Customer Check-in
+              </button>
+</div>
+</div>
+<div class="p-2 rounded-lg bg-surface-container text-center text-on-surface-variant font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-high transition-colors">
+            + 2 more ready at pickup rack
+          </div>
+</div>
+<!-- Lane 4: Dispatched & In-Transit (18 Completed) -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center justify-between px-space-xs py-1">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-outline"></span>
+<span class="font-title-md text-title-md text-on-surface font-bold">Dispatched Today</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-bold">18</span>
+</div>
+<!-- Dispatched Card 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1 opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">#FM-9832</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">On Way (1.2 mi)</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Driver: Sam T. • Left 8 mins ago</span>
+<div class="flex items-center justify-between text-outline font-body-sm text-body-sm pt-0.5">
+<span>5 Items • $52.40</span>
+<span class="text-primary font-semibold">ETA: 6 mins</span>
+</div>
+</div>
+<!-- Dispatched Card 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1 opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">#FM-9828</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Delivered (14m ago)</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Customer: Chloe A. • 5.0 ★</span>
+<div class="flex items-center justify-between text-outline font-body-sm text-body-sm pt-0.5">
+<span>9 Items • $88.10</span>
+<span class="text-on-surface-variant">Pouch Recycled</span>
+</div>
+</div>
+<!-- Summary pill -->
+<div class="p-space-sm rounded-xl bg-surface-container-highest/60 flex items-center justify-between text-on-surface font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">local_shipping</span>
+              100% On-Time Delivery
+            </span>
+<span class="font-bold">Avg 22m total</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Real-Time Operations Split Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Wide Left Column: Hourly Velocity & Best-Sellers (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Hourly Sales Velocity Visual Graph -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Hourly Order Velocity &amp; Revenue Curve</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time throughput comparison against 7-day trailing average</p>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1.5 rounded-full bg-primary"></span>
+<span class="text-on-surface font-semibold">Today (Live)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="text-outline">7-Day Avg</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-tertiary-fixed/60"></span>
+<span class="text-tertiary font-medium">Peak Windows</span>
+</div>
+</div>
+</div>
+<!-- Inline SVG Sales Graph -->
+<div class="w-full h-56 relative flex flex-col justify-end">
+<!-- Peak zones annotation overlay -->
+<div class="absolute inset-0 flex pointer-events-none">
+<div class="w-[20%]"></div>
+<div class="w-[22%] h-full bg-tertiary-fixed/20 rounded-lg flex items-start justify-center pt-2">
+<span class="font-label-sm text-label-sm text-tertiary font-bold tracking-tight">Lunch Rush</span>
+</div>
+<div class="w-[22%]"></div>
+<div class="w-[30%] h-full bg-tertiary-fixed/20 rounded-lg flex items-start justify-center pt-2">
+<span class="font-label-sm text-label-sm text-tertiary font-bold tracking-tight">Dinner Rush (Live)</span>
+</div>
+<div class="w-[6%]"></div>
+</div>
+<svg class="w-full h-full overflow-visible z-10" preserveaspectratio="none" viewbox="0 0 800 220">
+<!-- Grid lines -->
+<line stroke="#eff4ff" stroke-width="1.5" x1="0" x2="800" y1="40" y2="40"></line>
+<line stroke="#eff4ff" stroke-width="1.5" x1="0" x2="800" y1="90" y2="90"></line>
+<line stroke="#eff4ff" stroke-width="1.5" x1="0" x2="800" y1="140" y2="140"></line>
+<line stroke="#e5eeff" stroke-width="1.5" x1="0" x2="800" y1="190" y2="190"></line>
+<!-- Trailing 7-day average path (dashed gray) -->
+<path d="M 0 185 Q 120 170, 220 110 T 400 135 T 580 65 T 750 120 L 800 150" fill="none" stroke="#bdcaba" stroke-dasharray="4,4" stroke-width="2.5"></path>
+<!-- Today's curve with gradient fill -->
+<defs>
+<lineargradient id="primaryCurveGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#006b2c" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#006b2c" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M 0 190 Q 110 175, 220 85 T 380 120 T 560 30 T 680 45 L 680 200 L 0 200 Z" fill="url(#primaryCurveGrad)"></path>
+<path d="M 0 190 Q 110 175, 220 85 T 380 120 T 560 30 T 680 45" fill="none" stroke="#006b2c" stroke-linecap="round" stroke-width="3.5"></path>
+<!-- Current Live Point marker -->
+<circle class="animate-pulse" cx="680" cy="45" fill="#006b2c" r="7" stroke="#ffffff" stroke-width="3"></circle>
+<circle cx="680" cy="45" fill="#006b2c" opacity="0.2" r="14"></circle>
+</svg>
+<!-- X-axis Labels -->
+<div class="w-full flex justify-between font-label-sm text-label-sm text-outline pt-2">
+<span>7:00 AM</span>
+<span>9:00 AM</span>
+<span class="font-bold text-on-surface">11:30 AM (Peak)</span>
+<span>1:30 PM</span>
+<span>3:30 PM</span>
+<span class="font-bold text-primary">5:30 PM (Now)</span>
+<span>7:30 PM</span>
+<span>9:00 PM</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">trending_up</span>
+              Evening dinner basket sizes are up <strong>+14.5%</strong>, driven by artisanal sourdough &amp; heirloom greens.
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-primary">Next predicted peak: 6:45 PM</span>
+</div>
+</div>
+<!-- Top-Selling Perishables Today Table/Grid -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Top-Selling Perishables &amp; Velocity</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Real-time inventory drawdown &amp; cold-chain tracking</span>
+</div>
+<a class="font-label-lg text-label-lg text-primary hover:underline flex items-center gap-0.5" href="#">
+              View All 184 Items <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="font-label-sm text-label-sm text-outline uppercase tracking-wider border-b-0 pb-2">
+<th class="py-space-xs font-semibold">Perishable Item</th>
+<th class="py-space-xs font-semibold">SKU / Origin</th>
+<th class="py-space-xs font-semibold text-center">Velocity</th>
+<th class="py-space-xs font-semibold text-right">Remaining</th>
+<th class="py-space-xs font-semibold text-right">Status / Restock</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-md text-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container" data-alt="Close up studio photograph of fresh Hass organic avocados on a clean slate background, soft natural lighting, showing textured dark green skin, commercial product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6QdO2yxlKPWTuI6fYMail6z_uKN2FW8JcReo2-frGsWsOxmUeoqvDq8Nh1Xazv5HcpiFxbuHpuDfZufYN_rc4RmEhHTMIFqydHSWguQa5nB2qGfPLG2D2J9-h3lLy1BqD00Znwnt7ShrdOBzwmBu9ANp8pfgYnpPEwbOSqj4z0-ZylmK7nxWbcP6tZIUr0zQZJAiJTQKcun5ii4inezkKnh8rXOI6OYlwo82U2LO3"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Organic Hass Avocados</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Batch #AV-902 • Pack of 4</span>
+</div>
+</td>
+<td class="py-3">
+<span class="font-label-md text-label-md font-mono text-outline">SKU-ORG-209</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Watsonville Orchards</div>
+</td>
+<td class="py-3 text-center">
+<span class="font-price-display text-price-display text-primary font-bold">84 sold</span>
+<span class="block font-body-sm text-body-sm text-outline">9.8 packs/hr</span>
+</td>
+<td class="py-3 text-right">
+<span class="font-title-md text-title-md font-bold text-on-surface">36 packs</span>
+<span class="block font-body-sm text-body-sm text-outline">Cooler Bin 4</span>
+</td>
+<td class="py-3 text-right">
+<span class="inline-flex items-center px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                      Optimal Stock
+                    </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container" data-alt="Vibrant cluster of colorful heirloom tomatoes in rich reds, greens, and golden yellow colors with natural dew drops on light botanical surface, high-end organic farm photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGKyODJGa6HFNMexmK6-xnfU8e4Emc3EIpYywgWYbo-QEluLOQcg1MFCc4SBXEhiEJVkP-43KvF-1MU85gBK-FBotPaZYNB_xXN2xRBIvxAJ00DKGAXalyllUPBUS2mxdD_ORVIx5USr2uvHHYQX1L6ksrx0UQvupPKhFaRQ5nMRz3TNr0IpWi5H-T9RKsN6fq3kUdgIsIAYK-51NJUyAEGVYpqD0yjYVAqlUQMm7a"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Local Heirloom Tomatoes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Per lb • Salinas Valley Co-Op</span>
+</div>
+</td>
+<td class="py-3">
+<span class="font-label-md text-label-md font-mono text-outline">SKU-HEIR-104</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Picked this morning</div>
+</td>
+<td class="py-3 text-center">
+<span class="font-price-display text-price-display text-primary font-bold">62 lbs</span>
+<span class="block font-body-sm text-body-sm text-outline">7.2 lbs/hr</span>
+</td>
+<td class="py-3 text-right">
+<span class="font-title-md text-title-md font-bold text-on-surface">18 lbs</span>
+<span class="block font-body-sm text-body-sm text-outline">Display Shelf A</span>
+</td>
+<td class="py-3 text-right">
+<span class="inline-flex items-center px-space-sm py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+                      Reorder Prompt
+                    </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container" data-alt="Traditional glass milk bottle filled with fresh whole farmstead milk with cold condensation droplets on an off-white pristine kitchen background, commercial dairy styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJePSpq-W-3tEz-tqpyShdcZ8sW-AAYwj5KYHufJlMNYPH8qii1hURu8bh-gmPFrEUnT__671kmtZ84Qv_zCOcKUv1jS-MdUhtN8vqS0qi1-CKFvMjYP6I017RoWigCVlewKrunL_VDNSVPkaGtBJZPT7ANEJioN0hG5LUPbQnQupODUwAPkCkF3bjiwuKETCjwmkyhoh6DElqeyYmjem-MG4aCyM5xLrJ_wfigoby"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Wild Farmstead Whole Milk</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Half Gallon • Glass Bottle (36°F)</span>
+</div>
+</td>
+<td class="py-3">
+<span class="font-label-md text-label-md font-mono text-outline">SKU-DRY-331</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Straus Family Farm</div>
+</td>
+<td class="py-3 text-center">
+<span class="font-price-display text-price-display text-primary font-bold">45 btls</span>
+<span class="block font-body-sm text-body-sm text-outline">5.4 btls/hr</span>
+</td>
+<td class="py-3 text-right">
+<span class="font-title-md text-title-md font-bold text-on-surface">12 btls</span>
+<span class="block font-body-sm text-body-sm text-outline">Dairy Vault 02</span>
+</td>
+<td class="py-3 text-right">
+<span class="inline-flex items-center px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                      Restocked 2h ago
+                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Compact Right Column: Alerts & Live Handoff Widgets (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Perishable Stock & Expiry Alerts Widget -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-error text-[20px]">warning</span>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Urgent Stock &amp; Expiry Alerts</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">2 Actions</span>
+</div>
+<!-- Alert Item 1: Low Stock -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-error font-bold uppercase tracking-wider">Low Stock Threshold</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">Organic Baby Spinach</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-extrabold">Only 4 left</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Demand rate suggests stockout in ~28 minutes during dinner rush.</p>
+<div class="flex items-center gap-space-xs pt-1">
+<button class="flex-1 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors">
+                Update Count
+              </button>
+<button class="flex-1 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-colors">
+                Auto-Restock
+              </button>
+</div>
+</div>
+<!-- Alert Item 2: Batch Expiry Risk -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Cold-Chain Batch Expiry</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">Artisan Goat Milk (16oz)</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-extrabold">48h Expiry</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Batch #GM-412 (14 bottles remaining). Prevent waste via instant flash markdown.</p>
+<div class="flex items-center gap-space-xs pt-1">
+<button class="w-full py-1.5 rounded-lg bg-tertiary text-on-tertiary hover:bg-tertiary-container font-label-md text-label-md transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">percent</span>
+<span>Apply 20% Flash Discount</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Courier Handoff Radar & Bay Queue -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">two_wheeler</span>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Courier Handoff Radar</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">&lt; 0.5 mi</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Courier 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface font-bold text-label-md">
+                  DK
+                </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">David K.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">EV Cargo Bike • #FM-9839</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-primary font-extrabold flex items-center gap-0.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span> 3 min away
+                </span>
+<span class="font-body-sm text-body-sm text-outline">Bay 4 Assigned</span>
+</div>
+</div>
+<!-- Courier 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface font-bold text-label-md">
+                  TR
+                </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Tariq R.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Electric Hatchback • #FM-9844</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">7 min away</span>
+<span class="font-body-sm text-body-sm text-outline">Arriving Bay 2</span>
+</div>
+</div>
+</div>
+<!-- Loading Bay Capacity Footnote -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span>Loading Bay Capacity:</span>
+<span class="text-primary font-bold">2/4 Bays Occupied</span>
+</div>
+</div>
+<!-- Store Rating & Recent Feedback Snippet -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[20px]">stars</span>
+<h3 class="font-title-md text-title-md font-bold text-on-surface">Store Reputation</h3>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-[16px]">star</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">4.96</span>
+<span class="font-body-sm text-body-sm text-outline">(1,420)</span>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Clara S. (Verified Buyer)</span>
+<span class="font-body-sm text-body-sm text-outline">18 min ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+              "Super crisp organic veggies and packed cold with dry ice! The heirloom tomatoes were flawless, zero bruising."
+            </p>
+<div class="flex items-center gap-1 text-tertiary pt-1">
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold ml-1">Fulfillment: 100% Quality</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let ordersPaused = false;
+  function togglePauseOrders() {
+    ordersPaused = !ordersPaused;
+    const btn = document.getElementById('pauseOrdersBtn');
+    const label = document.getElementById('pauseBtnText');
+    if (ordersPaused) {
+      btn.classList.remove('bg-surface-container-high', 'text-on-surface');
+      btn.classList.add('bg-error-container', 'text-on-error-container');
+      label.innerText = 'Orders Paused (Click to Resume)';
+    } else {
+      btn.classList.add('bg-surface-container-high', 'text-on-surface');
+      btn.classList.remove('bg-error-container', 'text-on-error-container');
+      label.innerText = 'Pause Orders (Surge)';
+    }
+  }
+</script></main></div></body></html>

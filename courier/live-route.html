@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary":"#ffffff","outline-variant":"#bdcaba","error":"#ba1a1a","primary":"#006b2c","surface-variant":"#d3e4fe","inverse-on-surface":"#eaf1ff","secondary-container":"#b1f2be","primary-container":"#00873a","surface-bright":"#f8f9ff","primary-fixed-dim":"#62df7d","surface-dim":"#cbdbf5","on-primary-fixed":"#002109","on-primary-fixed-variant":"#005320","tertiary":"#825100","on-secondary-fixed":"#00210d","error-container":"#ffdad6","surface-container-lowest":"#ffffff","surface-container-low":"#eff4ff","on-secondary-fixed-variant":"#12512c","on-background":"#0b1c30","inverse-surface":"#213145","on-secondary-container":"#347047","tertiary-fixed":"#ffddb8","background":"#f8f9ff","surface-container":"#e5eeff","secondary-fixed-dim":"#96d5a3","tertiary-fixed-dim":"#ffb95f","on-tertiary-fixed-variant":"#653e00","surface":"#f8f9ff","secondary-fixed":"#b1f2be","surface-container-high":"#dce9ff","on-tertiary-fixed":"#2a1700","on-surface-variant":"#3e4a3d","on-error":"#ffffff","on-tertiary":"#ffffff","on-primary-container":"#f7fff2","inverse-primary":"#62df7d","surface-tint":"#006e2d","on-error-container":"#93000a","outline":"#6e7b6c","primary-fixed":"#7ffc97","on-surface":"#0b1c30","on-tertiary-container":"#fffbff","tertiary-container":"#a36700","on-secondary":"#ffffff","secondary":"#2e6a41","surface-container-highest":"#d3e4fe"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-lg":"1.5rem","margin-mobile":"1rem","space-sm":"0.5rem","margin":"2rem","gutter-mobile":"0.75rem","space-xs":"0.25rem","space-xl":"2.5rem","gutter":"1.5rem","space-md":"1rem"},fontFamily:{"price-display":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},fontSize:{"price-display":["20px",{lineHeight:"24px",letterSpacing:"-0.02em",fontWeight:"800"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"700"}],"display":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"800"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"700"}],"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-20 px-space-md flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">electric_moped</span></div><div class="flex flex-col"><span class="font-title-md text-title-md text-on-surface leading-tight">FreshFleet Hub</span><span class="font-label-sm text-label-sm text-secondary font-bold tracking-wider uppercase">Courier Partner</span></div></div><div class="px-space-md py-space-xs"><div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-md text-label-md text-primary font-bold">Online</span></div><span class="font-label-sm text-label-sm text-on-surface-variant">Accepting Orders</span><div class="w-7 h-4 bg-primary rounded-full relative flex items-center px-0.5"><div class="w-3 h-3 bg-surface-container-lowest rounded-full ml-auto shadow-sm"></div></div></div></div><nav class="flex flex-col gap-1 px-space-sm mt-space-sm" data-active-classes="bg-secondary-container text-on-secondary-container font-bold shadow-sm"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="live-route-deliveries" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">near_me</span><span class="font-label-lg text-label-lg">Live Route & Deliveries</span></div><span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">1 In-Flight</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="assigned-orders" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Assigned Orders</span></div><span class="w-5 h-5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center justify-center">3</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="batch-multi-vendor-pickups" href="#"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-label-lg text-label-lg">Batch & Pickups</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="completed-deliveries" href="#"><span class="material-symbols-outlined text-[20px]">task_alt</span><span class="font-label-lg text-label-lg">Completed Deliveries</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="earnings-tips" href="#"><span class="material-symbols-outlined text-[20px]">payments</span><span class="font-label-lg text-label-lg">Earnings & Tips</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="cold-chain-thermal-protocol" href="#"><span class="material-symbols-outlined text-[20px]">ac_unit</span><span class="font-label-lg text-label-lg">Cold-Chain Protocol</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="vehicle-equipment" href="#"><span class="material-symbols-outlined text-[20px]">two_wheeler</span><span class="font-label-lg text-label-lg">Vehicle & Equipment</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="safety-roadside-assistance" href="#"><span class="material-symbols-outlined text-[20px]">car_crash</span><span class="font-label-lg text-label-lg">Safety & Assistance</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings-profile" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-lg text-label-lg">Settings & Profile</span></a></nav></div><div class="p-space-md"><div class="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0"><span class="font-label-lg text-label-lg text-on-surface truncate">David K.</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-tertiary-container text-[14px]">star</span><span class="font-label-sm text-label-sm font-bold text-on-surface">4.97</span><span class="font-body-sm text-body-sm text-on-surface-variant truncate">• 1,420 trips</span></div></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low"><span class="material-symbols-outlined text-primary text-[18px]">pin_drop</span><span class="font-label-md text-label-md text-on-surface font-semibold">Brooklyn Metro - Zone 4 North</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span></div><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[18px]">timer</span><span class="font-label-md text-label-md font-semibold text-on-surface">Shift: 4h 12m</span></div><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined text-[18px]">account_balance_wallet</span><span class="font-label-md text-label-md font-bold">Today: $148.50</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-xl bg-surface-container-low text-on-surface-variant"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-[18px]">battery_charging_90</span><span class="font-label-sm text-label-sm font-bold text-on-surface">92%</span></div><span class="text-outline-variant">|</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-[18px]">wifi</span><span class="font-label-sm text-label-sm font-bold text-on-surface">5G</span></div></div><button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-error text-on-error font-label-md text-label-md shadow-sm hover:opacity-90 transition-opacity" type="button"><span class="material-symbols-outlined text-[18px]">fmd_bad</span><span>SOS / Hotline</span></button><button class="relative w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center text-[10px]">4</span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 px-space-lg py-space-lg bg-surface min-h-screen"><div class="flex flex-col w-full gap-space-lg">
+<!-- Operational Header Hero Banner -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1.5 max-w-2xl">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase tracking-wider font-extrabold">Route #RT-4091</span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span> Multi-Vendor Batch (2 Pickups • 2 Drops)
+        </span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold animate-pulse flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> Window Closes: 14 mins
+        </span>
+</div>
+<div class="flex items-baseline gap-space-xs flex-wrap">
+<span class="font-headline-md text-headline-md text-on-surface">Drop-off 1 of 2:</span>
+<span class="font-headline-md text-headline-md text-primary font-extrabold">Sarah Jenkins</span>
+<span class="font-body-md text-body-md text-on-surface-variant">• 742 Evergreen Terrace, Apt 4B</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Target ETA: 2:45 PM
+        </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">near_me</span> Remaining: 0.8 mi (approx. 5 mins)
+        </span>
+<span>•</span>
+<span class="text-tertiary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">traffic</span> Flatbush Ave +2 min delay
+        </span>
+</div>
+</div>
+<!-- Rapid Dispatch Navigation Bar Action Array -->
+<div class="flex flex-wrap items-center gap-space-xs w-full xl:w-auto">
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-sm hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">navigation</span>
+<span>Launch GPS</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs px-space-sm py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-primary text-[18px]">call</span>
+<span>Call Customer</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs px-space-sm py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">support_agent</span>
+<span>Dispatch</span>
+</button>
+<button class="p-2.5 rounded-lg bg-error-container text-on-error-container hover:opacity-90 transition-opacity" title="Emergency Roadside / Cold-Chain SOS" type="button">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</button>
+</div>
+</section>
+<!-- 12-Column Grid Core Operation Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left & Center Column (7 Cols): Stop Progression & Geo Map Visualizer -->
+<div class="xl:col-span-7 flex flex-col gap-space-lg">
+<!-- Real-Time Interactive Navigation Map Canvas -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-title-md text-title-md text-on-surface">Live Vector Telemetry</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm font-semibold">Sensor Grid Active</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Bearing: 34° NE</span>
+<button class="p-1 rounded-md bg-surface-container-low text-on-surface hover:bg-surface-container"><span class="material-symbols-outlined text-[16px]">layers</span></button>
+<button class="p-1 rounded-md bg-surface-container-low text-on-surface hover:bg-surface-container"><span class="material-symbols-outlined text-[16px]">fullscreen</span></button>
+</div>
+</div>
+<!-- Simulated Stylized Map Layout -->
+<div class="relative w-full h-72 bg-surface-container-low rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-40 mix-blend-multiply" data-location="Brooklyn, New York, USA" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1Tjn5ScrkAhKxjDHU3wUl2n53YvBJQ_eOE5NictnaIdalfYMLVB2n9S3XB6Q7jplzp8JpK6-Loxnpbw9F7evMo2OulEWie85o-BOTmipVgxkhmCk3DDfYalNAmaiNwvJIwaMHO2KvSvgzXgba8Qa2PNnDyzY8qEVa7thu8WnCaZLkO8mcTijDW1PWjErlzI-_KSO_jQhlzIaq9i-vqK5szZZiKb1QCLWQrNSbgTqA')"></div>
+<!-- Ambient Map SVG Overlay Graphics -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<!-- Road Networks -->
+<path d="M 40 240 Q 180 200 280 150 T 480 90 T 700 40" fill="none" opacity="0.6" stroke="#bdcaba" stroke-linecap="round" stroke-width="8"></path>
+<path d="M 120 280 L 220 80 L 360 40" fill="none" stroke="#dce9ff" stroke-linecap="round" stroke-width="12"></path>
+<path class="animate-pulse" d="M 40 240 Q 180 200 280 150 T 480 90 T 700 40" fill="none" stroke="#00873a" stroke-dasharray="6,6" stroke-width="4"></path>
+<!-- Vendor 1 Marker -->
+<circle cx="90" cy="225" fill="#006b2c" r="7"></circle>
+<!-- Vendor 2 Marker -->
+<circle cx="210" cy="180" fill="#006b2c" r="7"></circle>
+<!-- Current Courier EV Location -->
+<circle cx="340" cy="125" fill="#00873a" fill-opacity="0.3" r="14"></circle>
+<circle cx="340" cy="125" fill="#006b2c" r="8"></circle>
+<!-- Active Destination Stop 3 -->
+<circle cx="510" cy="80" fill="#ba1a1a" fill-opacity="0.2" r="16"></circle>
+<circle cx="510" cy="80" fill="#ba1a1a" r="7"></circle>
+</svg>
+<!-- Floating Interactive Route Badges On Map -->
+<div class="absolute top-space-sm left-space-sm bg-surface-container-lowest/95 backdrop-blur-md px-space-sm py-1.5 rounded-lg shadow-sm flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">electric_bike</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold leading-tight">Courier in Transit</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant leading-none">18.4 mph • Heading N</span>
+</div>
+</div>
+<div class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/95 backdrop-blur-md p-space-xs px-space-sm rounded-lg shadow-sm flex items-center gap-space-sm">
+<div class="flex items-center gap-1 text-error font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">pin_drop</span>
+<span>Drop 1: 0.8 mi</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Next: 1.8 mi</span>
+</div>
+</div>
+<div class="flex items-center justify-between px-space-xs pt-1">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">alt_route</span>
+<span>Optimized via Cadman Plaza W & Tillary St</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">Zero Route Violations</span>
+</div>
+</section>
+<!-- Multi-Stop Manifest & Chronological Delivery Track -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">format_list_bulleted</span>
+<span class="font-title-md text-title-md text-on-surface">Sequential Route Stops</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 Completed • 2 Remaining</span>
+</div>
+<!-- Sequential Step Nodes -->
+<div class="flex flex-col relative pl-6">
+<!-- Continuous Spine Line -->
+<div class="absolute left-2.5 top-3 bottom-8 w-0.5 bg-surface-container-high"></div>
+<!-- STOP 1: COMPLETED PICKUP -->
+<div class="relative pb-space-lg flex flex-col gap-1.5 group">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Stop 1 • Pickup</span>
+<span class="px-2 py-0.2 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface">2:05 PM</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> Complete
+              </span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">GreenField Organic Market</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Order Batch A (3 grocery items) • Cold-chain probe: 38.2°F (Compliant)</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">storefront</span>
+</div>
+</div>
+<!-- STOP 2: COMPLETED PICKUP -->
+<div class="relative pb-space-lg flex flex-col gap-1.5">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Stop 2 • Pickup</span>
+<span class="px-2 py-0.2 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface">2:18 PM</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> Complete
+              </span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Artisan Bakery & Deli</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Order Batch B (2 items: Boule, Croissants) • Ambient tote sealed</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">bakery_dining</span>
+</div>
+</div>
+<!-- STOP 3: CURRENT ACTIVE DROP-OFF -->
+<div class="relative pb-space-lg flex flex-col gap-space-sm">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md animate-bounce">
+<span class="material-symbols-outlined text-[14px]">local_mall</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-extrabold uppercase tracking-wider">Stop 3 • Current Drop-off (Active)</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold">In-Flight</span>
+</div>
+<span class="font-price-display text-price-display text-primary">ETA 2:45 PM</span>
+</div>
+<!-- Customer Destination Card with Highlight Details -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sarah Jenkins</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">742 Evergreen Terrace, Apt 4B, Brooklyn NY 11201</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md font-bold text-on-surface">Order #FM-9842</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Combined 5 Items</p>
+</div>
+</div>
+<!-- Entry & Security Details Box -->
+<div class="bg-surface-container-lowest rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">key</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Bldg Gate Code:</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-price-display text-[15px] tracking-wider text-on-surface">#4092</span>
+</div>
+<button class="text-primary font-label-sm text-label-sm hover:underline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                  </button>
+</div>
+<div class="flex items-start gap-space-xs text-on-surface-variant font-body-sm text-body-sm pt-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary flex-shrink-0 mt-0.5">info</span>
+<span><strong>Courier Note:</strong> "Please leave at apartment door and ring bell. Do not leave in vestibule. Baby sleeping, please do not knock hard."</span>
+</div>
+</div>
+<!-- Mandatory Delivery Verification Checklist -->
+<div class="flex flex-col gap-2 pt-1">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface">Delivery Verification Protocol:</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Thermal Seal Intact</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest cursor-pointer select-none">
+<input class="w-4 h-4 rounded text-primary focus:ring-0" id="check-qr" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Scan Order QR</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest cursor-pointer select-none">
+<input class="w-4 h-4 rounded text-primary focus:ring-0" id="check-photo" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Doorstep Photo</span>
+</label>
+</div>
+</div>
+<!-- Primary Action Handlers -->
+<div class="flex flex-col sm:flex-row items-center gap-space-xs pt-space-xs">
+<button class="w-full sm:flex-1 py-3 px-space-md rounded-lg bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+<span>Complete Delivery & Take Photo</span>
+</button>
+<button class="w-full sm:w-auto py-3 px-space-md rounded-lg bg-surface-container-lowest text-error hover:bg-error-container transition-colors font-label-md text-label-md flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]">no_meeting_room</span>
+<span>Customer Unavailable</span>
+</button>
+</div>
+</div>
+</div>
+<!-- STOP 4: UPCOMING DROP-OFF -->
+<div class="relative flex flex-col gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Stop 4 • Next Drop-off</span>
+<span class="px-2 py-0.2 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface">Queue</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Estimated 3:05 PM</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-space-sm flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Marcus Thorne</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">180 Dumbo Waterfront Way, Ste 302 • 1.8 mi away</span>
+</div>
+<span class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Order #FM-9847</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Utility Panels (5 Cols): Telemetry, Manifest, Earnings Shift Recap -->
+<div class="xl:col-span-5 flex flex-col gap-space-lg">
+<!-- Active Cold-Chain Telemetry Sensor Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">ac_unit</span>
+<span class="font-title-md text-title-md text-on-surface">Cold-Chain Live Telemetry</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Sensor #T-108 Active
+          </span>
+</div>
+<!-- Temperature Gauge and Status Display -->
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Chilled Compartment</span>
+<span class="material-symbols-outlined text-primary text-[18px]">device_thermostat</span>
+</div>
+<div class="my-2 flex items-baseline gap-1">
+<span class="font-display text-[36px] font-extrabold text-primary leading-tight">37.8°</span>
+<span class="font-headline-sm text-headline-sm text-primary">F</span>
+</div>
+<div class="flex items-center justify-between text-[11px] font-body-sm text-on-surface-variant">
+<span>Target: 34° - 40°F</span>
+<span class="font-bold text-secondary">Optimal</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Telemetry Diagnostics</span>
+<span class="material-symbols-outlined text-primary text-[18px]">sensors</span>
+</div>
+<div class="flex flex-col gap-1.5 my-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Sensor Battery:</span>
+<span class="font-bold text-on-surface">88%</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Door Hatch:</span>
+<span class="font-bold text-secondary">Airtight Sealed</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Probe Sync:</span>
+<span class="text-on-surface">15s ago</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full w-[88%]"></div>
+</div>
+</div>
+</div>
+<div class="px-space-xs text-[11px] text-on-surface-variant flex items-center justify-between">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span> FDA Cold-Chain Compliance Verified
+          </span>
+<a class="text-primary font-semibold hover:underline" href="#">Calibration Log</a>
+</div>
+</section>
+<!-- Active Order Itemized Manifest with Vendor Grouping -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">shopping_bag</span>
+<span class="font-title-md text-title-md text-on-surface">Order Manifest (#FM-9842)</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">5 Total Items</span>
+</div>
+<!-- Vendor Group 1: GreenField Organic -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">1. GreenField Organic Market (3 Items)</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Tote #G-44</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">nutrition</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Organic Hass Avocados (Pack of 4)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ripened & Fresh • 1.2 lb</span>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">1x</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Driscoll's Sweet Strawberries</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Clamshell 16 oz</span>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">2x</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">set_meal</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md text-on-surface">Wild Atlantic Salmon Fillet</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-primary font-label-sm text-[10px] font-bold">Cold Pack</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">0.85 lb • Keep Chilled</span>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">1x</span>
+</div>
+</div>
+<!-- Vendor Group 2: Artisan Bakery -->
+<div class="flex flex-col gap-2 pt-2">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-bold">2. Artisan Bakery & Deli (2 Items)</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Tote #B-19</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[22px]">bakery_dining</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md text-on-surface">French Sourdough Boule</span>
+<span class="px-1.5 py-0.2 rounded bg-error-container text-on-error-container font-label-sm text-[10px] font-bold">Fragile</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Artisan Hand-baked</span>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">1x</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[22px]">cookie</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Almond Double Croissants</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bakery box 2-pack</span>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">1x</span>
+</div>
+</div>
+</section>
+<!-- Shift Performance & Micro-Earnings Snapshot -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">query_stats</span>
+<span class="font-title-md text-title-md text-on-surface">Today's Shift Velocity</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Tier 1 Bonus Active</span>
+</div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">6</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Completed Drops</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-extrabold">100%</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">On-Time SLA</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold flex items-center justify-center gap-0.5">
+              5.0 <span class="material-symbols-outlined text-[16px]">star</span>
+</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Shift Rating</span>
+</div>
+</div>
+<!-- Shift Earnings Mini Bar -->
+<div class="p-space-sm rounded-lg bg-secondary-container/40 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-secondary-container">Earnings Today (4h 12m)</span>
+<span class="font-headline-sm text-headline-sm text-on-secondary-container font-extrabold">$148.50</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-primary font-bold">+$34.00 Customer Tips</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant block">Payout Scheduled 8:00 PM</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-fixed":"#ffddb8","tertiary":"#825100","on-secondary-fixed":"#00210d","secondary-container":"#b1f2be","error-container":"#ffdad6","on-tertiary-container":"#fffbff","on-background":"#0b1c30","surface-dim":"#cbdbf5","surface-container-high":"#dce9ff","on-primary-fixed-variant":"#005320","surface":"#f8f9ff","on-secondary-container":"#347047","on-surface":"#0b1c30","surface-bright":"#f8f9ff","inverse-surface":"#213145","on-secondary-fixed-variant":"#12512c","on-secondary":"#ffffff","on-primary-container":"#f7fff2","on-tertiary-fixed-variant":"#653e00","on-error-container":"#93000a","secondary-fixed-dim":"#96d5a3","surface-container":"#e5eeff","inverse-primary":"#62df7d","error":"#ba1a1a","inverse-on-surface":"#eaf1ff","secondary":"#2e6a41","primary":"#006b2c","primary-fixed":"#7ffc97","secondary-fixed":"#b1f2be","on-primary-fixed":"#002109","surface-variant":"#d3e4fe","surface-container-lowest":"#ffffff","primary-container":"#00873a","primary-fixed-dim":"#62df7d","outline":"#6e7b6c","surface-container-low":"#eff4ff","background":"#f8f9ff","on-primary":"#ffffff","surface-container-highest":"#d3e4fe","on-surface-variant":"#3e4a3d","tertiary-container":"#a36700","tertiary-fixed-dim":"#ffb95f","outline-variant":"#bdcaba","on-tertiary":"#ffffff","surface-tint":"#006e2d","on-error":"#ffffff","on-tertiary-fixed":"#2a1700"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"2rem","space-lg":"1.5rem","space-xs":"0.25rem","space-sm":"0.5rem","space-md":"1rem","margin-mobile":"1rem","gutter-mobile":"0.75rem","gutter":"1.5rem","space-xl":"2.5rem"},fontFamily:{"body-md":["Plus Jakarta Sans"],"display":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"price-display":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},fontSize:{"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"display":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"price-display":["20px",{"lineHeight":"24px","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex flex-col justify-between pt-space-sm pb-space-xs"><div class="flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><a class="flex items-center gap-space-xs" data-path="marketplace-home" href="#"><img alt="FreshMart Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC76dxZwSVOPo3j4uBlG8BK7Yea0GI1LB3tR3EaJeWOIeJ9tCQFiDP1L7Z_yTeBETMrzjWgjOPfPLMHnx3-S8ogiuumDW24qkGRnHIqdiwlhAsF97CbJZl6-2cMM48oCbtwrvSZiAGd7qjl7GrOnrCxyYavzRpGYDLs7R5yJxErZ4askPkgf-5BwAmmSK3aqnvN8aywXzVoOsyxkOpnowCMQDnJe5XHIeKpCM01gHWd"/><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-extrabold">FreshMart</span></a><button class="hidden xl:flex items-center gap-space-xs py-space-xs px-space-sm bg-surface-container-low hover:bg-surface-container rounded-full text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-primary text-body-lg">location_on</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Deliver to</span><span class="font-label-md text-label-md text-on-surface font-semibold max-w-[200px] truncate leading-tight">742 Evergreen Terrace (25-35m)</span></div><span class="material-symbols-outlined text-on-surface-variant text-body-md">expand_more</span></button></div><div class="flex-1 max-w-2xl mx-space-sm hidden md:flex"><div class="flex items-center w-full h-11 bg-surface-container-low rounded-xl px-space-sm transition-all focus-within:ring-2 focus-within:ring-primary focus-within:bg-surface-container-lowest shadow-[0_1px_3px_rgba(15,23,42,0.04)]"><button class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md pr-space-sm" type="button"><span class="material-symbols-outlined text-body-md text-primary">storefront</span><span>All Stores</span><span class="material-symbols-outlined text-body-sm">arrow_drop_down</span></button><span class="h-4 w-[1px] bg-outline-variant mr-space-sm"></span><span class="material-symbols-outlined text-outline mr-space-xs text-body-lg">search</span><input class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-outline font-body-md text-body-md" placeholder="Search fresh produce, dairy, bakery, organic goods, or stores..." type="text"/><span class="hidden lg:inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold tracking-wider">⌘K</span></div></div><div class="flex items-center gap-space-sm shrink-0"><nav class="hidden lg:flex items-center gap-space-md" data-active-classes="text-primary font-bold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="stores-directory" href="#">Stores</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="promotions-and-offers" href="#">Offers</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="order-history" href="#">Orders</a></nav><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-full transition-colors" type="button"><span class="material-symbols-outlined text-headline-sm">notifications</span><span class="absolute top-1 right-1 flex items-center justify-center w-4 h-4 bg-error text-on-error font-label-sm text-label-sm rounded-full">2</span></button><a class="flex items-center gap-space-xs bg-primary text-on-primary hover:bg-primary-container px-space-sm py-1.5 rounded-full shadow-[0_1px_3px_rgba(15,23,42,0.04)] transition-colors" data-path="shopping-cart" href="#"><span class="material-symbols-outlined text-body-lg">shopping_basket</span><span class="font-label-md text-label-md font-semibold">3 items</span><span class="font-label-md text-label-md font-bold">$42.80</span></a><div class="flex items-center gap-space-xs pl-space-xs cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn7-a_ReTYg4xkzU_cIamwkifjr60cMq0Jlp5SMbTleY8kixq8og1JgZuHz9XMG4St5vknhS47B0Cvexmq2qVvlCE26AELZLwrI-Fhs8S6T34xQVyfABuj8IksaHU2ej8gJ6_RFvypvpeBPgGMuTkhaXlmYx_-kdZP0Z-h7OCssJ3FNToOVuYCjr_3qqn2ac_myo1vZx3f0x18ioK00gd66xQBB5TkAi7hUWF36kFr"/><span class="hidden xl:block font-label-md text-label-md text-on-surface font-semibold">Sarah J.</span></div></div></div></div><nav class="flex items-center gap-space-md overflow-x-auto py-space-xs text-on-surface-variant font-label-md text-label-md whitespace-nowrap" data-active-classes="text-primary font-bold"><a class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors" data-path="all-categories" href="#"><span class="material-symbols-outlined text-body-md">grid_view</span><span>All Categories</span></a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="fruits-and-vegetables" href="#">🥬 Fruits &amp; Vegetables</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="dairy-and-eggs" href="#">🥛 Dairy &amp; Eggs</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="meat-and-seafood" href="#">🥩 Meat &amp; Seafood</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="bakery" href="#">🥖 Bakery</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="beverages" href="#">🧃 Beverages</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="snacks" href="#">🍿 Snacks</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="household-essentials" href="#">🧼 Household Essentials</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="frozen-foods" href="#">❄️ Frozen Foods</a><a class="text-on-surface-variant hover:text-on-surface font-semibold transition-colors" data-path="promotions-and-offers" href="#">✨ Special Offers %</a></nav></div></header><main class="w-full pt-28 bg-surface"><div class="flex flex-col w-full">
+<!-- Stepper Progress Breadcrumb -->
+<section class="w-full bg-surface-container-low/70 py-space-md mb-space-lg">
+<div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin">
+<div class="flex items-center justify-between w-full max-w-4xl mx-auto relative">
+<div class="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-surface-container -z-0">
+<div class="h-full bg-primary transition-all duration-500 w-1/4"></div>
+</div>
+<!-- Step 1: Active -->
+<div class="flex flex-col items-center gap-space-xs relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-headline-sm text-headline-sm shadow-md ring-4 ring-primary/20">
+<span class="material-symbols-outlined text-body-lg">shopping_basket</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold text-center">1. Shopping Cart</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-space-xs relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-body-lg">local_shipping</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium text-center">2. Delivery Details</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-space-xs relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-body-lg">credit_card</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium text-center">3. Payment &amp; Review</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-space-xs relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-body-lg">verified</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium text-center">4. Confirmation</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Cart & Order Panel -->
+<div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin w-full pb-space-xl">
+<div class="flex flex-col lg:flex-row gap-gutter items-start">
+<!-- LEFT COLUMN: Cart Items Grouped by Store -->
+<div class="flex-1 w-full space-y-space-lg">
+<!-- Multi-Vendor Information Notice -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center gap-space-md shadow-sm">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined text-headline-sm">hub</span>
+</div>
+<div class="min-w-0">
+<p class="font-title-md text-title-md text-on-surface font-bold">Multi-Vendor Cart (2 Stores Selected)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Items are prepared by separate neighborhood merchants and carefully packed in insulated cold-chain totes.</p>
+</div>
+</div>
+<!-- VENDOR GROUP 1: GreenField Organic Market -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<!-- Vendor Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-11 h-11 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Vibrant clean logo badge for GreenField Organic Market showing fresh green botanical farm leaves in minimalist modern flat design style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDTiavXI0csGgeJy3R32Z7Qmm5lTxuM28tJq14Vjx3sCj7JHCDaIDqkQbnnsEbcMpuPba64ToWNwOYj89oWEe0siiMQzVm0aYrO661xrExqvRuFtek5NxXh4UIGiZdn7saqI85LNDzeb5xGRkeWvv7lkaqwRXrZ_6bTQm3yZnTkLUac6JMXlD43FCGsJk229F2fwKXnmUyVyWFz5Nlhsa_CMxuxBGTYWgN4NwbpmQr"/>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">GreenField Organic Market</h2>
+<span class="material-symbols-outlined text-primary text-body-md" title="Verified Organic Local Partner">check_circle</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 items • Direct Farm Hub • 1.2 miles away</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm">bolt</span> Express (25-35 min)
+              </span>
+</div>
+</div>
+<!-- Free Delivery Threshold Tracker -->
+<div class="bg-secondary-container/40 p-space-sm rounded-xl space-y-space-xs">
+<div class="flex justify-between items-center text-on-secondary-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-lg">celebration</span>
+<span class="font-label-md text-label-md font-bold">Free Delivery Unlocked!</span>
+</div>
+<span class="font-label-md text-label-md font-bold">$41.27 / $35.00 min</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-full transition-all duration-300"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-secondary-container/80">You saved $4.99 on delivery from GreenField Organic Market.</p>
+</div>
+<!-- Vendor Items List -->
+<div class="space-y-space-md pt-space-xs">
+<!-- Item 1 -->
+<div class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col md:flex-row gap-space-md items-start md:items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up photograph of organic ripe Hass avocados grouped in net mesh bag with rustic market background in bright natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcaBuOQWwuVfNP75OlslSeIb6tmKWeakzIO_3-6C09mVCMBWeU9BgapPyOclXQRlIeQJtkLClPhqiLpQGvb9TI4KSjYQxIGBfUMhx-BWlekR1Rn2QoDYglCVnhRrlzM3ZTA-gDh9hKSFZh5EiUW6l9kc2qpAkYeeVDAzzFzykC2WH5izx-bJu50sBiIcvWfe7Z52O0689WnIhtuu7F8vFYrvUUmmusy8wPu03wAqP4"/>
+</div>
+<div class="min-w-0 space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Certified Organic</span>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">Organic Hass Avocados (Bag of 4)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">$4.99 / bag • Origin: Michoacán</p>
+<!-- Substitution Dropdown -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<span class="material-symbols-outlined text-outline text-body-md">cached</span>
+<label class="font-body-sm text-body-sm text-on-surface-variant">If out of stock:</label>
+<select class="bg-surface-container text-on-surface font-label-sm text-label-sm rounded-md px-space-xs py-1 border-0 focus:ring-1 focus:ring-primary outline-none">
+<option selected="">Find best organic match</option>
+<option>Refund this item</option>
+<option>Contact me via SMS</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Quantity Controls & Pricing -->
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-space-sm pt-space-xs md:pt-0">
+<div class="text-right">
+<span class="font-price-display text-price-display text-on-surface font-extrabold">$9.98</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">($4.99 ea)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 shadow-sm">
+<button aria-label="Decrease quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">remove</span>
+</button>
+<span class="font-label-md text-label-md font-bold px-space-sm">2</span>
+<button aria-label="Increase quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">add</span>
+</button>
+</div>
+<button class="p-2 text-outline hover:text-error rounded-full hover:bg-error-container/30 transition-colors" title="Remove item">
+<span class="material-symbols-outlined text-headline-sm">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col md:flex-row gap-space-md items-start md:items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="High quality studio shot of fresh organic California strawberries in clear clamshell box showing bright ruby red gloss with vibrant green stems" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9_JkHc9YXETUu-8dCHxrlbEmGuY0bkB0Flt5PBYbvGSEfAC5_hY9d8n_2-T1UP_ARA56zl0UzjSGSkHpM4cycxRkFI8XnLIKvw--K_28X9exUCdNiJjZToaXEHfQzeBZXq8sIqCP4V8cj_ZZ12xja5dQwfNqcXCftEKJnDLtMFr_TMdn4AoFESSoGTu9pO1LIJy9mKIV7Hl94xANEX3m9vnVTC6Ntgu-uCFwm3mK5"/>
+</div>
+<div class="min-w-0 space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Local Harvest</span>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">Organic California Strawberries</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">16 oz clamshell • Sweet &amp; ripe</p>
+<!-- Substitution Dropdown -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<span class="material-symbols-outlined text-outline text-body-md">cached</span>
+<label class="font-body-sm text-body-sm text-on-surface-variant">If out of stock:</label>
+<select class="bg-surface-container text-on-surface font-label-sm text-label-sm rounded-md px-space-xs py-1 border-0 focus:ring-1 focus:ring-primary outline-none">
+<option selected="">Find best organic match</option>
+<option>Substitute blueberries</option>
+<option>Refund this item</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Quantity Controls & Pricing -->
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-space-sm pt-space-xs md:pt-0">
+<div class="text-right">
+<span class="font-price-display text-price-display text-on-surface font-extrabold">$3.99</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 shadow-sm">
+<button aria-label="Decrease quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">remove</span>
+</button>
+<span class="font-label-md text-label-md font-bold px-space-sm">1</span>
+<button aria-label="Increase quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">add</span>
+</button>
+</div>
+<button class="p-2 text-outline hover:text-error rounded-full hover:bg-error-container/30 transition-colors" title="Remove item">
+<span class="material-symbols-outlined text-headline-sm">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col md:flex-row gap-space-md items-start md:items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Chilled wild caught fresh Atlantic salmon fillet cut resting on butcher paper garnished with rosemary spring and lemon slice" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDifDz41knFNYAp0qvAhbDk3xeZz2uNxz8LRDY76CWknGfuIJTEjzIpaKnBgQVgZD_B6kZU-QobbV9uOym_4e-c_BFUsgG-wTRtAOLVlQYA_xWKShQ89ANYgCQQ3MdO5RafqTxqv4HSjDzMKbA3ZItzi3PJytp0aOq_wZ6jfFD6xUR74xk_1kCPWXXgbF53VJiWgd7zJ4AZhRl-9Dwh9GQ11J6-3Cw3ETC9rEhcL4PQ"/>
+</div>
+<div class="min-w-0 space-y-1">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Wild-Caught Cold-Chain</span>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">Fresh Wild Atlantic Salmon Fillet</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">1.5 lb avg portion • Freshly filleted</p>
+<!-- Substitution Dropdown -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<span class="material-symbols-outlined text-outline text-body-md">cached</span>
+<label class="font-body-sm text-body-sm text-on-surface-variant">If out of stock:</label>
+<select class="bg-surface-container text-on-surface font-label-sm text-label-sm rounded-md px-space-xs py-1 border-0 focus:ring-1 focus:ring-primary outline-none">
+<option selected="">Find best organic match</option>
+<option>Substitute Steelhead Trout</option>
+<option>Refund this item</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Quantity Controls & Pricing -->
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-space-sm pt-space-xs md:pt-0">
+<div class="text-right">
+<span class="font-price-display text-price-display text-on-surface font-extrabold">$22.48</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">($14.99 / lb)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 shadow-sm">
+<button aria-label="Decrease quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">remove</span>
+</button>
+<span class="font-label-md text-label-md font-bold px-space-sm">1</span>
+<button aria-label="Increase quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">add</span>
+</button>
+</div>
+<button class="p-2 text-outline hover:text-error rounded-full hover:bg-error-container/30 transition-colors" title="Remove item">
+<span class="material-symbols-outlined text-headline-sm">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Vendor Subtotal Footer -->
+<div class="pt-space-sm flex justify-between items-center text-on-surface bg-surface-container-low/40 p-space-sm rounded-xl">
+<span class="font-label-md text-label-md text-on-surface-variant">Store Total (3 items):</span>
+<span class="font-headline-sm text-headline-sm font-extrabold text-on-surface">$36.45</span>
+</div>
+</section>
+<!-- VENDOR GROUP 2: Artisan Bakery & Deli -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<!-- Vendor Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-11 h-11 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Artisanal bakery storefront emblem featuring rustic golden wheat and bread loaf badge in vintage aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk9ZKAJl4XoAh3UsUHej213AeVoPy4F1sSjfZ4019DnK8q6Hxt4Q6yB5dmRLziq0hS6HlqrIiKl9X1Fjd8dxkuqBQnjgf0OF0kSEXkN6rb5ER17jwnqRucc89yUonP-MNOnzRFOyesXDq0kOq7jT0EGGIG39VxttUbeE3rUMmDP_4F03vnS6mVGLoCMxQAzJb3u3qziciwsX-QwTvgx4hFClx5w9uepfFIIs26fNdx"/>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Artisan Bakery &amp; Deli</h2>
+<span class="material-symbols-outlined text-primary text-body-md" title="Handmade Daily Verified">check_circle</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">2 items • Baked This Morning • 2.4 miles away</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm">schedule</span> Standard (40-50 min)
+              </span>
+</div>
+</div>
+<!-- Free Delivery Progress Bar (Incomplete) -->
+<div class="bg-surface-container p-space-sm rounded-xl space-y-space-xs">
+<div class="flex justify-between items-center text-on-surface">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-body-lg">local_shipping</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Add <strong class="text-tertiary">$10.75</strong> more for Free Delivery!</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">$14.25 / $25.00 min</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full transition-all duration-300" style="width: 57%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Currently $2.99 delivery fee applies for this vendor.</p>
+</div>
+<!-- Vendor Items List -->
+<div class="space-y-space-md pt-space-xs">
+<!-- Item 1 -->
+<div class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col md:flex-row gap-space-md items-start md:items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Crusty traditional French sourdough boule bread dusted with white flour with beautiful artisanal scoring on wooden baker cutting board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEOwTWTgAo-iy_T4JJ9wWtiS_41rIp-XGRuAe7BinNrYCzsCLSgX1PjhvOCtWneKnJXWEnyLqMf5Ybah-BKPB1rAHidaDWmzFSd4hOTm1FdiBGC_rL_oElIUMuiVLyQsp1qveJ3dEgx9q1JGqSuxRiVVMtxlLWnvriTDjuFsskrquEuhwvGlXdjbEXa9nhpfRp_RmAUBmPx6FX9suPn_pNdRdwmwUbsqKE40I3Euol"/>
+</div>
+<div class="min-w-0 space-y-1">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Hearth Baked</span>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">French Sourdough Boule</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">24 oz • Wild yeast, naturally fermented</p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<span class="material-symbols-outlined text-outline text-body-md">cached</span>
+<label class="font-body-sm text-body-sm text-on-surface-variant">If out of stock:</label>
+<select class="bg-surface-container text-on-surface font-label-sm text-label-sm rounded-md px-space-xs py-1 border-0 focus:ring-1 focus:ring-primary outline-none">
+<option selected="">Find best organic match</option>
+<option>Substitute Baguette</option>
+<option>Refund this item</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Quantity Controls & Pricing -->
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-space-sm pt-space-xs md:pt-0">
+<div class="text-right">
+<span class="font-price-display text-price-display text-on-surface font-extrabold">$9.50</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">($4.75 ea)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 shadow-sm">
+<button aria-label="Decrease quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">remove</span>
+</button>
+<span class="font-label-md text-label-md font-bold px-space-sm">2</span>
+<button aria-label="Increase quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">add</span>
+</button>
+</div>
+<button class="p-2 text-outline hover:text-error rounded-full hover:bg-error-container/30 transition-colors" title="Remove item">
+<span class="material-symbols-outlined text-headline-sm">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col md:flex-row gap-space-md items-start md:items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Flaky golden brown French almond croissants topped with toasted sliced almonds and fine powdered sugar sitting on bakery parchment paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA19wX7LPlz2jnxtCZXMeWpWhhdoaNpSm9lQjN5K4jeEmD_i6BZtSiHX3IGc8yJWBxH0lJzaz7EhqTbkpODC0ZE3IG81sXqz2gDJAphKXwWO_zate4xH96zrEBIb5bRflVVMKQTsc6yLy3ex2c4-kagFloB32mlJWvEAZBpjhoIwYdroyxNPGKnet0O4OlBt1MgInVZ4GUYFBjZ8vB08IrHNFqU6zhGP6nmftwDlP0F"/>
+</div>
+<div class="min-w-0 space-y-1">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Morning Special</span>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold truncate">Fresh Baked Almond Croissants (2-pack)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pure butter lamination • Almond frangipane</p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<span class="material-symbols-outlined text-outline text-body-md">cached</span>
+<label class="font-body-sm text-body-sm text-on-surface-variant">If out of stock:</label>
+<select class="bg-surface-container text-on-surface font-label-sm text-label-sm rounded-md px-space-xs py-1 border-0 focus:ring-1 focus:ring-primary outline-none">
+<option selected="">Find best organic match</option>
+<option>Substitute Butter Croissants</option>
+<option>Refund this item</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Quantity Controls & Pricing -->
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-space-sm pt-space-xs md:pt-0">
+<div class="text-right">
+<span class="font-price-display text-price-display text-on-surface font-extrabold">$4.75</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 shadow-sm">
+<button aria-label="Decrease quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">remove</span>
+</button>
+<span class="font-label-md text-label-md font-bold px-space-sm">1</span>
+<button aria-label="Increase quantity" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-body-md">add</span>
+</button>
+</div>
+<button class="p-2 text-outline hover:text-error rounded-full hover:bg-error-container/30 transition-colors" title="Remove item">
+<span class="material-symbols-outlined text-headline-sm">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Vendor Subtotal Footer -->
+<div class="pt-space-sm flex justify-between items-center text-on-surface bg-surface-container-low/40 p-space-sm rounded-xl">
+<span class="font-label-md text-label-md text-on-surface-variant">Store Total (2 items):</span>
+<span class="font-headline-sm text-headline-sm font-extrabold text-on-surface">$14.25</span>
+</div>
+</section>
+<!-- Promo Code & Coupon Bar -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-body-lg">loyalty</span>
+<input class="w-full bg-surface-container-low pl-10 pr-space-md py-2.5 rounded-lg text-on-surface font-label-lg text-label-lg outline-none focus:bg-surface-container uppercase font-bold tracking-wider" placeholder="Enter coupon or promo code" type="text" value="FRESH15"/>
+</div>
+<button class="px-space-lg py-2.5 bg-surface-container-high text-on-surface hover:bg-surface-container rounded-lg font-label-lg text-label-lg font-bold transition-all shadow-sm">
+              Apply Coupon
+            </button>
+</div>
+<!-- Applied Coupon Tag -->
+<div class="flex items-center justify-between bg-secondary-container/30 text-on-secondary-container px-space-md py-space-xs rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md">check_circle</span>
+<span class="font-label-md text-label-md font-bold">FRESH15 Applied</span>
+<span class="font-body-sm text-body-sm text-on-secondary-container/80">($10 off multi-vendor orders over $40)</span>
+</div>
+<button class="font-label-sm text-label-sm text-error font-bold hover:underline">Remove</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Order Summary & Express Checkout Panel -->
+<aside class="w-full lg:w-[440px] shrink-0 space-y-space-md lg:sticky lg:top-32">
+<!-- Order Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<h2 class="font-headline-sm text-headline-sm font-extrabold text-on-surface">Order Summary</h2>
+<span class="font-label-md text-label-md bg-surface-container px-space-xs py-0.5 rounded text-on-surface-variant font-bold">5 Items • 2 Stores</span>
+</div>
+<!-- Breakdown calculation list -->
+<div class="space-y-space-sm font-body-md text-body-md text-on-surface">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Items Subtotal</span>
+<span class="font-semibold">$50.70</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-1">
+<span class="text-on-surface-variant">GreenField Market Delivery</span>
+<span class="material-symbols-outlined text-secondary text-body-sm" title="Free order unlocked">verified</span>
+</div>
+<span class="text-secondary font-bold">FREE</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Artisan Bakery Delivery</span>
+<span class="font-semibold">$2.99</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span class="flex items-center gap-1 font-medium">Promo Discount (FRESH15)</span>
+<span class="font-bold">-$10.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Estimated Taxes &amp; Bag Fees</span>
+<span class="font-semibold">$3.85</span>
+</div>
+<!-- Grand Total -->
+<div class="pt-space-sm flex justify-between items-baseline bg-surface-container-low p-space-sm rounded-xl">
+<div>
+<span class="font-title-md text-title-md font-bold text-on-surface block">Total Amount</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">You saved $14.99 today!</span>
+</div>
+<span class="font-display text-headline-lg font-black text-primary">$47.54</span>
+</div>
+</div>
+<!-- Delivery Address Selection -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant font-bold uppercase tracking-wider">Delivery Destination</span>
+<button class="font-label-sm text-label-sm text-primary font-bold hover:underline">Change Address</button>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-xl flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-sm shrink-0">pin_drop</span>
+<div class="min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-title-md text-title-md font-bold text-on-surface">Home</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-1.5 py-0.2 rounded font-bold">Default</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">742 Evergreen Terrace, Apt 4B<br/>Brooklyn, NY 11201</p>
+</div>
+</div>
+</div>
+<!-- Delivery Window Slots -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold uppercase tracking-wider block">Estimated Window</label>
+<div class="space-y-2">
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary" name="time_slot" type="radio"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Today, 2:30 PM - 3:30 PM</p>
+<p class="font-body-sm text-body-sm text-secondary font-semibold">Combined Express Courier</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary font-bold px-2 py-0.5 rounded-full">Recommended</span>
+</label>
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="time_slot" type="radio"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Today, 5:00 PM - 6:00 PM</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Evening Drop-off</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Regular</span>
+</label>
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="time_slot" type="radio"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Tomorrow Morning</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">8:00 AM - 9:30 AM</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Scheduled</span>
+</label>
+</div>
+</div>
+<!-- Courier Delivery Note -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold uppercase tracking-wider block">Driver Instructions</label>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low rounded-xl p-space-sm font-body-sm text-body-sm text-on-surface outline-none focus:bg-surface-container resize-none" placeholder="Add entry code, gate buzzer, or drop-off notes..." rows="2">Please leave at apartment door and ring bell.</textarea>
+</div>
+</div>
+<!-- Payment Method Selector -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold uppercase tracking-wider block">Payment Method</label>
+<div class="space-y-2">
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+<span class="material-symbols-outlined text-primary text-headline-sm">credit_card</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Visa ending in 4242</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Expires 08/27</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-surface-container rounded font-bold">VISA</span>
+</label>
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+<span class="material-symbols-outlined text-on-surface-variant text-headline-sm">account_balance_wallet</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Apple Pay</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instant 1-Click</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-surface-container rounded font-bold">WALLET</span>
+</label>
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+<span class="material-symbols-outlined text-on-surface-variant text-headline-sm">payments</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">PayPal</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">sarah.j@example.com</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-surface-container rounded font-bold">PAYPAL</span>
+</label>
+<label class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="payment_method" type="radio"/>
+<span class="material-symbols-outlined text-on-surface-variant text-headline-sm">local_atm</span>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Cash on Delivery</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Exact change appreciated</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-surface-container rounded font-bold">COD</span>
+</label>
+</div>
+</div>
+<!-- Checkout Large Primary Action Button -->
+<div class="pt-space-sm">
+<button class="w-full py-4 px-space-lg bg-primary hover:bg-primary-container text-on-primary rounded-xl font-headline-sm text-headline-sm font-extrabold flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.99]">
+<span class="material-symbols-outlined text-headline-sm">lock</span>
+<span>Place Multi-Vendor Order • $47.54</span>
+</button>
+</div>
+<!-- Trust & Cold-Chain Guarantee Statement -->
+<div class="text-center pt-space-xs space-y-1">
+<div class="flex items-center justify-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-body-md">verified</span>
+                100% Freshness Guarantee
+              </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-body-md">security</span>
+                Secure 256-Bit SSL
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70">You will only be charged when each merchant confirms fresh item pick-and-pack.</p>
+</div>
+</div>
+<!-- Vendor Environmental & Temperature Commitment -->
+<div class="bg-surface-container-low/70 rounded-xl p-space-md flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-headline-sm">ac_unit</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md font-bold text-on-surface">Cold-Chain Assured</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Seafood and fresh dairy travel in dedicated eco-chilled thermal packs.</p>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-xl pt-space-xl pb-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter mb-space-xl"><div class="lg:col-span-2 space-y-space-md"><div class="flex items-center gap-space-xs"><img alt="FreshMart Brand Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC76dxZwSVOPo3j4uBlG8BK7Yea0GI1LB3tR3EaJeWOIeJ9tCQFiDP1L7Z_yTeBETMrzjWgjOPfPLMHnx3-S8ogiuumDW24qkGRnHIqdiwlhAsF97CbJZl6-2cMM48oCbtwrvSZiAGd7qjl7GrOnrCxyYavzRpGYDLs7R5yJxErZ4askPkgf-5BwAmmSK3aqnvN8aywXzVoOsyxkOpnowCMQDnJe5XHIeKpCM01gHWd"/><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-extrabold">FreshMart</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Your hyper-local online grocery marketplace. Connecting community farmstands, boutique bakeries, artisanal butchers, and local supermarkets straight to your doorstep.</p><div class="flex items-center gap-space-sm pt-space-xs"><div class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-body-lg text-on-surface">phone_iphone</span><div class="text-left"><p class="font-label-sm text-label-sm text-on-surface-variant leading-none">Download on</p><p class="font-label-md text-label-md text-on-surface font-bold leading-tight">App Store</p></div></div><div class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-body-lg text-on-surface">play_arrow</span><div class="text-left"><p class="font-label-sm text-label-sm text-on-surface-variant leading-none">Get it on</p><p class="font-label-md text-label-md text-on-surface font-bold leading-tight">Google Play</p></div></div></div></div><div><h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-md">FreshMart</h4><ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">About Us</a></li><li><a class="hover:text-primary transition-colors" href="#">Local Farm Partners</a></li><li><a class="hover:text-primary transition-colors" href="#">Careers &amp; Culture</a></li><li><a class="hover:text-primary transition-colors" href="#">Sustainability &amp; Green Fleet</a></li><li><a class="hover:text-primary transition-colors" href="#">FreshMart Press</a></li></ul></div><div><h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-md">Vendor Hub</h4><ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">Sell on FreshMart</a></li><li><a class="hover:text-primary transition-colors" href="#">Merchant Portal Login</a></li><li><a class="hover:text-primary transition-colors" href="#">Fulfilled by FreshMart</a></li><li><a class="hover:text-primary transition-colors" href="#">Vendor Success Stories</a></li><li><a class="hover:text-primary transition-colors" href="#">Local Producer Standards</a></li></ul></div><div><h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-md">Support &amp; Legal</h4><ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">Help Center &amp; FAQs</a></li><li><a class="hover:text-primary transition-colors" href="#">Return &amp; Refund Policy</a></li><li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li><li><a class="hover:text-primary transition-colors" href="#">Privacy Shield</a></li><li><a class="hover:text-primary transition-colors" href="#">Contact Marketplace Support</a></li></ul></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm text-on-surface-variant font-label-md text-label-md"><span class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-body-md">verified_user</span> 256-Bit Encrypted Payments</span><span class="text-outline-variant">•</span><span class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-body-md">eco</span> 100% Cold-Chain Fresh Guarantee</span></div><div class="flex items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm"><span class="px-space-xs py-0.5 rounded bg-surface-container font-semibold">VISA</span><span class="px-space-xs py-0.5 rounded bg-surface-container font-semibold">MASTERCARD</span><span class="px-space-xs py-0.5 rounded bg-surface-container font-semibold">APPLE PAY</span><span class="px-space-xs py-0.5 rounded bg-surface-container font-semibold">PAYPAL</span></div></div><div class="mt-space-md text-center md:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 FreshMart Technologies Inc. All rights reserved. Locally sourced, promptly delivered.</p></div></div></footer></body></html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"tertiary-container":"#a36700","primary-fixed-dim":"#62df7d","inverse-on-surface":"#eaf1ff","on-secondary":"#ffffff","on-tertiary-fixed-variant":"#653e00","primary":"#006b2c","primary-fixed":"#7ffc97","surface-dim":"#cbdbf5","background":"#f8f9ff","tertiary-fixed":"#ffddb8","surface-container-low":"#eff4ff","on-primary-container":"#f7fff2","on-primary-fixed-variant":"#005320","outline":"#6e7b6c","on-secondary-fixed":"#00210d","on-surface-variant":"#3e4a3d","on-error-container":"#93000a","inverse-surface":"#213145","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#12512c","surface":"#f8f9ff","on-tertiary-container":"#fffbff","on-primary-fixed":"#002109","on-tertiary":"#ffffff","secondary-fixed":"#b1f2be","surface-container-highest":"#d3e4fe","surface-container-high":"#dce9ff","surface-tint":"#006e2d","surface-variant":"#d3e4fe","on-secondary-container":"#347047","inverse-primary":"#62df7d","secondary-container":"#b1f2be","on-background":"#0b1c30","secondary":"#2e6a41","on-primary":"#ffffff","outline-variant":"#bdcaba","primary-container":"#00873a","on-error":"#ffffff","on-tertiary-fixed":"#2a1700","error":"#ba1a1a","error-container":"#ffdad6","on-surface":"#0b1c30","tertiary":"#825100","surface-bright":"#f8f9ff","tertiary-fixed-dim":"#ffb95f","secondary-fixed-dim":"#96d5a3","surface-container":"#e5eeff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-mobile":"0.75rem","space-xs":"0.25rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem","space-sm":"0.5rem","space-xl":"2.5rem","margin-mobile":"1rem"},"fontFamily":{"display":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"price-display":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},"fontSize":{"display":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"600"}],"price-display":["20px",{"lineHeight":"24px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="p-space-md flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span></div><div><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface">FreshMart</span><span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">HQ</span></div><p class="font-label-sm text-label-sm text-on-surface-variant">v2.4 Enterprise Core</p></div></div><span class="material-symbols-outlined text-outline text-[18px]">verified_user</span></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-md"><nav class="space-y-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Main</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="platform-overview" href="#"><span class="font-body-md text-body-md">Platform Overview</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="live-operations" href="#"><span class="font-body-md text-body-md">Live Operations &amp; Orders</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="analytics-reports" href="#"><span class="font-body-md text-body-md">Analytics &amp; Reports</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Commerce &amp; Merchants</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vendor-management" href="#"><span class="font-body-md text-body-md">Vendor Management</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-2 transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="vendor-approval-requests" href="#"><span class="font-body-md text-body-md">Vendor Approvals</span><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">4</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="stores-outlets" href="#"><span class="font-body-md text-body-md">Stores &amp; Outlets</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="catalog-master-inventory" href="#"><span class="font-body-md text-body-md">Catalog &amp; Master Inventory</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Financials</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="commission-take-rate" href="#"><span class="font-body-md text-body-md">Commission &amp; Take-Rate</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vendor-payouts" href="#"><span class="font-body-md text-body-md">Vendor Payouts</span><span class="px-1.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">$42.8k</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="refunds-disputes" href="#"><span class="font-body-md text-body-md">Refunds &amp; Disputes</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="invoicing" href="#"><span class="font-body-md text-body-md">Invoicing</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Operations &amp; Logistics</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="delivery-fleet-couriers" href="#"><span class="font-body-md text-body-md">Fleet &amp; Couriers</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="delivery-zones" href="#"><span class="font-body-md text-body-md">Delivery Zones</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="customer-management" href="#"><span class="font-body-md text-body-md">Customer Management</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="support-tickets" href="#"><span class="font-body-md text-body-md">Support &amp; Tickets</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">System</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="promo-platform-coupons" href="#"><span class="font-body-md text-body-md">Promos &amp; Coupons</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="platform-settings" href="#"><span class="font-body-md text-body-md">Platform Settings</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="audit-logs-api" href="#"><span class="font-body-md text-body-md">Audit Logs &amp; API</span></a></div></nav></div><div class="p-space-sm space-y-space-sm bg-surface-container-low"><div class="flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-lowest"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold">All Systems Operational</span></div><span class="font-label-sm text-label-sm text-outline">99.98%</span></div><div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-lowest hover:bg-surface-container-high transition-colors cursor-pointer"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div><p class="font-label-md text-label-md text-on-surface font-bold leading-tight">Alex Morgan</p><p class="font-body-sm text-body-sm text-on-surface-variant leading-none">Super Admin / Ops</p></div></div><span class="material-symbols-outlined text-outline text-[18px]">unfold_more</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-8 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span><input class="w-full h-10 pl-10 pr-12 rounded-xl bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-all" placeholder="Search vendors, order IDs, payout batches, stores..." type="text"/><div class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">⌘K</div></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm"><span class="font-semibold text-primary">Live</span><span>Active Couriers: 142</span><span class="text-outline-variant">•</span><span>Velocity: 3.8/min</span><span class="text-outline-variant">•</span><span>GMV Today: $34,920</span></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Production (US-East)</div><button class="px-space-sm py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-all flex items-center gap-space-xs shadow-sm"><span class="material-symbols-outlined text-[18px]">add</span><span>Action</span></button><button class="relative p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-8 py-space-lg"><div class="flex flex-col w-full space-y-space-lg">
+<!-- Breadcrumb & Top Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mb-1">
+<a class="hover:text-primary transition-colors" href="#">Merchants</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Vendor Approval Requests &amp; Onboarding</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Vendor Approval Requests</h1>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          4 Pending Review
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Vet new agricultural producers, regional creameries, artisanal butcheries, and cold-chain compliance before store provisioning.
+      </p>
+</div>
+<!-- Right Header Utilities -->
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-md text-label-md font-semibold transition-all flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+        Export Queue (.CSV)
+      </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-semibold transition-all flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+        Direct Merchant Invite
+      </button>
+</div>
+</div>
+<!-- Pipeline Funnel Pills Ribbon -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-space-sm">
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col justify-between shadow-sm cursor-pointer ring-2 ring-primary bg-primary/5 transition-all">
+<div class="flex items-center justify-between text-primary font-label-sm text-label-sm font-bold">
+<span>PENDING REVIEW</span>
+<span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">4</span>
+<span class="font-label-sm text-label-sm text-error font-medium">1 SLA Critical</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col justify-between shadow-sm hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span>DOCS UNDER AUDIT</span>
+<span class="material-symbols-outlined text-[16px]">policy</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">3</span>
+<span class="font-label-sm text-label-sm text-outline">EIN / Liability checks</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 50%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col justify-between shadow-sm hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span>INSPECTION BOOKED</span>
+<span class="material-symbols-outlined text-[16px]">store</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">2</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Cold-chain visits</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col justify-between shadow-sm hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span>APPROVED THIS MONTH</span>
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">18</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">+24% vs last mo</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col justify-between shadow-sm hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span>REJECTED / DEFICIENT</span>
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">5</span>
+<span class="font-label-sm text-label-sm text-outline">Audit remediation</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 25%"></div>
+</div>
+</div>
+</div>
+<!-- Search & Multi-Filter Bar -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex flex-col md:flex-row items-center gap-space-sm">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full h-11 pl-11 pr-4 rounded-xl bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner transition-all" placeholder="Filter by trade name, owner, EIN (e.g. 14-8829103), phone or zip code..." type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">⌘F</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+<div class="relative min-w-[150px]">
+<select class="w-full h-11 pl-3 pr-8 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Category: All Types</option>
+<option>Farm Produce</option>
+<option>Artisan Bakery</option>
+<option>Butcher &amp; Deli</option>
+<option>Fishery &amp; Seafood</option>
+<option>Specialty Dairy</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">arrow_drop_down</span>
+</div>
+<div class="relative min-w-[160px]">
+<select class="w-full h-11 pl-3 pr-8 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Zone: All Territories</option>
+<option>Hudson Valley (NY-North)</option>
+<option>Brooklyn Hub (NY-B1)</option>
+<option>Manhattan Metro (NY-M1)</option>
+<option>Queens Express (NY-Q2)</option>
+<option>Long Island Coastal</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">arrow_drop_down</span>
+</div>
+<div class="relative min-w-[140px]">
+<select class="w-full h-11 pl-3 pr-8 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md appearance-none focus:outline-none cursor-pointer">
+<option>Date: Last 14 Days</option>
+<option>Today Only</option>
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>Fiscal Quarter</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">arrow_drop_down</span>
+</div>
+<button class="h-11 px-3 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1 transition-colors flex-shrink-0" title="Reset Filters">
+<span class="material-symbols-outlined text-[18px] text-outline">restart_alt</span>
+<span class="hidden xl:inline">Reset</span>
+</button>
+</div>
+</div>
+<!-- Active Filter Chips -->
+<div class="flex items-center gap-2 pt-1 overflow-x-auto text-on-surface-variant font-label-sm text-label-sm">
+<span class="text-outline uppercase tracking-wider text-[10px] font-bold">Active Scope:</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface">
+<span>Status: Pending Review (4)</span>
+<span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface">
+<span>Logistics: Cold-Chain Required</span>
+<span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface">
+<span>SLA: Escalated (&lt; 24h)</span>
+<span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<button class="text-primary font-semibold hover:underline ml-1">Clear all filters</button>
+</div>
+</div>
+<!-- Focused Applicant Dossier Panel (Hudson Valley Heirloom Orchard & Apiary) -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md relative overflow-hidden">
+<!-- Ambient Accent glow -->
+<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 space-y-space-md">
+<!-- Panel Header Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between pb-space-md gap-space-sm">
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-low overflow-hidden shadow-sm flex items-center justify-center flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Modern organic orchard logo with stylized apple and honey bee badge icon in deep forest green and golden honey amber on clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8vZTEuf3g1b-gEzsEcpeypmnrU84wLGGhxyQSxdwTymPYsfrjBBcrQdNl1BNLyuLmKpUyZEJcNCN6Z_fDullJhMpcQAsmCbptkFN54gCnEGK5w5PDPxmNyMBFiKr01lc02wvDatdh3K7aILlQtT8t6-_39qVRoj8OtaOYMVs1Z6TknQJ4SO94Dc6JJqznOmGIZtXsXdff6t6dKychO4wAX8s01Ql8YG6i58wRIJu0"/>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                Priority Application Dossier
+              </span>
+<span class="font-label-sm text-label-sm text-outline">APP-2025-0894</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Submitted 42 hours ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight mt-0.5">
+              Hudson Valley Heirloom Orchard &amp; Apiary
+            </h2>
+<div class="flex items-center gap-space-md text-on-surface-variant font-body-sm text-body-sm mt-1 flex-wrap">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">person</span>
+                Owner: <strong>Marcus Vance</strong> (Founder &amp; Master Pomologist)
+              </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+                148 Orchard Way, Red Hook, NY 12571
+              </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">call</span>
+                (845) 555-0192 • marcus@hv-heirloom.com
+              </span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs lg:self-start">
+<span class="px-3 py-1.5 rounded-xl bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+            4 of 5 Verifications Passed
+          </span>
+<button class="p-2 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" title="Print Audit File">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+<button class="p-2 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" title="Download Application PDF">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Main Review Grid (Left: Verification Checklist, Right: Storefront Preview & Catalog Meta) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- Checklist Column -->
+<div class="xl:col-span-7 space-y-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">fact_check</span>
+              Document &amp; Compliance Audit Checklist
+            </h3>
+<span class="font-label-sm text-label-sm text-outline">Audited by: Alex Morgan (HQ Senior Compliance)</span>
+</div>
+<div class="space-y-space-xs">
+<!-- Item 1: State Business Reg -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<p class="font-label-lg text-label-lg text-on-surface font-bold">State Business Registration &amp; EIN</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Active • Validated</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    NYS Dept of State Entity ID #4928103 • Federal EIN 14-8829103 • Verified via Automated Gov API.
+                  </p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-bold transition-all flex items-center gap-1 shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]">description</span>
+                View Registry
+              </button>
+</div>
+<!-- Item 2: USDA Organic -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<p class="font-label-lg text-label-lg text-on-surface font-bold">USDA Organic Handler &amp; Crop Certification</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">NOP Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Certifier: NOFA-NY Certified Organic, LLC (#2948-OG) • Valid through Oct 2026. Includes cider &amp; raw honey.
+                  </p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-bold transition-all flex items-center gap-1 shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+                View PDF (2.4MB)
+              </button>
+</div>
+<!-- Item 3: Health & Inspection -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Food Safety &amp; Commercial Processing Audit</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Grade A</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    NY Dept of Ag &amp; Markets 20C Food Processing Permit • Score: 98/100 • Facility sanitized for bottling.
+                  </p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-bold transition-all flex items-center gap-1 shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]">history_edu</span>
+                Report File
+              </button>
+</div>
+<!-- Item 4: Commercial Liability (PENDING CALLBACK) -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-sm ring-1 ring-tertiary-container/30">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">pending</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Commercial Liability Insurance ($2M Aggregate)</p>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">Pending Agent Callback</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Liberty Mutual Certificate of Insurance uploaded • Policy #LMC-88194 • Awaiting FreshMart HQ additional insured endorsement confirmation.
+                  </p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest text-tertiary hover:bg-tertiary hover:text-on-tertiary font-label-sm text-label-sm font-bold transition-all flex items-center gap-1 shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]">call</span>
+                Ping Underwriter
+              </button>
+</div>
+<!-- Item 5: Cold-Chain Packaging -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">ac_unit</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Cold-Chain Transit Readiness &amp; Temp Control</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Audit Compliant</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Insulated bio-foam thermal liners + gel refrigerant tested for 4-hour transit windows at ≤38°F.
+                  </p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-bold transition-all flex items-center gap-1 shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]">checklist</span>
+                Audit Spec
+              </button>
+</div>
+</div>
+</div>
+<!-- Storefront & Proposed Catalog Preview Column -->
+<div class="xl:col-span-5 flex flex-col justify-between space-y-space-sm">
+<div class="space-y-space-sm">
+<h3 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">storefront</span>
+              Proposed Storefront &amp; Catalog Staging
+            </h3>
+<!-- Storefront Card Preview -->
+<div class="rounded-xl overflow-hidden bg-surface-container-low shadow-sm">
+<div class="relative h-36 w-full">
+<img class="w-full h-full object-cover" data-alt="Sunlit Hudson Valley apple orchard rows in Autumn with wooden rustic apple crates and honeybee hives under golden hour light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcy4B7ANCvfxpt7NoOFjtkPj5dgJQ3YkNQlDb7sz1Zct4ARhV1xF2yjeXABsnWIyR7smCTMRtvvomCQoJ7kti-I1mH8CnQsXMEAiBhHwL0CxApJ-njSnYZtI7hfunbDLXCh0THg0CoGzUUbunvd5ma6fSd1bBd08dmEmnDYtv2rplhdGpKX9f-xoiYJ2prSLzNUn2WX_3dv8I83MiYL7U0NpFwTHI_-Grflg5ZnU7i"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+<div class="text-on-primary">
+<p class="font-title-md text-title-md font-bold leading-tight">Hudson Valley Heirloom</p>
+<p class="font-body-sm text-body-sm opacity-90">Orchard Cider, Varietal Honey &amp; Berries</p>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-bold">
+                    42 Ready SKUs
+                  </span>
+</div>
+</div>
+<!-- Initial Catalog Snippet Mini-Grid -->
+<div class="p-space-sm grid grid-cols-3 gap-2">
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col items-center text-center shadow-xs">
+<div class="w-10 h-10 rounded-md bg-surface-container-low mb-1 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Glass bottle of unfiltered golden heirloom honey crisp apple cider with natural botanical label" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPuq6pdpIy0T7_K5OPBaNhyI-_UweSD3ubVS-6OpiZek2PemvXEGviLzTk2AOSEMiASRnYVIBIadlI5ClhhO355egz9f-psXXThVCTfqksRWyF3z_PhrA5hKMhi4lSshvj4_NBGRhoLDdg1KZdwc33tFRdfoRGsnkC-M_a1t4cWZnORtxkTdZfrKyhb9wtTEiP6I-uqUR9SLlPH6OBK_b04hB0aeuMyZVv52pnfkxV"/>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate w-full">Honeycrisp Cider</p>
+<p class="font-label-sm text-label-sm text-primary font-bold">$7.49</p>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col items-center text-center shadow-xs">
+<div class="w-10 h-10 rounded-md bg-surface-container-low mb-1 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Glass jar of raw unfiltered wildflower comb honey with amber translucence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcWKaYBctPqaapdgsKgzIEywBEXjPu14IHYGcLXHtpwY5OWfK_6F9rBiamT5tDogJajoRM--FaGmCedoRGgf4SfIDKmQuL1YG1pB6D6BF4XqDRwmTV5aIOKbLTKZQQp7UWdh54vOqLDLi5McmuvHJ4biNO-aCsLu4KK3bdBKme26j_-gA2DblYgGaadUuE500_Cg4bk6QmL8MaVUW8iBaOsxtv4ehUjZgm7_jH5Dfd"/>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate w-full">Raw Apiary Honey</p>
+<p class="font-label-sm text-label-sm text-primary font-bold">$12.99</p>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col items-center text-center shadow-xs">
+<div class="w-10 h-10 rounded-md bg-surface-container-low mb-1 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Eco-friendly carton of fresh tart heritage blackberries and raspberries" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD719acgx8QAGjRYZ2R6Pk2i9GHefOwseHDB0OE4v-lMOGy1L105UMVgKfaPgHwccl8NiJZAFZHB7nYbUk6hQjLibbKUMyXRyv1zlGaO9DxSyKEtQUAv65-W2Mi_WxtSy_xmcHm90KVxOkjXhaVECx3a4_3-U-ouxwbPTwvFNw6IFFRcwWYpWGWBuW5hyFLgMoc3SFpDDhF81z1hXVQVFfqks3cOqX_SO3q5fM-msTW"/>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate w-full">Heritage Berries</p>
+<p class="font-label-sm text-label-sm text-primary font-bold">$5.80</p>
+</div>
+</div>
+</div>
+<!-- Commission & Fulfillment Terms -->
+<div class="p-space-sm rounded-xl bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Default Platform Take-Rate:</span>
+<span class="font-semibold text-on-surface">14.0% Standard Farm Tier</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Fulfillment Routing:</span>
+<span class="font-semibold text-on-surface">Vendor Cold Drop • Hub NY-North</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Stripe Connect KYC:</span>
+<span class="font-semibold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                  Payout Ready
+                </span>
+</div>
+</div>
+</div>
+<!-- Focused Action Toolbar -->
+<div class="pt-space-xs flex flex-col sm:flex-row items-center gap-2">
+<button class="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-bold transition-all shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+              Approve Vendor &amp; Create Store
+            </button>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial py-2.5 px-3 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all flex items-center justify-center gap-1" title="Request Missing Documents">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+                Request Docs
+              </button>
+<button class="flex-1 sm:flex-initial py-2.5 px-3 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all flex items-center justify-center gap-1" title="Schedule On-Site Inspection">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                Inspect
+              </button>
+<button class="p-2.5 rounded-xl bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-all flex items-center justify-center" onclick="document.getElementById('rejectModal').classList.remove('hidden')" title="Reject Application">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Applications Queue Table Section -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
+<!-- Table Header Toolbar -->
+<div class="p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-low/50">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Active Applications Queue</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Total 4 merchants awaiting final admin determination &amp; contract provisioning</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors flex items-center gap-1 shadow-xs">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+          Density: Compact
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors flex items-center gap-1 shadow-xs">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+          Sort: SLA Urgency
+        </button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="py-3.5 px-4 font-bold">Merchant &amp; Trade Name</th>
+<th class="py-3.5 px-4 font-bold">Contact &amp; Location</th>
+<th class="py-3.5 px-4 font-bold">Proposed Categories</th>
+<th class="py-3.5 px-4 font-bold">Compliance Status</th>
+<th class="py-3.5 px-4 font-bold">Submitted / SLA Wait</th>
+<th class="py-3.5 px-4 font-bold">Auditor</th>
+<th class="py-3.5 px-4 font-bold">Pipeline Stage</th>
+<th class="py-3.5 px-4 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1: Hudson Valley (Currently active detail) -->
+<tr class="hover:bg-surface-container-low/70 transition-colors bg-primary/5">
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high overflow-hidden flex-shrink-0 shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Hudson Valley Heirloom Orchard small logo badge showing an apple and honey dipper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGUWHGCpfDGz5rh1j1i82BPS5_didfhKQG5CTip9RkDwbbBe-9HUT2n8DBwGkwBb_aBATHzOIXSZ5P8KYORmDpCaXpWmcZBGv64f9jX_R5m-oZjd7LYoYXXfCwe_0_tbKmdafhdam-3J358XTa6Y_aNAzcG5nfK-3FD-YE5fndCrI-cQj7rWQdvO6N1TQPZ9epHkUh4Du8D21f8RDNuL0n3AKno9KB_K_8clxnHXVF"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Hudson Valley Heirloom</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container text-[10px] font-bold">PRIMARY</span>
+</div>
+<div class="text-on-surface-variant text-body-sm">
+<span>APP-2025-0894</span> • <span>Farm / Apiary</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Marcus Vance</div>
+<div class="text-on-surface-variant">Red Hook, NY (Hudson North)</div>
+<div class="text-[11px] text-primary font-medium">Phone &amp; Email Verified</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[180px]">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Organic Fruit</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Raw Honey</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Ciders</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<div class="flex items-center justify-between text-[11px] font-bold mb-1">
+<span class="text-primary">4 / 5 Verified</span>
+<span class="text-outline">80%</span>
+</div>
+<div class="w-28 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+</div>
+<span class="text-[10px] text-tertiary font-semibold">Awaiting Insurance Ring</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">42h ago</div>
+<div class="flex items-center gap-1 text-tertiary text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                18h SLA remaining
+              </div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-[10px] flex items-center justify-center">
+                  AM
+                </div>
+<span class="text-on-surface font-medium">Alex Morgan</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Action Required
+              </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-bold hover:bg-primary-container transition-all shadow-xs">
+                  Review
+                </button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="Quick Approve">
+<span class="material-symbols-outlined text-[18px] text-primary">done</span>
+</button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="More Options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Brooklyn Artisanal Charcuterie -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high overflow-hidden flex-shrink-0 shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Artisanal charcuterie butchery emblem with cured meats vintage stamp icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs1zj5VJdeCKK9VKzk7d0TSdpFBxm_kdN4fmXPvB5QUmJsxJo4QIgu8aJihYJElTobHuUknkL7NEZW6cJaQgH-FLY8ts1NZFpaFeCEtGcIk7pL1XoJYox5bdpBW4jhhJ666ONwk5I2vkh8YCnz_sn9FxGmyXxOOuTDR090CxU58xraRsj_fVhSlQMZTt7FhIyVpPYXw6r8BICNydqK2MuWUmjgJPIcvPBcyAuMSbZt"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Brooklyn Artisanal Charcuterie</span>
+</div>
+<div class="text-on-surface-variant text-body-sm">
+<span>APP-2025-0897</span> • <span>Cured Meats &amp; Salumi</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Domenic Caccatore</div>
+<div class="text-on-surface-variant">Greenpoint, Brooklyn (NY-B1)</div>
+<div class="text-[11px] text-primary font-medium">USDA Facility Permit #558</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[180px]">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Prosciutto</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Dry Salumi</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Duck Pâté</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<div class="flex items-center justify-between text-[11px] font-bold mb-1">
+<span class="text-primary">5 / 5 Verified</span>
+<span class="text-outline">100%</span>
+</div>
+<div class="w-28 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-[10px] text-primary font-semibold">USDA Grant of Inspection Passed</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">1 day ago</div>
+<div class="text-on-surface-variant text-[11px]">36h SLA remaining</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary font-bold text-[10px] flex items-center justify-center">
+                  SJ
+                </div>
+<span class="text-on-surface font-medium">Sarah Jenkins</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Ready for Decision
+              </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-bold hover:bg-primary hover:text-on-primary transition-all shadow-xs">
+                  Review
+                </button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="Quick Approve">
+<span class="material-symbols-outlined text-[18px] text-primary">done</span>
+</button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="More Options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Blue Ocean Sustainable Fishery -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high overflow-hidden flex-shrink-0 shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Nautical modern fishing brand badge showing blue wave line and sustainable tuna silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSgLdI5Oz3wXfDX9U5Olopg3lOTJPnKbqHD8HJ45kUQZDY5jApzg2sOnONCfxsf5fl4CICHWoftZi7CULHkHYTA2el5SaKJeBTWLPrT40yIRpj7zUvgKINKt-e0tYO4-Gjj-_ToIswveA90iKTPpLARUfiM2NG4wmpBXdTe0HFxtDzgdN15VGMt-Tez95SvIKah56dLBwkAGEBPPMY0oegLEhlBnMrmvmnwcT2ju8H"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Blue Ocean Sustainable Fishery</span>
+</div>
+<div class="text-on-surface-variant text-body-sm">
+<span>APP-2025-0899</span> • <span>Seafood Co-Op</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Capt. Liam Gallagher</div>
+<div class="text-on-surface-variant">Montauk, NY (Long Island Hub)</div>
+<div class="text-[11px] text-outline font-medium">HACCP Certified Vessel</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[180px]">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Wild Striped Bass</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Sea Scallops</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Oysters</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<div class="flex items-center justify-between text-[11px] font-bold mb-1">
+<span class="text-secondary">3 / 5 Verified</span>
+<span class="text-outline">60%</span>
+</div>
+<div class="w-28 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 60%"></div>
+</div>
+<span class="text-[10px] text-outline">Dockside Cold-Chain Pending</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">3 days ago</div>
+<div class="flex items-center gap-1 text-error text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">alarm</span>
+                4h SLA Warning!
+              </div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-[10px] flex items-center justify-center">
+                  AM
+                </div>
+<span class="text-on-surface font-medium">Alex Morgan</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                Audit in Progress
+              </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-bold hover:bg-primary hover:text-on-primary transition-all shadow-xs">
+                  Review
+                </button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="Quick Approve">
+<span class="material-symbols-outlined text-[18px] text-primary">done</span>
+</button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="More Options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Patchwork Urban Greens -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high overflow-hidden flex-shrink-0 shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Modern indoor vertical farm minimalist logo showing microgreen leaf sprouts in clean emerald green" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtMl6bQEjJl8t2rQlSE_Y-REdoZshF6P8e62uh-okZzd_0vFXOk3HRrvTvK9qyxpe1Ti4Zik0f2yjuItk1sFpQ0FLn5ipyZE_Booqcw52KLSdjv-dd54PU99h6X7IrhRgNXToAUoflQaWrFq_Loq682xuSPoyBWiEVlbm_AFagvvZ_0iMb0ctXPLYFCRFimjYQNB41Vve5o1Ab9mlR1cwPvdvpwEF8zzL6cn4mENb1"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Patchwork Urban Greens</span>
+</div>
+<div class="text-on-surface-variant text-body-sm">
+<span>APP-2025-0902</span> • <span>Hydroponic Microgreens</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Zoe Chen</div>
+<div class="text-on-surface-variant">Long Island City, Queens (NY-Q2)</div>
+<div class="text-[11px] text-primary font-medium">CEA Indoor Certified</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[180px]">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Living Microgreens</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Butterhead Lettuce</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-semibold">Thai Basil</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<div class="flex items-center justify-between text-[11px] font-bold mb-1">
+<span class="text-primary">4 / 4 Verified</span>
+<span class="text-outline">100%</span>
+</div>
+<div class="w-28 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+<span class="text-[10px] text-primary font-semibold">All Docs Validated</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">18h ago</div>
+<div class="text-on-surface-variant text-[11px]">30h SLA remaining</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary font-bold text-[10px] flex items-center justify-center">
+                  SJ
+                </div>
+<span class="text-on-surface font-medium">Sarah Jenkins</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Ready for Decision
+              </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-bold hover:bg-primary hover:text-on-primary transition-all shadow-xs">
+                  Review
+                </button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="Quick Approve">
+<span class="material-symbols-outlined text-[18px] text-primary">done</span>
+</button>
+<button class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="More Options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="p-space-sm px-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm bg-surface-container-low/30">
+<div class="text-on-surface-variant font-body-sm text-body-sm">
+        Showing <span class="font-bold text-on-surface">1-4</span> of <span class="font-bold text-on-surface">4</span> active pending reviews
+      </div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-outline font-label-sm text-label-sm disabled:opacity-50 cursor-not-allowed" disabled="">
+          Previous
+        </button>
+<span class="px-3 py-1 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-bold">1</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-outline font-label-sm text-label-sm disabled:opacity-50 cursor-not-allowed" disabled="">
+          Next
+        </button>
+</div>
+</div>
+</div>
+<!-- Automated Merchant Screening Settings Summary -->
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Automated Merchant Screening Controls</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time background verification policies enforced at submission</p>
+</div>
+<a class="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-1" href="#">
+        Configure Risk Rules
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Toggle Card 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<!-- Active Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold">Stripe Custom Connect KYC</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Automates identity, SSN/EIN validation, and bank payout micro-deposit verification prior to store publishing.
+            </p>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Match rate: 99.4%</span>
+<span class="text-primary font-semibold">Enabled (Live)</span>
+</div>
+</div>
+<!-- Toggle Card 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">eco</span>
+</div>
+<!-- Active Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold">USDA Organic Registry API Sync</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Direct integration with USDA Organic Integrity Database to flag revoked or expired producer certificates.
+            </p>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Synced: 12 min ago</span>
+<span class="text-primary font-semibold">Active Watch</span>
+</div>
+</div>
+<!-- Toggle Card 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">thermostat</span>
+</div>
+<!-- Active Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold">Cold-Chain Packaging Sign-Off</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Blocks dairy, seafood, and fresh meat items from catalog staging until packaging photos and insulation ratings are submitted.
+            </p>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Strict Mode</span>
+<span class="text-primary font-semibold">Enforced</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Rejection Modal Backdrop (Hidden by default, triggered by reject button) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4" id="rejectModal">
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg max-w-lg w-full shadow-2xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Reject Application</h3>
+</div>
+<button class="p-1 rounded-lg text-outline hover:text-on-surface" onclick="document.getElementById('rejectModal').classList.add('hidden')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        You are declining the application for <strong class="text-on-surface">Hudson Valley Heirloom Orchard &amp; Apiary</strong>. An automated formal notification will be dispatched with your remediation rationale.
+      </p>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Primary Rejection Cause</label>
+<select class="w-full h-11 px-3 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none">
+<option>Insufficient Commercial Liability Insurance ($2M minimum required)</option>
+<option>Invalid / Expired Health &amp; Sanitary Inspection Certificate</option>
+<option>Inadequate Cold-Chain Packaging Equipment</option>
+<option>Location falls outside active courier delivery boundaries</option>
+<option>Duplicate vendor account or unverifiable tax identification</option>
+<option>Other / Custom Administrative Determination</option>
+</select>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Remediation Instructions for Applicant</label>
+<textarea class="w-full p-3 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none" placeholder="Explain what Marcus Vance needs to rectify before re-applying..." rows="3"></textarea>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-2">
+<button class="px-4 py-2.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md font-semibold transition-all" onclick="document.getElementById('rejectModal').classList.add('hidden')">
+          Cancel
+        </button>
+<button class="px-5 py-2.5 rounded-xl bg-error text-on-error hover:bg-error/90 font-label-md text-label-md font-bold transition-all shadow-sm" onclick="document.getElementById('rejectModal').classList.add('hidden')">
+          Confirm Rejection &amp; Notify
+        </button>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

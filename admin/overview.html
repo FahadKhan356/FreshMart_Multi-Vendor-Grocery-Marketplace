@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"tertiary-container":"#a36700","primary-fixed-dim":"#62df7d","inverse-on-surface":"#eaf1ff","on-secondary":"#ffffff","on-tertiary-fixed-variant":"#653e00","primary":"#006b2c","primary-fixed":"#7ffc97","surface-dim":"#cbdbf5","background":"#f8f9ff","tertiary-fixed":"#ffddb8","surface-container-low":"#eff4ff","on-primary-container":"#f7fff2","on-primary-fixed-variant":"#005320","outline":"#6e7b6c","on-secondary-fixed":"#00210d","on-surface-variant":"#3e4a3d","on-error-container":"#93000a","inverse-surface":"#213145","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#12512c","surface":"#f8f9ff","on-tertiary-container":"#fffbff","on-primary-fixed":"#002109","on-tertiary":"#ffffff","secondary-fixed":"#b1f2be","surface-container-highest":"#d3e4fe","surface-container-high":"#dce9ff","surface-tint":"#006e2d","surface-variant":"#d3e4fe","on-secondary-container":"#347047","inverse-primary":"#62df7d","secondary-container":"#b1f2be","on-background":"#0b1c30","secondary":"#2e6a41","on-primary":"#ffffff","outline-variant":"#bdcaba","primary-container":"#00873a","on-error":"#ffffff","on-tertiary-fixed":"#2a1700","error":"#ba1a1a","error-container":"#ffdad6","on-surface":"#0b1c30","tertiary":"#825100","surface-bright":"#f8f9ff","tertiary-fixed-dim":"#ffb95f","secondary-fixed-dim":"#96d5a3","surface-container":"#e5eeff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-mobile":"0.75rem","space-xs":"0.25rem","space-md":"1rem","margin":"2rem","space-lg":"1.5rem","gutter":"1.5rem","space-sm":"0.5rem","space-xl":"2.5rem","margin-mobile":"1rem"},"fontFamily":{"display":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"price-display":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},"fontSize":{"display":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"600"}],"price-display":["20px",{"lineHeight":"24px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="p-space-md flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span></div><div><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface">FreshMart</span><span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">HQ</span></div><p class="font-label-sm text-label-sm text-on-surface-variant">v2.4 Enterprise Core</p></div></div><span class="material-symbols-outlined text-outline text-[18px]">verified_user</span></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-md"><nav class="space-y-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Main</p><a aria-current="page" class="flex items-center justify-between px-space-sm py-2 transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="platform-overview" href="#"><span class="font-body-md text-body-md">Platform Overview</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="live-operations" href="#"><span class="font-body-md text-body-md">Live Operations &amp; Orders</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="analytics-reports" href="#"><span class="font-body-md text-body-md">Analytics &amp; Reports</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Commerce &amp; Merchants</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vendor-management" href="#"><span class="font-body-md text-body-md">Vendor Management</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vendor-approval-requests" href="#"><span class="font-body-md text-body-md">Vendor Approvals</span><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">4</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="stores-outlets" href="#"><span class="font-body-md text-body-md">Stores &amp; Outlets</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="catalog-master-inventory" href="#"><span class="font-body-md text-body-md">Catalog &amp; Master Inventory</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Financials</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="commission-take-rate" href="#"><span class="font-body-md text-body-md">Commission &amp; Take-Rate</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vendor-payouts" href="#"><span class="font-body-md text-body-md">Vendor Payouts</span><span class="px-1.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">$42.8k</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="refunds-disputes" href="#"><span class="font-body-md text-body-md">Refunds &amp; Disputes</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="invoicing" href="#"><span class="font-body-md text-body-md">Invoicing</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Operations &amp; Logistics</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="delivery-fleet-couriers" href="#"><span class="font-body-md text-body-md">Fleet &amp; Couriers</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="delivery-zones" href="#"><span class="font-body-md text-body-md">Delivery Zones</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="customer-management" href="#"><span class="font-body-md text-body-md">Customer Management</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="support-tickets" href="#"><span class="font-body-md text-body-md">Support &amp; Tickets</span></a></div><div class="space-y-1"><p class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">System</p><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="promo-platform-coupons" href="#"><span class="font-body-md text-body-md">Promos &amp; Coupons</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="platform-settings" href="#"><span class="font-body-md text-body-md">Platform Settings</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="audit-logs-api" href="#"><span class="font-body-md text-body-md">Audit Logs &amp; API</span></a></div></nav></div><div class="p-space-sm space-y-space-sm bg-surface-container-low"><div class="flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-lowest"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-semibold">All Systems Operational</span></div><span class="font-label-sm text-label-sm text-outline">99.98%</span></div><div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-lowest hover:bg-surface-container-high transition-colors cursor-pointer"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div><p class="font-label-md text-label-md text-on-surface font-bold leading-tight">Alex Morgan</p><p class="font-body-sm text-body-sm text-on-surface-variant leading-none">Super Admin / Ops</p></div></div><span class="material-symbols-outlined text-outline text-[18px]">unfold_more</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-8 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span><input class="w-full h-10 pl-10 pr-12 rounded-xl bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-all" placeholder="Search vendors, order IDs, payout batches, stores..." type="text"/><div class="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">⌘K</div></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm"><span class="font-semibold text-primary">Live</span><span>Active Couriers: 142</span><span class="text-outline-variant">•</span><span>Velocity: 3.8/min</span><span class="text-outline-variant">•</span><span>GMV Today: $34,920</span></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Production (US-East)</div><button class="px-space-sm py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-all flex items-center gap-space-xs shadow-sm"><span class="material-symbols-outlined text-[18px]">add</span><span>Action</span></button><button class="relative p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-8 py-space-lg"><div class="flex flex-col w-full space-y-space-lg">
+<!-- Executive Header & Global Scope Bar -->
+<section class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md mb-1">
+<span>Admin</span>
+<span class="text-outline-variant font-normal">/</span>
+<span class="text-primary font-semibold">Overview</span>
+<span class="ml-2 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Real-time Stream Active</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Platform Executive Overview</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Aggregated multi-vendor GMV, live courier routing velocity, and partner SLA compliance across all zones.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Timeframe Pills -->
+<div class="inline-flex p-1 rounded-xl bg-surface-container-low shadow-sm">
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">Today</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">Last 7 Days</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-sm">This Month</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors hidden sm:inline-block">QTD</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors hidden sm:inline-block">YTD</button>
+<button class="px-2.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Custom</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container-high transition-all flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">download</span>
+<span>Download Board Report (PDF)</span>
+</button>
+<button class="px-3.5 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container transition-all flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+<span>Live Operations Stream</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Urgent Action Required & Quick Triage Banner -->
+<section class="rounded-xl bg-surface-container-lowest shadow-sm p-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-tertiary"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pl-2">
+<div class="flex items-start lg:items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">notification_important</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-title-md text-title-md text-on-surface">Urgent Super-Admin Triage Required</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">High Priority</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+<span class="font-semibold text-on-surface">4 New Vendor Applications</span> awaiting Food Safety &amp; KYC clearance • 
+            <span class="font-semibold text-on-surface">3 Payout Batches ($48,250.00)</span> pending release approval before 5:00 PM EST.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-end lg:self-center shrink-0">
+<a class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container transition-colors" href="#">
+          Review Payouts ($48.2k)
+        </a>
+<a class="px-3.5 py-1.5 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md font-semibold hover:bg-primary transition-all flex items-center gap-1" href="#">
+<span>Triage Vendors (4)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Primary Metric KPI Cards (4-Column Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: GMV -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Gross Merchandise Value</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>+18.4%
+          </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">$1,482,930</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs prev 30d</span>
+</div>
+</div>
+<div class="my-3">
+<!-- Sparkline GMV -->
+<svg class="w-full h-11 overflow-visible" viewbox="0 0 200 40">
+<defs>
+<lineargradient id="gmvGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#006b2c" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#006b2c" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,32 Q25,28 50,18 T100,22 T150,12 T200,6 L200,40 L0,40 Z" fill="url(#gmvGrad)"></path>
+<path d="M0,32 Q25,28 50,18 T100,22 T150,12 T200,6" fill="none" stroke="#006b2c" stroke-linecap="round" stroke-width="2.5"></path>
+<circle class="fill-primary" cx="200" cy="6" r="3.5"></circle>
+</svg>
+</div>
+<div class="pt-2.5 bg-surface-container-low rounded-lg p-2.5">
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Net Platform Commission</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">$177,951</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant mt-0.5">
+<span class="font-body-sm text-body-sm">Blended Marketplace Take-Rate</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">12.0%</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Total Orders -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Marketplace Orders</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>+12.6% MoM
+          </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">38,420</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">total orders</span>
+</div>
+</div>
+<!-- Fulfilled vs Active Progress Bar -->
+<div class="my-3 space-y-1.5">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Fulfillment Completion</span>
+<span class="font-bold text-primary">94.0%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container flex overflow-hidden">
+<div class="h-full bg-primary" style="width: 94%;"></div>
+<div class="h-full bg-secondary-fixed-dim" style="width: 5.5%;"></div>
+<div class="h-full bg-error" style="width: 0.5%;"></div>
+</div>
+</div>
+<div class="pt-2.5 bg-surface-container-low rounded-lg p-2.5 space-y-1">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary"></span>36,110 Fulfilled
+          </span>
+<span class="text-outline font-semibold">94.0%</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>2,140 In-Transit
+          </span>
+<span class="text-outline font-semibold">5.6%</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="flex items-center gap-1.5 text-error">
+<span class="w-2 h-2 rounded-full bg-error"></span>170 Cancelled
+          </span>
+<span class="text-error font-semibold">0.44%</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Active Vendor Base -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Merchant Ecosystem</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+            +8 this week
+          </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">342</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Stores</span>
+</div>
+</div>
+<div class="my-3 flex items-center gap-2">
+<div class="px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+          4 Metro Clusters
+        </div>
+<div class="px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+          98.2% Store Uptime
+        </div>
+</div>
+<div class="pt-2.5 bg-surface-container-low rounded-lg p-2.5 flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm font-bold text-tertiary">4 Applications Pending</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Organic farms &amp; butchers</p>
+</div>
+<a class="px-2.5 py-1 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold hover:bg-tertiary hover:text-on-tertiary transition-colors" href="#">
+          Verify
+        </a>
+</div>
+</div>
+<!-- Card 4: Customer Base & CSAT -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Customer Experience</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">star</span> 4.88 CSAT
+          </span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface tracking-tight">128,450</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Shoppers</span>
+</div>
+</div>
+<div class="my-3 space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">30-Day Repeat Order Velocity</span>
+<span class="font-bold text-primary">64.2%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary" style="width: 64.2%;"></div>
+</div>
+</div>
+<div class="pt-2.5 bg-surface-container-low rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<div>
+<p class="font-label-sm text-label-sm font-bold text-on-surface">High Trust Retention</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sub-0.6% churn rate</p>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-secondary">+4.1% MoM</span>
+</div>
+</div>
+</section>
+<!-- Central Analytics & Real-Time Operational Health (8 / 4 Grid) -->
+<section class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- Left (8-col): Interactive Revenue & Commission Analytics -->
+<div class="xl:col-span-8 rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-title-md text-title-md text-on-surface">Revenue &amp; Commission Yield</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Daily Interval</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gross merchandise trade volume paired with FreshMart 12.0% platform take-rate</p>
+</div>
+<!-- Metric Toggles -->
+<div class="flex items-center gap-1.5 p-1 rounded-lg bg-surface-container-low">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest font-label-sm text-label-sm font-bold text-primary shadow-xs">GMV</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container font-label-sm text-label-sm font-semibold text-on-surface-variant">Commission</button>
+<button class="px-2.5 py-1 rounded hover:bg-surface-container font-label-sm text-label-sm font-semibold text-on-surface-variant">Delivery Fees</button>
+</div>
+</div>
+<!-- Peak Window Banner Callout -->
+<div class="mb-4 px-3.5 py-2 rounded-xl bg-secondary-container/40 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">bolt</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">
+            Peak Demand Cluster Detected: <span class="font-bold text-primary">Friday 5:00 PM – 8:00 PM</span> (Avg 4.8 orders/second)
+          </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-secondary-container font-bold">+34% Surge vs baseline</span>
+</div>
+<!-- Combined Bar & Trend SVG Chart -->
+<div class="relative w-full h-64">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 760 220">
+<!-- Background Grid lines -->
+<line stroke="#eff4ff" stroke-width="1" x1="0" x2="760" y1="20" y2="20"></line>
+<line stroke="#eff4ff" stroke-width="1" x1="0" x2="760" y1="70" y2="70"></line>
+<line stroke="#eff4ff" stroke-width="1" x1="0" x2="760" y1="120" y2="120"></line>
+<line stroke="#eff4ff" stroke-width="1" x1="0" x2="760" y1="170" y2="170"></line>
+<!-- Bars: Daily GMV in $k -->
+<!-- Mon -->
+<rect fill="#e5eeff" height="95" rx="6" width="34" x="35" y="95"></rect>
+<rect fill="#62df7d" height="25" opacity="0.6" rx="4" width="34" x="35" y="165"></rect>
+<!-- Tue -->
+<rect fill="#e5eeff" height="110" rx="6" width="34" x="145" y="80"></rect>
+<rect fill="#62df7d" height="35" opacity="0.6" rx="4" width="34" x="145" y="155"></rect>
+<!-- Wed -->
+<rect fill="#e5eeff" height="125" rx="6" width="34" x="255" y="65"></rect>
+<rect fill="#62df7d" height="45" opacity="0.6" rx="4" width="34" x="255" y="145"></rect>
+<!-- Thu -->
+<rect fill="#e5eeff" height="135" rx="6" width="34" x="365" y="55"></rect>
+<rect fill="#62df7d" height="50" opacity="0.6" rx="4" width="34" x="365" y="140"></rect>
+<!-- Fri (Peak Highlight) -->
+<rect fill="#b1f2be" height="165" rx="6" width="34" x="475" y="25"></rect>
+<rect fill="#006b2c" height="70" rx="4" width="34" x="475" y="120"></rect>
+<!-- Sat -->
+<rect fill="#e5eeff" height="145" rx="6" width="34" x="585" y="45"></rect>
+<rect fill="#62df7d" height="60" opacity="0.6" rx="4" width="34" x="585" y="130"></rect>
+<!-- Sun -->
+<rect fill="#e5eeff" height="130" rx="6" width="34" x="695" y="60"></rect>
+<rect fill="#62df7d" height="45" opacity="0.6" rx="4" width="34" x="695" y="145"></rect>
+<!-- Trendline (Commission Yield) -->
+<path d="M52,145 Q162,130 272,118 T492,65 T712,105" fill="none" stroke="#00873a" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="492" cy="65" fill="#006b2c" r="5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+<!-- Horizontal X-Axis Labels -->
+<div class="flex justify-between px-6 pt-2 font-label-sm text-label-sm text-outline">
+<span>Mon 12</span>
+<span>Tue 13</span>
+<span>Wed 14</span>
+<span>Thu 15</span>
+<span class="text-primary font-bold">Fri 16 (Peak)</span>
+<span>Sat 17</span>
+<span>Sun 18</span>
+</div>
+</div>
+<!-- Chart Legend & Metrics Footer -->
+<div class="mt-4 pt-3 flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-3 h-3 rounded bg-surface-container"></span> Gross Volume (GMV)
+          </div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-3 h-3 rounded bg-primary"></span> FreshMart Commission (12%)
+          </div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-2.5 h-0.5 bg-primary-container"></span> Velocity Trendline
+          </div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Updated 2 minutes ago • Automated Batch reconciliations</span>
+</div>
+</div>
+<!-- Right (4-col): Category Volume Share & SLA Operational Health -->
+<div class="xl:col-span-4 space-y-space-md flex flex-col justify-between">
+<!-- Category Donut Card -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<h2 class="font-title-md text-title-md text-on-surface">Category Sales Volume</h2>
+<span class="font-label-sm text-label-sm text-primary font-bold">30d Share</span>
+</div>
+<div class="flex items-center gap-space-md">
+<!-- Donut SVG -->
+<div class="relative w-28 h-28 shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background circle -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#eff4ff" stroke-width="4.2"></circle>
+<!-- Fruits & Veggies: 38% -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#006b2c" stroke-dasharray="38, 100" stroke-dashoffset="0" stroke-linecap="round" stroke-width="4.2"></circle>
+<!-- Dairy & Bakery: 24% -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#2e6a41" stroke-dasharray="24, 100" stroke-dashoffset="-38" stroke-width="4.2"></circle>
+<!-- Meat & Seafood: 20% -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#ffb95f" stroke-dasharray="20, 100" stroke-dashoffset="-62" stroke-width="4.2"></circle>
+<!-- Pantry: 18% -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#cbdbf5" stroke-dasharray="18, 100" stroke-dashoffset="-82" stroke-width="4.2"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-headline-sm text-headline-sm font-extrabold text-on-surface leading-none">38.4k</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Units</span>
+</div>
+</div>
+<!-- Legend breakdown -->
+<div class="flex-1 space-y-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>Produce &amp; Fruit
+              </span>
+<span class="font-bold text-on-surface">38%</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>Dairy &amp; Bakery
+              </span>
+<span class="font-bold text-on-surface">24%</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim"></span>Meat &amp; Seafood
+              </span>
+<span class="font-bold text-on-surface">20%</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-dim"></span>Pantry &amp; Other
+              </span>
+<span class="font-bold text-on-surface">18%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live SLA & Quality Control Card -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<h2 class="font-title-md text-title-md text-on-surface">Cold-Chain &amp; SLA Health</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Optimal</span>
+</div>
+<div class="space-y-2.5">
+<!-- Metric 1: On-Time Delivery -->
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1">
+<span class="text-on-surface">On-Time Delivery Rate</span>
+<span class="font-bold text-primary">97.4% <span class="text-outline font-normal">(Goal 96%)</span></span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary" style="width: 97.4%;"></div>
+</div>
+</div>
+<!-- Metric 2: Cold Chain Pass Rate -->
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1">
+<span class="text-on-surface">Cold-Chain Thermal Checks</span>
+<span class="font-bold text-primary">99.8%</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary" style="width: 99.8%;"></div>
+</div>
+</div>
+<!-- Metric 3: Mean Delivery Time -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
+<div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">28.4 mins</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mean Dispatch-to-Doorstep</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">-3.2 min vs SLA</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Detailed Tables & Live Activity (6 / 6 Grid) -->
+<section class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- Left (6-col): Top Performing Vendor Stores -->
+<div class="xl:col-span-6 rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Top Performing Marketplace Stores</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ranked by volume, merchant fulfillment rate &amp; consumer rating</p>
+</div>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md font-semibold flex items-center gap-1">
+<span>View All (342)</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="text-outline font-label-sm text-label-sm uppercase tracking-wider bg-surface-container-low rounded-lg">
+<th class="py-2 px-3 rounded-l-lg">Store Name</th>
+<th class="py-2 px-2">Category</th>
+<th class="py-2 px-2 text-right">Orders Today</th>
+<th class="py-2 px-2 text-right">Revenue</th>
+<th class="py-2 px-2 text-center">Fulfillment SLA</th>
+<th class="py-2 px-3 rounded-r-lg text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Merchant 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<img class="w-8 h-8 rounded-lg object-cover shadow-xs" data-alt="Close up vibrant logo badge of Greenfield Organic Market with crisp clean fresh green aesthetic on clean pure white backdrop, modern flat badge emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ4V9ZrTHb03jCyk5_RRsvzRWC5zSvN89LpgX3wSCAIlAxiemruK3YoXiwV2lnEskX3H-99YFQ9hDRIueiawIuCThTdJecwj_npLgLBJwMt1O0cbOG845sfrNTWE2Jrv9G-RSsAFcqFFxx2O3dSrDg6qQ72VamJoYmikIP_HW3xUDRsnuefqNC4WED-RyvVbwNIEBMS1WaVYkJcp-yiqoMh0KU5wcrIU0GfG6FFQkm"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">GreenField Organic Market</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]">star</span> 4.96 (1,420 reviews)
+                      </p>
+</div>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Produce</span>
+</td>
+<td class="py-3 px-2 text-right font-semibold text-on-surface">428</td>
+<td class="py-3 px-2 text-right font-bold text-primary">$18,490</td>
+<td class="py-3 px-2 text-center">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">99.2%</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="p-1 rounded hover:bg-surface-container text-primary font-label-sm text-label-sm font-bold">Manage</button>
+</td>
+</tr>
+<!-- Merchant 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<img class="w-8 h-8 rounded-lg object-cover shadow-xs" data-alt="Sunharvest direct farm marketplace clean modern badge logo on white background, minimal organic farm produce identity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsXMVEf2m40mNbh7u_s1aFEKCVB7_7ofE7IX9d4wAjh01joRQVcEyyIxr6raLP_H1LzXBMJ8YJjaFgqrXa66WN46E5tXx2C0Lum-EYMuG5Ap354JC7IDgJD0dCiKyuEWz0QqIU_Y0qs3RRM5Mdg5Ve3pUGxnqVfA-C1pBzznfPCV4ej3eusHR1TZ6DazCXj7n87GKcv0SEPsZ3ZaCrLuZBxMClePiVcwszdrxoL4qH"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">SunHarvest Direct</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]">star</span> 4.91 (980 reviews)
+                      </p>
+</div>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Farm Fresh</span>
+</td>
+<td class="py-3 px-2 text-right font-semibold text-on-surface">364</td>
+<td class="py-3 px-2 text-right font-bold text-primary">$14,210</td>
+<td class="py-3 px-2 text-center">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">98.5%</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="p-1 rounded hover:bg-surface-container text-primary font-label-sm text-label-sm font-bold">Manage</button>
+</td>
+</tr>
+<!-- Merchant 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<img class="w-8 h-8 rounded-lg object-cover shadow-xs" data-alt="Artisan sourdough bakery and European deli modern boutique clean logo icon mark with warm amber accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWJf2JGy9oFpc_RbbAByVlFRVtIUvIJCoJEaK4Cuw5F6rI2XZfZ_amhZZthxfjNXcj1CHT9dQdDZD4kVEIe38iusIq95QUS6ym18CJH6fWDccIocpYiKQ82qI5EiyQonau1yizx3vxA-Qh2ykLpveBcOVcIjdVrVcCkVbHnrWo47smNvl5ghNhme-HpO6PagbSAIUTd5AcoyeIexoNtlp3zBgXqkLAj0Qpxov2etIA"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Artisan Bakery &amp; Deli</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]">star</span> 4.88 (810 reviews)
+                      </p>
+</div>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Bakery</span>
+</td>
+<td class="py-3 px-2 text-right font-semibold text-on-surface">292</td>
+<td class="py-3 px-2 text-right font-bold text-primary">$9,740</td>
+<td class="py-3 px-2 text-center">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">97.8%</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="p-1 rounded hover:bg-surface-container text-primary font-label-sm text-label-sm font-bold">Manage</button>
+</td>
+</tr>
+<!-- Merchant 4 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<img class="w-8 h-8 rounded-lg object-cover shadow-xs" data-alt="Hudson Mill Pantry gourmet artisan packaged groceries minimalist clean branding logo in dark slate and forest green" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBozLSPaVS50ZnJ4uEjQ80PFnKPHOJaooUuALsH_YakMhFVftP5hWXnKN22OZuS-583zZaDZDBP-9n8GYux5oG83v6jDPI77BiwG4aJdTuD4pbkHy9TD-YHIJ4g2epKrbspx_3RGrp0-2P1F-0Sd4qAzQaxJsmgBk9e_MHtvs5heyr3GOPIdZYMD-ftEOHeFK66jP9eENHA9tpHn7-LnSJlEj37RX61cwZdjKq_Dxck"/>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Hudson Mill Pantry</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[14px]">star</span> 4.84 (640 reviews)
+                      </p>
+</div>
+</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Pantry</span>
+</td>
+<td class="py-3 px-2 text-right font-semibold text-on-surface">215</td>
+<td class="py-3 px-2 text-right font-bold text-primary">$8,120</td>
+<td class="py-3 px-2 text-center">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">98.1%</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="p-1 rounded hover:bg-surface-container text-primary font-label-sm text-label-sm font-bold">Manage</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="pt-3 border-t-0 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Displaying 4 of 342 active vendor storefronts</span>
+<a class="font-label-sm text-label-sm font-bold text-primary hover:underline" href="#">Download Performance CSV</a>
+</div>
+</div>
+<!-- Right (6-col): Recent Platform Alerts & Live Activity Log -->
+<div class="xl:col-span-6 rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<h2 class="font-title-md text-title-md text-on-surface">Real-Time Platform Event Log</h2>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+<span>All Channels</span>
+</button>
+</div>
+<div class="space-y-3">
+<!-- Item 1: Catalog Bulk Import -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest text-primary flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Bulk Catalog Sync Request</span>
+<span class="font-body-sm text-body-sm text-outline shrink-0">4m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">
+<span class="font-semibold text-on-surface">GreenField Organic</span> submitted 45 new SKUs for master inventory cataloging.
+              </p>
+<div class="mt-1 flex items-center gap-2">
+<a class="font-label-sm text-label-sm text-primary font-bold hover:underline" href="#">Review Sync (45 SKUs)</a>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Automated barcode pass</span>
+</div>
+</div>
+</div>
+<!-- Item 2: Demand Surge Alert -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">High Order Velocity Spike</span>
+<span class="font-body-sm text-body-sm text-outline shrink-0">12m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">
+                Brooklyn Heights (Zone 4) courier capacity reached <span class="font-semibold text-tertiary">88% allocation</span>.
+              </p>
+<div class="mt-1 flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Auto-Surge Radius +1.2 mi</span>
+</div>
+</div>
+</div>
+<!-- Item 3: Payout Engine -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest text-secondary flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Stripe Connect Payout Batch</span>
+<span class="font-body-sm text-body-sm text-outline shrink-0">28m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">
+                Scheduled automated disbursement of <span class="font-semibold text-on-surface">$48,250.00</span> queued for 38 eligible merchants.
+              </p>
+<div class="mt-1">
+<span class="font-label-sm text-label-sm text-primary font-bold">Ledger Batch #PAY-8821 Ready</span>
+</div>
+</div>
+</div>
+<!-- Item 4: Customer Dispute Resolution -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest text-on-surface flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Dispute Auto-Resolved</span>
+<span class="font-body-sm text-body-sm text-outline shrink-0">45m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">
+                Order <span class="font-semibold text-on-surface">#FM-9842</span> missing item: customer wallet credited <span class="font-semibold text-on-surface">$14.20</span>.
+              </p>
+<div class="mt-1">
+<span class="font-label-sm text-label-sm text-outline">Merchant liability assigned • GreenField Organic</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-3 border-t-0 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Webhook Stream: Connected &amp; Synced (US-East Cluster)</span>
+<a class="font-label-sm text-label-sm font-bold text-primary hover:underline" href="#">Full System Audit Log</a>
+</div>
+</div>
+</section>
+</div></main></div></body></html>
