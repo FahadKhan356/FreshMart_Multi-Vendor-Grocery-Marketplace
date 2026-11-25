@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
-import { INITIAL_CART, CartItem } from "@/data/mockData";
 import { formatPrice } from "@/lib/utils";
+import { useCartStore } from "@/lib/store/cartStore";
 import { 
   Trash2, 
   Plus, 
@@ -20,45 +21,32 @@ import {
 } from "lucide-react";
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>(INITIAL_CART);
+  const [mounted, setMounted] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
-  const [courierTip, setCourierTip] = useState<number>(3.00);
 
-  const updateQuantity = (id: string, delta: number) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) => {
-          if (item.product.id === id) {
-            const newQty = item.quantity + delta;
-            return newQty > 0 ? { ...item, quantity: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean) as CartItem[]
-    );
-  };
+  const items = useCartStore((s) => s.items);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+  const removeItem = useCartStore((s) => s.removeItem);
+  const clearCart = useCartStore((s) => s.clearCart);
+  const tipAmount = useCartStore((s) => s.tipAmount);
+  const setTipAmount = useCartStore((s) => s.setTipAmount);
+  const getSubtotal = useCartStore((s) => s.getSubtotal);
+  const getDeliveryFee = useCartStore((s) => s.getDeliveryFee);
+  const getServiceFee = useCartStore((s) => s.getServiceFee);
+  const getTotal = useCartStore((s) => s.getTotal);
+  const getStoreGroups = useCartStore((s) => s.getStoreGroups);
 
-  const removeItem = (id: string) => {
-    setCartItems((prev) => prev.filter((item) => item.product.id !== id));
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  // Group items by store for Multi-Vendor grouping
-  const groupedByStore = cartItems.reduce((acc, item) => {
-    const store = item.product.storeName;
-    if (!acc[store]) acc[store] = [];
-    acc[store].push(item);
-    return acc;
-  }, {} as Record<string, CartItem[]>);
-
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0
-  );
-  const deliveryFee = cartItems.length > 0 ? 3.99 : 0;
-  const serviceFee = cartItems.length > 0 ? 1.50 : 0;
+  const storeGroups = mounted ? getStoreGroups() : [];
+  const subtotal = mounted ? getSubtotal() : 42.80;
+  const deliveryFee = mounted ? getDeliveryFee() : 2.99;
+  const serviceFee = mounted ? getServiceFee() : 2.14;
   const discountAmount = appliedPromo ? 5.00 : 0;
-  const total = Math.max(0, subtotal + deliveryFee + serviceFee + courierTip - discountAmount);
+  const total = Math.max(0, (mounted ? getTotal() : 49.93) - discountAmount);
 
   return (
     <>
@@ -67,14 +55,27 @@ export default function CartPage() {
       <main className="min-h-screen bg-slate-50 py-10">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6">
           
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
-            Multi-Vendor Shopping Cart
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mb-8">
-            Products from different independent shops are fulfilled in a single unified temperature-controlled delivery.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Multi-Vendor Shopping Cart
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                Products from different independent grocery shops are combined into a single unified temperature-controlled delivery.
+              </p>
+            </div>
+            {mounted && items.length > 0 && (
+              <button
+                onClick={clearCart}
+                className="text-xs text-rose-600 hover:text-rose-700 font-bold self-start sm:self-auto flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-rose-50 transition-colors"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Clear Cart</span>
+              </button>
+            )}
+          </div>
 
-          {cartItems.length === 0 ? (
+          {mounted && items.length === 0 ? (
             <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center max-w-lg mx-auto space-y-4">
               <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mx-auto">
                 <Store className="w-8 h-8" />
@@ -85,9 +86,9 @@ export default function CartPage() {
               </p>
               <Link
                 href="/catalog"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-fresh-600 text-white font-bold text-xs"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-fresh-600 text-white font-bold text-xs shadow-md shadow-fresh-600/20 hover:bg-fresh-700 transition-all"
               >
-                <span>Browse Departments</span>
+                <span>Browse Grocery Departments</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -96,9 +97,9 @@ export default function CartPage() {
               
               {/* Left: Cart Items Grouped by Store */}
               <div className="lg:col-span-8 space-y-6">
-                {Object.entries(groupedByStore).map(([storeName, items]) => (
+                {storeGroups.map((group) => (
                   <div
-                    key={storeName}
+                    key={group.storeId}
                     className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4"
                   >
                     {/* Store Header */}
@@ -107,78 +108,85 @@ export default function CartPage() {
                         <div className="w-7 h-7 rounded-lg bg-fresh-100 text-fresh-700 flex items-center justify-center">
                           <Store className="w-4 h-4" />
                         </div>
-                        <h3 className="font-bold text-sm text-slate-900">{storeName}</h3>
+                        <h3 className="font-bold text-sm text-slate-900">{group.storeName}</h3>
                       </div>
                       <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-                        Express Batch Ready
+                        Vendor Sub-Order (8% Platform Commission)
                       </span>
                     </div>
 
                     {/* Store's items */}
                     <div className="divide-y divide-slate-100">
-                      {items.map((item) => (
-                        <div key={item.product.id} className="py-4 flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-4">
+                      {group.items.map((item) => (
+                        <div key={item.id} className="py-4 flex items-center gap-4">
+                          <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 overflow-hidden relative shrink-0">
                             <img
-                              src={item.product.image}
-                              alt={item.product.name}
-                              className="w-16 h-16 rounded-xl object-cover bg-slate-100 border border-slate-100"
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover"
                             />
-                            <div>
-                              <Link
-                                href={`/product/${item.product.id}`}
-                                className="font-bold text-sm text-slate-900 hover:text-fresh-600 transition-colors block"
-                              >
-                                {item.product.name}
-                              </Link>
-                              <p className="text-[11px] text-slate-400 mt-0.5">
-                                {item.product.unit} • {formatPrice(item.product.price)} each
-                              </p>
-                            </div>
                           </div>
 
-                          <div className="flex items-center gap-6">
-                            {/* Stepper */}
-                            <div className="flex items-center border border-slate-200 rounded-xl bg-slate-50 p-1">
-                              <button
-                                onClick={() => updateQuantity(item.product.id, -1)}
-                                className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
-                              >
-                                <Minus className="w-3.5 h-3.5" />
-                              </button>
-                              <span className="px-3 font-bold text-xs text-slate-900">
-                                {item.quantity}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-2">
+                              <div>
+                                <h4 className="font-bold text-xs sm:text-sm text-slate-900 truncate">
+                                  {item.name}
+                                </h4>
+                                <p className="text-[11px] text-slate-400 mt-0.5">
+                                  {item.unit} {item.organic && "• Organic"}
+                                </p>
+                              </div>
+                              <span className="font-extrabold text-xs sm:text-sm text-slate-900">
+                                {formatPrice(item.price * item.quantity)}
                               </span>
-                              <button
-                                onClick={() => updateQuantity(item.product.id, 1)}
-                                className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors"
-                              >
-                                <Plus className="w-3.5 h-3.5" />
-                              </button>
                             </div>
 
-                            <span className="font-extrabold text-sm text-slate-900 w-16 text-right">
-                              {formatPrice(item.product.price * item.quantity)}
-                            </span>
+                            <div className="flex items-center justify-between mt-3">
+                              {/* Quantity Control */}
+                              <div className="flex items-center border border-slate-200 rounded-xl bg-slate-50 overflow-hidden">
+                                <button
+                                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                  className="p-1.5 hover:bg-slate-200 text-slate-600 transition-colors"
+                                >
+                                  <Minus className="w-3.5 h-3.5" />
+                                </button>
+                                <span className="px-3 text-xs font-bold text-slate-800">
+                                  {item.quantity}
+                                </span>
+                                <button
+                                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                  className="p-1.5 hover:bg-slate-200 text-slate-600 transition-colors"
+                                >
+                                  <Plus className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
 
-                            <button
-                              onClick={() => removeItem(item.product.id)}
-                              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                              <button
+                                onClick={() => removeItem(item.id)}
+                                className="text-slate-400 hover:text-rose-600 p-1 transition-colors"
+                                title="Remove item"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))}
                     </div>
+
+                    <div className="pt-2 flex justify-between text-xs text-slate-500 font-medium">
+                      <span>Store Subtotal</span>
+                      <span className="font-bold text-slate-800">{formatPrice(group.subtotal)}</span>
+                    </div>
                   </div>
                 ))}
 
-                {/* Freshness Note */}
-                <div className="p-4 rounded-2xl bg-fresh-50 border border-fresh-200/80 flex items-center gap-3 text-xs text-fresh-900 font-semibold">
-                  <ShieldCheck className="w-5 h-5 text-fresh-600 shrink-0" />
+                {/* Cold-chain Assurance Strip */}
+                <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 flex items-center gap-3 text-xs text-emerald-900">
+                  <Truck className="w-5 h-5 text-emerald-600 shrink-0" />
                   <span>
-                    Your multi-vendor grocery items will be packed in cold-chain insulated thermal bags and kept below 4°C until delivery.
+                    <strong>Unified Cold-Chain Guarantee:</strong> All perishables from these {storeGroups.length} independent shops are packed into separate insulated thermal bags and maintained below 4°C during rapid delivery.
                   </span>
                 </div>
               </div>
@@ -196,11 +204,11 @@ export default function CartPage() {
                     <span className="font-bold text-slate-900">{formatPrice(subtotal)}</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
-                    <span>Multi-Vendor Delivery Fee</span>
+                    <span>Multi-Vendor Delivery Fee ({storeGroups.length} Stores)</span>
                     <span className="font-bold text-slate-900">{formatPrice(deliveryFee)}</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
-                    <span>Cold-Chain Service Fee</span>
+                    <span>Cold-Chain Service Fee (5%)</span>
                     <span className="font-bold text-slate-900">{formatPrice(serviceFee)}</span>
                   </div>
                   {appliedPromo && (
@@ -217,9 +225,9 @@ export default function CartPage() {
                       {[2.00, 3.00, 5.00, 7.00].map((tip) => (
                         <button
                           key={tip}
-                          onClick={() => setCourierTip(tip)}
+                          onClick={() => setTipAmount(tip)}
                           className={`py-1.5 rounded-lg text-xs font-bold border transition-all ${
-                            courierTip === tip
+                            tipAmount === tip
                               ? "border-fresh-600 bg-fresh-50 text-fresh-700 shadow-sm"
                               : "border-slate-200 text-slate-600 hover:border-slate-300"
                           }`}
@@ -266,7 +274,7 @@ export default function CartPage() {
                   href="/checkout"
                   className="w-full py-4 rounded-2xl bg-fresh-600 hover:bg-fresh-700 text-white font-bold text-sm shadow-lg shadow-fresh-600/30 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-95"
                 >
-                  <span>Proceed to Checkout</span>
+                  <span>Proceed to Express Checkout</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 

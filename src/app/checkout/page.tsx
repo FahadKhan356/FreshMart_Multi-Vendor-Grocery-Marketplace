@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
+import { useCartStore } from "@/lib/store/cartStore";
+import { createMultiVendorOrder } from "@/lib/actions/orders";
+import { formatPrice } from "@/lib/utils";
 import { 
   MapPin, 
   Clock, 
@@ -12,69 +16,114 @@ import {
   ShieldCheck, 
   ArrowRight,
   ChevronRight,
-  Building
+  Store,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 
 export default function CheckoutPage() {
+  const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const [selectedWindow, setSelectedWindow] = useState("express-30");
   const [paymentMethod, setPaymentMethod] = useState("card");
-  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [instructions, setInstructions] = useState("Leave on front porch table. Ring doorbell.");
 
-  const handlePlaceOrder = () => {
-    setOrderPlaced(true);
+  const [address, setAddress] = useState({
+    fullName: "Sarah Jenkins",
+    phone: "(555) 234-8901",
+    address: "742 Evergreen Terrace",
+    apartment: "Apt 4B",
+    city: "Brooklyn",
+    state: "NY",
+    zipCode: "11217",
+  });
+
+  const items = useCartStore((s) => s.items);
+  const tipAmount = useCartStore((s) => s.tipAmount);
+  const getSubtotal = useCartStore((s) => s.getSubtotal);
+  const getDeliveryFee = useCartStore((s) => s.getDeliveryFee);
+  const getServiceFee = useCartStore((s) => s.getServiceFee);
+  const getTotal = useCartStore((s) => s.getTotal);
+  const getStoreGroups = useCartStore((s) => s.getStoreGroups);
+  const clearCart = useCartStore((s) => s.clearCart);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const storeGroups = mounted ? getStoreGroups() : [];
+  const subtotal = mounted ? getSubtotal() : 42.80;
+  const deliveryFee = mounted ? getDeliveryFee() : 2.99;
+  const serviceFee = mounted ? getServiceFee() : 2.14;
+  const total = mounted ? getTotal() : 50.93;
+
+  const handlePlaceOrder = async () => {
+    if (items.length === 0) {
+      setErrorMessage("Your cart is empty. Please add items before checking out.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      // 1. Create multi-vendor parent order & split sub-orders in Supabase
+      const orderPayload = {
+        shippingAddress: address,
+        deliveryWindow: selectedWindow === "express-30" ? "30-Min Rapid Express" : "Today, 4:00 PM – 6:00 PM",
+        deliveryInstructions: instructions,
+        tipAmount: tipAmount,
+        items: items.map((i) => ({
+          id: i.id,
+          name: i.name,
+          price: i.price,
+          quantity: i.quantity,
+          unit: i.unit,
+          storeId: i.storeId,
+          storeName: i.storeName,
+          image: i.image,
+        })),
+      };
+
+      const result = await createMultiVendorOrder(orderPayload);
+
+      if (!result.success || !result.orderId) {
+        throw new Error(result.error || "Failed to create multi-vendor order.");
+      }
+
+      // 2. Initialize Stripe Checkout / Payment session
+      const checkoutRes = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: result.orderId,
+          orderNumber: result.orderNumber,
+          total: result.total,
+          items: items,
+          customerEmail: "sarah.jenkins@example.com",
+        }),
+      });
+
+      const checkoutData = await checkoutRes.json();
+
+      if (!checkoutRes.ok || !checkoutData.url) {
+        throw new Error(checkoutData.error || "Failed to initiate payment gateway.");
+      }
+
+      // Clear local cart store upon successful order generation
+      clearCart();
+
+      // Redirect to Stripe checkout or order success
+      window.location.href = checkoutData.url;
+    } catch (err: any) {
+      console.error("Order submission failure:", err);
+      setErrorMessage(err.message || "Failed to process order. Please try again.");
+      setIsSubmitting(false);
+    }
   };
-
-  if (orderPlaced) {
-    return (
-      <>
-        <CustomerHeader />
-        <main className="min-h-screen bg-slate-50 py-16">
-          <div className="max-w-xl mx-auto px-4 text-center bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl space-y-5 animate-in fade-in zoom-in-95">
-            <div className="w-16 h-16 rounded-full bg-fresh-100 text-fresh-600 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-10 h-10" />
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Order Placed Successfully!
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Order <span className="font-bold text-slate-800">#FM-94821</span> has been dispatched to GreenField Organic and SunHarvest Direct. Courier Marcus V. is on the route.
-            </p>
-
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-left text-xs space-y-2">
-              <div className="flex justify-between">
-                <span className="text-slate-500">Estimated Delivery:</span>
-                <span className="font-bold text-emerald-700">10:45 AM (25 mins)</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Delivery Address:</span>
-                <span className="font-semibold text-slate-800">742 Evergreen Terrace, Brooklyn</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Total Charged:</span>
-                <span className="font-extrabold text-slate-900">$42.80</span>
-              </div>
-            </div>
-
-            <div className="pt-4 flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/account"
-                className="flex-1 py-3.5 rounded-xl bg-fresh-600 hover:bg-fresh-700 text-white font-bold text-xs shadow-md transition-all"
-              >
-                Track Live Order
-              </Link>
-              <Link
-                href="/"
-                className="flex-1 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors"
-              >
-                Back to Homepage
-              </Link>
-            </div>
-          </div>
-        </main>
-        <CustomerFooter />
-      </>
-    );
-  }
 
   return (
     <>
@@ -86,12 +135,19 @@ export default function CheckoutPage() {
           <div className="flex items-center gap-2 text-xs font-medium text-slate-500 mb-6">
             <Link href="/cart" className="hover:text-fresh-600">Cart</Link>
             <ChevronRight className="w-3 h-3 text-slate-400" />
-            <span className="text-slate-900 font-bold">Checkout</span>
+            <span className="text-slate-900 font-bold">Express Checkout</span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-8">
-            Express Checkout
+            Multi-Vendor Checkout
           </h1>
+
+          {errorMessage && (
+            <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center gap-3">
+              <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
@@ -105,16 +161,15 @@ export default function CheckoutPage() {
                     <MapPin className="w-4 h-4 text-fresh-600" />
                     <span>1. Delivery Destination</span>
                   </div>
-                  <button className="text-xs text-fresh-600 font-bold hover:underline">Change</button>
+                  <span className="px-2 py-0.5 rounded bg-fresh-600 text-white text-[10px] font-bold">Default</span>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-fresh-50/50 border border-fresh-200/60 flex items-start justify-between">
                   <div>
-                    <p className="text-xs font-bold text-slate-900">Sarah Jenkins</p>
-                    <p className="text-xs text-slate-600 mt-0.5">742 Evergreen Terrace, Apt 4B</p>
-                    <p className="text-xs text-slate-500">Brooklyn, NY 11217 • (555) 234-8901</p>
+                    <p className="text-xs font-bold text-slate-900">{address.fullName}</p>
+                    <p className="text-xs text-slate-600 mt-0.5">{address.address}, {address.apartment}</p>
+                    <p className="text-xs text-slate-500">{address.city}, {address.state} {address.zipCode} • {address.phone}</p>
                   </div>
-                  <span className="px-2 py-0.5 rounded bg-fresh-600 text-white text-[10px] font-bold">Default</span>
                 </div>
 
                 <div>
@@ -123,6 +178,8 @@ export default function CheckoutPage() {
                   </label>
                   <input
                     type="text"
+                    value={instructions}
+                    onChange={(e) => setInstructions(e.target.value)}
                     placeholder="e.g. Leave with doorman, ring bell 4B..."
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 outline-none focus:bg-white focus:ring-2 focus:ring-fresh-600"
                   />
@@ -150,7 +207,7 @@ export default function CheckoutPage() {
                     </span>
                     <h4 className="font-bold text-xs text-slate-900 mt-2">30-Min Rapid Express</h4>
                     <p className="text-[11px] text-slate-500 mt-0.5">Direct courier dispatch</p>
-                    <p className="text-xs font-extrabold text-fresh-700 mt-2">$3.99</p>
+                    <p className="text-xs font-extrabold text-fresh-700 mt-2">$2.99</p>
                   </button>
 
                   <button
@@ -187,7 +244,7 @@ export default function CheckoutPage() {
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-4">
                 <div className="flex items-center gap-2 font-bold text-sm text-slate-900 pb-3 border-b border-slate-100">
                   <CreditCard className="w-4 h-4 text-fresh-600" />
-                  <span>3. Payment Method</span>
+                  <span>3. Payment Gateway (Stripe)</span>
                 </div>
 
                 <div className="space-y-3">
@@ -201,29 +258,28 @@ export default function CheckoutPage() {
                         className="text-fresh-600 focus:ring-fresh-500"
                       />
                       <div>
-                        <p className="text-xs font-bold text-slate-900">Visa ending in •••• 4242</p>
-                        <p className="text-[11px] text-slate-500">Expires 08/28 • Default card</p>
+                        <p className="text-xs font-bold text-slate-900">Credit / Debit Card (Stripe Checkout)</p>
+                        <p className="text-[11px] text-slate-500">Encrypted 256-bit bank level security</p>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-slate-600 uppercase">Visa</span>
+                    <span className="text-xs font-bold text-slate-600 uppercase">Stripe</span>
                   </label>
+                </div>
+              </div>
 
-                  <label className="flex items-center justify-between p-4 rounded-2xl border border-slate-200 hover:border-slate-300 cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="radio"
-                        name="payment"
-                        checked={paymentMethod === "apple"}
-                        onChange={() => setPaymentMethod("apple")}
-                        className="text-fresh-600 focus:ring-fresh-500"
-                      />
-                      <div>
-                        <p className="text-xs font-bold text-slate-900">Apple Pay</p>
-                        <p className="text-[11px] text-slate-500">Fast biometric checkout</p>
-                      </div>
+              {/* Multi-Vendor Order Partition Preview */}
+              <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-3">
+                <div className="flex items-center gap-2 font-bold text-xs text-slate-900">
+                  <Store className="w-4 h-4 text-fresh-600" />
+                  <span>Multi-Vendor Order Splitting ({storeGroups.length} Participating Shops)</span>
+                </div>
+                <div className="space-y-2 text-xs">
+                  {storeGroups.map((g) => (
+                    <div key={g.storeId} className="flex justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                      <span className="font-semibold text-slate-800">{g.storeName} ({g.items.length} items)</span>
+                      <span className="font-extrabold text-slate-900">{formatPrice(g.subtotal)}</span>
                     </div>
-                    <span className="text-xs font-bold text-slate-600"> Pay</span>
-                  </label>
+                  ))}
                 </div>
               </div>
 
@@ -237,33 +293,43 @@ export default function CheckoutPage() {
 
               <div className="space-y-2 text-xs text-slate-600">
                 <div className="flex justify-between">
-                  <span>Groceries (3 items)</span>
-                  <span className="font-bold text-slate-900">$33.90</span>
+                  <span>Groceries ({items.length} items)</span>
+                  <span className="font-bold text-slate-900">{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Rapid Delivery (30-min)</span>
-                  <span className="font-bold text-slate-900">$3.99</span>
+                  <span>Rapid Multi-Vendor Delivery</span>
+                  <span className="font-bold text-slate-900">{formatPrice(deliveryFee)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Courier Tip</span>
-                  <span className="font-bold text-slate-900">$3.00</span>
+                  <span className="font-bold text-slate-900">{formatPrice(tipAmount)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Cold-Chain Service Fee</span>
-                  <span className="font-bold text-slate-900">$1.91</span>
+                  <span>Cold-Chain Service Fee (5%)</span>
+                  <span className="font-bold text-slate-900">{formatPrice(serviceFee)}</span>
                 </div>
                 <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline text-base font-extrabold text-slate-900">
                   <span>Total Amount</span>
-                  <span className="text-xl text-fresh-600">$42.80</span>
+                  <span className="text-xl text-fresh-600">{formatPrice(total)}</span>
                 </div>
               </div>
 
               <button
                 onClick={handlePlaceOrder}
-                className="w-full py-4 rounded-2xl bg-fresh-600 hover:bg-fresh-700 text-white font-bold text-sm shadow-xl shadow-fresh-600/30 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-95"
+                disabled={isSubmitting || items.length === 0}
+                className="w-full py-4 rounded-2xl bg-fresh-600 hover:bg-fresh-700 disabled:opacity-50 text-white font-bold text-sm shadow-xl shadow-fresh-600/30 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-95"
               >
-                <span>Authorize & Place Order</span>
-                <ArrowRight className="w-4 h-4" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Processing Secure Checkout...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Authorize & Place Order</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
 
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-2.5 text-[11px] text-slate-600 font-medium">

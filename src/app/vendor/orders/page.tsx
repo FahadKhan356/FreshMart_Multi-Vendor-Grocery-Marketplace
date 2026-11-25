@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { formatPrice } from "@/lib/utils";
-import { Check, X, Clock, ShoppingBag, Truck, CheckCircle2 } from "lucide-react";
+import { Check, X, Clock, ShoppingBag, Truck, CheckCircle2, Loader2 } from "lucide-react";
+import { updateVendorOrderStatus } from "@/lib/actions/orders";
 
 export default function VendorOrdersPage() {
   const [orders, setOrders] = useState([
@@ -12,10 +13,23 @@ export default function VendorOrdersPage() {
     { id: "ORD-94815", customer: "Michael Chen", address: "95 5th Ave, Park Slope", items: "Organic Hass Avocados (8-pk bag)", total: 8.99, status: "Delivered", time: "09:15 AM" },
   ]);
 
-  const updateStatus = (id: string, newStatus: string) => {
-    setOrders((prev) =>
-      prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
-    );
+  const [loadingId, setLoadingId] = useState<string | null>(null);
+
+  const updateStatus = async (id: string, newStatus: string) => {
+    setLoadingId(id);
+    try {
+      await updateVendorOrderStatus(id, newStatus.toLowerCase());
+      setOrders((prev) =>
+        prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
+      );
+    } catch (err) {
+      console.warn("Status update fallback:", err);
+      setOrders((prev) =>
+        prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
+      );
+    } finally {
+      setLoadingId(null);
+    }
   };
 
   return (
@@ -65,27 +79,33 @@ export default function VendorOrdersPage() {
                   </span>
                 </td>
                 <td className="py-4 px-6 text-right">
-                  {o.status === "Pending" && (
-                    <button
-                      onClick={() => updateStatus(o.id, "Preparing")}
-                      className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-xs"
-                    >
-                      Accept & Pack
-                    </button>
-                  )}
-                  {o.status === "Preparing" && (
-                    <button
-                      onClick={() => updateStatus(o.id, "Dispatched")}
-                      className="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-bold text-xs"
-                    >
-                      Hand to Courier
-                    </button>
-                  )}
-                  {o.status === "Dispatched" && (
-                    <span className="text-[11px] text-purple-600 font-bold">Courier In Transit</span>
-                  )}
-                  {o.status === "Delivered" && (
-                    <span className="text-[11px] text-emerald-700 font-bold">Completed</span>
+                  {loadingId === o.id ? (
+                    <Loader2 className="w-4 h-4 animate-spin text-slate-400 ml-auto" />
+                  ) : (
+                    <>
+                      {o.status === "Pending" && (
+                        <button
+                          onClick={() => updateStatus(o.id, "Preparing")}
+                          className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-colors"
+                        >
+                          Accept & Pack
+                        </button>
+                      )}
+                      {o.status === "Preparing" && (
+                        <button
+                          onClick={() => updateStatus(o.id, "Dispatched")}
+                          className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors"
+                        >
+                          Hand to Courier
+                        </button>
+                      )}
+                      {o.status === "Dispatched" && (
+                        <span className="text-[11px] text-purple-600 font-bold">Courier In Transit</span>
+                      )}
+                      {o.status === "Delivered" && (
+                        <span className="text-[11px] text-emerald-700 font-bold">Completed</span>
+                      )}
+                    </>
                   )}
                 </td>
               </tr>

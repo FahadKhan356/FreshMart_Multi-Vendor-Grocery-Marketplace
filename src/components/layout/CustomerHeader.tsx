@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Search, 
   MapPin, 
@@ -17,11 +17,21 @@ import {
   Heart
 } from "lucide-react";
 import { CATEGORIES } from "@/data/mockData";
+import { useCartStore } from "@/lib/store/cartStore";
 
 export function CustomerHeader() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [cartCount, setCartCount] = useState(3);
-  const [cartTotal, setCartTotal] = useState(42.80);
+  const [mounted, setMounted] = useState(false);
+
+  const cartItems = useCartStore((s) => s.items);
+  const getTotal = useCartStore((s) => s.getTotal);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const cartCount = mounted ? cartItems.reduce((acc, i) => acc + i.quantity, 0) : 3;
+  const cartTotal = mounted ? getTotal() : 42.80;
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
