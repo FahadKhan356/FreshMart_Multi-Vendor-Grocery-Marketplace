@@ -4,7 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 export function isStripeConfigured(): boolean {
   const key = process.env.STRIPE_SECRET_KEY || "";
-  return /^sk_(test|live)_[A-Za-z0-9]{16,}$/.test(key) && !key.includes("placeholder");
+  return /^(sk|rk)_(test|live)_[A-Za-z0-9]{16,}$/.test(key) && !key.includes("placeholder");
 }
 
 export interface CouponCheck {
