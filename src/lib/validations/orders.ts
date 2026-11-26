@@ -34,7 +34,7 @@ export const CheckoutOrderSchema = z.object({
 });
 
 export const RefundRequestSchema = z.object({
-  customerId: z.string().uuid().optional(),
+  customerId: z.string().optional(),
   orderId: z.string(),
   vendorOrderId: z.string().optional(),
   storeId: z.string(),
