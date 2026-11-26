@@ -117,7 +117,7 @@ create table if not exists public.order_items (
   id uuid primary key default gen_random_uuid(),
   order_id uuid not null references public.orders(id) on delete cascade,
   vendor_order_id uuid not null references public.vendor_orders(id) on delete cascade,
-  product_id uuid not null references public.products(id),
+  product_id uuid references public.products(id),
   name text not null,
   unit text not null,
   price numeric(10,2) not null,
@@ -246,9 +246,34 @@ create policy "Users can view their own profile" on public.profiles for select t
 create policy "Users can update their own profile" on public.profiles for update to authenticated using ((select auth.uid()) = id) with check ((select auth.uid()) = id);
 
 -- Orders Policies
-create policy "Customers can view their own orders" on public.orders for select to authenticated using ((select auth.uid()) = customer_id);
-create policy "Vendors can view their own sub-orders" on public.vendor_orders for select to authenticated using ((select auth.uid()) = vendor_id);
-create policy "Couriers can view assigned deliveries" on public.deliveries for select to authenticated using ((select auth.uid()) = courier_id);
+create policy "Allow select orders" on public.orders for select using (true);
+create policy "Allow insert orders" on public.orders for insert with check (true);
+create policy "Allow update orders" on public.orders for update using (true) with check (true);
+
+-- Vendor Orders Policies
+create policy "Allow select vendor_orders" on public.vendor_orders for select using (true);
+create policy "Allow insert vendor_orders" on public.vendor_orders for insert with check (true);
+create policy "Allow update vendor_orders" on public.vendor_orders for update using (true) with check (true);
+
+-- Order Items Policies
+create policy "Allow select order_items" on public.order_items for select using (true);
+create policy "Allow insert order_items" on public.order_items for insert with check (true);
 
 -- Refund Policies
-create policy "Customers can view their own refund claims" on public.refund_requests for select to authenticated using ((select auth.uid()) = customer_id);
+create policy "Allow insert refund_requests" on public.refund_requests for insert with check (true);
+create policy "Allow update refund_requests" on public.refund_requests for update using (true) with check (true);
+create policy "Allow select refund_items" on public.refund_items for select using (true);
+create policy "Allow insert refund_items" on public.refund_items for insert with check (true);
+
+-- Vendor Balances Policies
+create policy "Allow select vendor_balances" on public.vendor_balances for select using (true);
+create policy "Allow update vendor_balances" on public.vendor_balances for update using (true) with check (true);
+
+-- Notifications Policies
+create policy "Allow select notifications" on public.notifications for select using (true);
+create policy "Allow insert notifications" on public.notifications for insert with check (true);
+create policy "Allow update notifications" on public.notifications for update using (true) with check (true);
+
+-- Deliveries Policies
+create policy "Allow insert deliveries" on public.deliveries for insert with check (true);
+create policy "Allow update deliveries" on public.deliveries for update using (true) with check (true);
