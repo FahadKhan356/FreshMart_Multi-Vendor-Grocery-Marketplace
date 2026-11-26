@@ -533,3 +533,43 @@ export async function updateVendorOrderStatus(
     return { success: false, error: err.message || "Failed to update order status." };
   }
 }
+
+export async function syncOrderPaymentFromStripeSession(sessionId: string) {
+  try {
+    if (!sessionId || !sessionId.startsWith("cs_")) {
+      return { success: false, error: "Invalid session ID." };
+    }
+    const { stripe } = await import("@/lib/stripe");
+    const { markOrderPaid } = await import("@/lib/server/orderHelpers");
+    const adminSupabase = createAdminClient();
+
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (!session || session.payment_status !== "paid") {
+      return { success: false, error: "Payment not completed on Stripe." };
+    }
+
+    const { data: order } = await adminSupabase
+      .from("orders")
+      .select("id, payment_status, stripe_payment_intent_id")
+      .eq("stripe_checkout_session_id", sessionId)
+      .maybeSingle();
+
+    if (!order) {
+      return { success: false, error: "Order not found for this Stripe session." };
+    }
+
+    const paymentIntentId =
+      typeof session.payment_intent === "string"
+        ? session.payment_intent
+        : session.payment_intent?.id;
+
+    if (paymentIntentId) {
+      await markOrderPaid(adminSupabase, order.id, paymentIntentId);
+    }
+
+    return { success: true, paymentIntentId };
+  } catch (err: any) {
+    console.error("syncOrderPaymentFromStripeSession error:", err);
+    return { success: false, error: err.message };
+  }
+}

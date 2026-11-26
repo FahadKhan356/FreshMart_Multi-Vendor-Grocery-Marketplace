@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
-import { getOrderDetails } from "@/lib/actions/orders";
+import { getOrderDetails, syncOrderPaymentFromStripeSession } from "@/lib/actions/orders";
 import { formatPrice } from "@/lib/utils";
 import {
   CheckCircle2,
@@ -24,20 +24,25 @@ function OrderSuccessContent() {
   const searchParams = useSearchParams();
   const orderNumberParam = searchParams.get("orderNumber");
   const orderId = searchParams.get("order_id");
+  const sessionId = searchParams.get("session_id");
   const mode = searchParams.get("mode");
 
   const [order, setOrder] = useState<any>(null);
   const [loading, setLoading] = useState(Boolean(orderId));
 
   useEffect(() => {
-    if (!orderId) {
+    async function loadConfirmation() {
+      if (sessionId && sessionId.startsWith("cs_")) {
+        await syncOrderPaymentFromStripeSession(sessionId).catch(console.warn);
+      }
+      if (orderId) {
+        const data = await getOrderDetails(orderId);
+        setOrder(data);
+      }
       setLoading(false);
-      return;
     }
-    getOrderDetails(orderId)
-      .then((data) => setOrder(data))
-      .finally(() => setLoading(false));
-  }, [orderId]);
+    loadConfirmation();
+  }, [orderId, sessionId]);
 
   if (loading) {
     return (
