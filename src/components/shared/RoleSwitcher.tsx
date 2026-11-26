@@ -11,20 +11,28 @@ import {
   ChevronDown
 } from "lucide-react";
 import { useState } from "react";
+import { useAuthStore, UserRole } from "@/lib/store/authStore";
 
 export function RoleSwitcher() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { user, switchRole } = useAuthStore();
+  const activeRole = user?.role || "customer";
 
-  const roles = [
-    { name: "Customer Store", path: "/", icon: ShoppingBag, color: "bg-emerald-600 text-white" },
-    { name: "Market Catalog", path: "/catalog", icon: ShoppingBag, color: "bg-emerald-500 text-white" },
-    { name: "Vendor Dashboard", path: "/vendor", icon: Store, color: "bg-blue-600 text-white" },
-    { name: "Super-Admin Portal", path: "/admin", icon: ShieldCheck, color: "bg-purple-600 text-white" },
-    { name: "Courier Partner App", path: "/courier", icon: Bike, color: "bg-amber-600 text-white" },
+  const roles: { roleId: UserRole; name: string; path: string; icon: any }[] = [
+    { roleId: "customer", name: "Customer Store", path: "/", icon: ShoppingBag },
+    { roleId: "customer", name: "Market Catalog", path: "/catalog", icon: ShoppingBag },
+    { roleId: "vendor", name: "Vendor Dashboard", path: "/vendor", icon: Store },
+    { roleId: "admin", name: "Super-Admin Portal", path: "/admin", icon: ShieldCheck },
+    { roleId: "courier", name: "Courier Partner App", path: "/courier", icon: Bike },
   ];
 
-  const currentRole = roles.find(r => pathname === r.path || (r.path !== "/" && pathname.startsWith(r.path))) || roles[0];
+  const currentRoleObj = roles.find(r => pathname === r.path || (r.path !== "/" && pathname.startsWith(r.path))) || roles[0];
+
+  const handleRoleSelect = (roleId: UserRole) => {
+    switchRole(roleId);
+    setIsOpen(false);
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
@@ -34,14 +42,14 @@ export function RoleSwitcher() {
             <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Switch FreshMart Role</p>
             <p className="text-xs text-slate-300">Live preview all 4 system actors</p>
           </div>
-          {roles.map((role) => {
-            const Icon = role.icon;
-            const isActive = pathname === role.path || (role.path !== "/" && pathname.startsWith(role.path));
+          {roles.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.path || (item.path !== "/" && pathname.startsWith(item.path));
             return (
               <Link
-                key={role.path}
-                href={role.path}
-                onClick={() => setIsOpen(false)}
+                key={item.path}
+                href={item.path}
+                onClick={() => handleRoleSelect(item.roleId)}
                 className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                   isActive 
                     ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20" 
@@ -50,7 +58,7 @@ export function RoleSwitcher() {
               >
                 <div className="flex items-center gap-2.5">
                   <Icon className="w-4 h-4" />
-                  <span>{role.name}</span>
+                  <span>{item.name}</span>
                 </div>
                 {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
               </Link>
@@ -65,9 +73,10 @@ export function RoleSwitcher() {
       >
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
         <span className="text-slate-300">Role:</span>
-        <span className="font-bold text-white">{currentRole.name}</span>
+        <span className="font-bold text-white capitalize">{activeRole} ({currentRoleObj.name})</span>
         <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
     </div>
   );
 }
+

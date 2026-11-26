@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { CATEGORIES } from "@/data/mockData";
 import { useCartStore } from "@/lib/store/cartStore";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export function CustomerHeader() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +26,8 @@ export function CustomerHeader() {
 
   const cartItems = useCartStore((s) => s.items);
   const getTotal = useCartStore((s) => s.getTotal);
+  const { user } = useAuthStore();
+  const role = user?.role || "customer";
 
   useEffect(() => {
     setMounted(true);
@@ -124,10 +127,19 @@ export function CustomerHeader() {
               href="/account"
               className="flex items-center gap-2 p-1.5 rounded-full hover:bg-slate-100 transition-colors text-slate-700"
             >
-              <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center font-bold text-xs text-slate-700 overflow-hidden">
-                SJ
+              <div className="w-8 h-8 rounded-full bg-fresh-100 text-fresh-800 flex items-center justify-center font-bold text-xs overflow-hidden">
+                {mounted && user?.fullName ? user.fullName.split(" ").map(n => n[0]).join("") : "SJ"}
               </div>
-              <span className="hidden xl:inline text-xs font-bold text-slate-800">Sarah J.</span>
+              <div className="hidden xl:flex flex-col text-left">
+                <span className="text-xs font-bold text-slate-800 leading-none">
+                  {mounted && user?.fullName ? user.fullName.split(" ")[0] : "Sarah"}
+                </span>
+                {mounted && role !== "customer" && (
+                  <span className="text-[10px] font-extrabold text-fresh-600 uppercase tracking-wider leading-none mt-0.5">
+                    {role}
+                  </span>
+                )}
+              </div>
             </Link>
           </div>
 

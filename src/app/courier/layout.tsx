@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { RoleGuard } from "@/components/shared/RoleGuard";
 import { 
   Bike, 
   Navigation, 
@@ -165,7 +166,9 @@ export default function CourierLayout({
         </header>
 
         <div className="p-6 sm:p-8 flex-1">
-          {children}
+          <RoleGuard allowedRoles={["courier", "admin"]} portalName="Courier Fleet">
+            {children}
+          </RoleGuard>
         </div>
 
       </div>

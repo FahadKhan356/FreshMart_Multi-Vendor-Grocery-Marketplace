@@ -5,17 +5,36 @@ import { useState } from "react";
 import { Star, Plus, Minus, Check, Leaf } from "lucide-react";
 import { Product } from "@/data/mockData";
 import { formatPrice } from "@/lib/utils";
+import { useCartStore } from "@/lib/store/cartStore";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const [qty, setQty] = useState(0);
   const [justAdded, setJustAdded] = useState(false);
+  
+  const items = useCartStore((s) => s.items);
+  const addItem = useCartStore((s) => s.addItem);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+
+  const cartItem = items.find((i) => i.id === product.id);
+  const qty = cartItem ? cartItem.quantity : 0;
 
   const handleAdd = () => {
-    setQty(1);
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      unit: product.unit,
+      image: product.image,
+      storeId: product.storeId,
+      storeName: product.storeName,
+      stock: product.stock,
+      organic: product.organic,
+      quantity: 1,
+    });
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 1000);
   };
@@ -100,14 +119,14 @@ export function ProductCard({ product }: ProductCardProps) {
         ) : (
           <div className="flex items-center bg-fresh-600 text-white rounded-full px-1 py-0.5 shadow-sm">
             <button
-              onClick={() => setQty(qty - 1)}
+              onClick={() => updateQuantity(product.id, qty - 1)}
               className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-black/20 text-white"
             >
               <Minus className="w-3.5 h-3.5" />
             </button>
             <span className="px-2 font-bold text-xs">{qty}</span>
             <button
-              onClick={() => setQty(qty + 1)}
+              onClick={() => updateQuantity(product.id, qty + 1)}
               className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-black/20 text-white"
             >
               <Plus className="w-3.5 h-3.5" />

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { RoleGuard } from "@/components/shared/RoleGuard";
 import { 
   LayoutDashboard, 
   Package, 
@@ -186,7 +187,9 @@ export default function VendorLayout({
 
         {/* Page Content */}
         <div className="p-6 sm:p-8 flex-1">
-          {children}
+          <RoleGuard allowedRoles={["vendor", "admin"]} portalName="Vendor Hub">
+            {children}
+          </RoleGuard>
         </div>
 
       </div>

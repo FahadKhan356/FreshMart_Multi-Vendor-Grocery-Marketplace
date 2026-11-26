@@ -1,10 +1,33 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
-import { STORES } from "@/data/mockData";
+import { STORES, Store } from "@/data/mockData";
+import { getLiveStores } from "@/lib/data/supabaseData";
 import { Star, ArrowRight, MapPin, Clock, ShieldCheck } from "lucide-react";
 
 export default function StoresPage() {
+  const [stores, setStores] = useState<Store[]>(STORES);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadStores() {
+      try {
+        const liveStores = await getLiveStores();
+        if (liveStores && liveStores.length > 0) {
+          setStores(liveStores);
+        }
+      } catch (err) {
+        console.warn("Using offline stores:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadStores();
+  }, []);
+
   return (
     <>
       <CustomerHeader />
@@ -23,7 +46,7 @@ export default function StoresPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {STORES.map((store) => (
+            {stores.map((store) => (
               <Link
                 key={store.id}
                 href={`/stores/${store.slug}`}

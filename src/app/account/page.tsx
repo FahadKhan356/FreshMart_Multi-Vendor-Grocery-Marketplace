@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { SAMPLE_ORDERS, Order } from "@/data/mockData";
+import { getLiveCustomerOrders } from "@/lib/data/supabaseData";
+import { useAuthStore } from "@/lib/store/authStore";
 import { 
   User, 
   MapPin, 
@@ -23,6 +25,35 @@ import { formatPrice } from "@/lib/utils";
 
 export default function AccountPage() {
   const [activeTab, setActiveTab] = useState<"orders" | "addresses" | "payments">("orders");
+  const { user } = useAuthStore();
+  const [orders, setOrders] = useState<any[]>(SAMPLE_ORDERS);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchOrders() {
+      try {
+        const liveOrders = await getLiveCustomerOrders(user?.id);
+        if (liveOrders && liveOrders.length > 0) {
+          const mapped = liveOrders.map((o: any) => ({
+            id: o.order_number || o.id.slice(0, 8),
+            date: new Date(o.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+            stores: o.vendor_orders?.map((vo: any) => vo.stores?.name).filter(Boolean) || ["GreenField Organic Market"],
+            total: Number(o.total_amount),
+            status: o.status === "paid" ? "Delivered" : o.status,
+            courierName: "Marcus Vance",
+            itemsCount: o.vendor_orders?.reduce((sum: number, vo: any) => sum + (vo.order_items?.length || 0), 0) || 3,
+          }));
+          setOrders(mapped);
+        }
+      } catch (err) {
+        console.error("Error fetching live customer orders:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchOrders();
+  }, [user?.id]);
+
 
   return (
     <>
@@ -35,14 +66,14 @@ export default function AccountPage() {
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-emerald-600 text-white font-extrabold text-xl flex items-center justify-center shadow-lg shadow-emerald-600/20">
-                SJ
+                {user?.fullName ? user.fullName.split(" ").map(n => n[0]).join("") : "SJ"}
               </div>
               <div>
                 <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-                  Sarah Jenkins
+                  {user?.fullName || "Sarah Jenkins"}
                 </h1>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  sarah.jenkins@brooklyn.org • Member since April 2024
+                  {user?.email || "sarah.jenkins@brooklyn.org"} • FreshMart Verified Profile
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   <span className="px-2.5 py-0.5 rounded-full bg-fresh-100 text-fresh-700 font-bold text-[10px] uppercase">
@@ -158,7 +189,7 @@ export default function AccountPage() {
                     </h3>
 
                     <div className="divide-y divide-slate-100">
-                      {SAMPLE_ORDERS.map((order) => (
+                      {orders.map((order) => (
                         <div key={order.id} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                           <div>
                             <div className="flex items-center gap-2">
@@ -166,7 +197,7 @@ export default function AccountPage() {
                               <span className="text-xs text-slate-400">• {order.date}</span>
                             </div>
                             <p className="text-xs text-slate-500 mt-0.5">
-                              {order.itemsCount} items from {order.stores.join(", ")}
+                              {order.itemsCount} items from {Array.isArray(order.stores) ? order.stores.join(", ") : "Organic Market"}
                             </p>
                             <span className="inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold mt-2">
                               {order.status}

@@ -1,34 +1,74 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { STORES, PRODUCTS } from "@/data/mockData";
+import { STORES, PRODUCTS, Store, Product } from "@/data/mockData";
+import { getLiveStoreBySlug, getLiveProducts } from "@/lib/data/supabaseData";
 import { 
   Star, 
   Clock, 
   MapPin, 
   ShieldCheck, 
   Search, 
-  SlidersHorizontal,
   ChevronRight,
-  Info,
-  Sparkles,
   Percent
 } from "lucide-react";
 
 export default function StoreDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  const store = STORES.find((s) => s.slug === slug) || STORES[0];
-
+  
+  const [store, setStore] = useState<Store>(
+    () => STORES.find((s) => s.slug === slug) || STORES[0]
+  );
+  const [products, setProducts] = useState<Product[]>(PRODUCTS);
   const [activeCategory, setActiveCategory] = useState("all");
   const [storeSearch, setStoreSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const storeProducts = PRODUCTS.filter((p) => p.storeId === store.id || store.id === "store-1");
+  useEffect(() => {
+    async function loadStoreData() {
+      try {
+        if (!slug) return;
+        const liveStore = await getLiveStoreBySlug(slug);
+        if (liveStore) {
+          setStore(liveStore);
+          const liveProducts = await getLiveProducts({ storeId: liveStore.id });
+          if (liveProducts.length > 0) {
+            setProducts(liveProducts);
+          }
+        } else {
+          // fallback to all live products
+          const liveProducts = await getLiveProducts();
+          if (liveProducts.length > 0) {
+            setProducts(liveProducts);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load live store data:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadStoreData();
+  }, [slug]);
+
+  const storeProducts = products.filter((p) => {
+    const matchesCategory =
+      activeCategory === "all" ||
+      (activeCategory === "organic" && p.organic) ||
+      (activeCategory === "flash" && p.discountBadge);
+    const matchesSearch =
+      !storeSearch ||
+      p.name.toLowerCase().includes(storeSearch.toLowerCase()) ||
+      p.description.toLowerCase().includes(storeSearch.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
 
   return (
     <>

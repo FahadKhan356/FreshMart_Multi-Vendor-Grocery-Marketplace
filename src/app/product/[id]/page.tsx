@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { PRODUCTS, Product } from "@/data/mockData";
+import { getLiveProductById, getLiveProducts } from "@/lib/data/supabaseData";
+import { useCartStore } from "@/lib/store/cartStore";
 import { formatPrice } from "@/lib/utils";
 import { 
   Star, 
@@ -29,18 +31,49 @@ import {
 export default function ProductDetailPage() {
   const params = useParams();
   const id = params?.id as string;
-  const product = PRODUCTS.find((p) => p.id === id) || PRODUCTS[0];
-
+  
+  const [product, setProduct] = useState<Product>(
+    () => PRODUCTS.find((p) => p.id === id) || PRODUCTS[0]
+  );
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>(PRODUCTS.slice(1, 5));
   const [qty, setQty] = useState(1);
   const [selectedVariation, setSelectedVariation] = useState("4-pack bag");
   const [addedAnimation, setAddedAnimation] = useState(false);
+  const addItem = useCartStore((s) => s.addItem);
+
+  useEffect(() => {
+    async function loadProductData() {
+      if (!id) return;
+      const liveProduct = await getLiveProductById(id);
+      if (liveProduct) {
+        setProduct(liveProduct);
+      }
+      const allLive = await getLiveProducts();
+      if (allLive.length > 0) {
+        setRelatedProducts(allLive.filter((p) => p.id !== (liveProduct?.id || id)).slice(0, 4));
+      }
+    }
+    loadProductData();
+  }, [id]);
 
   const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      unit: product.unit,
+      image: product.image,
+      storeId: product.storeId,
+      storeName: product.storeName,
+      stock: product.stock,
+      organic: product.organic,
+      quantity: qty,
+    });
     setAddedAnimation(true);
     setTimeout(() => setAddedAnimation(false), 1200);
   };
 
-  const relatedProducts = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
 
   return (
     <>

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { PRODUCTS, CATEGORIES, STORES, Product } from "@/data/mockData";
+import { PRODUCTS, CATEGORIES, STORES, Product, Store, Category } from "@/data/mockData";
+import { getLiveProducts, getLiveStores, getLiveCategories } from "@/lib/data/supabaseData";
 import { 
   Filter, 
   Grid, 
@@ -14,9 +15,10 @@ import {
   Check, 
   ChevronRight,
   Leaf,
-  Store,
+  Store as StoreIcon,
   Sparkles,
-  Search
+  Search,
+  Loader2
 } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 
@@ -28,8 +30,33 @@ export default function CatalogPage() {
   const [sortBy, setSortBy] = useState<"featured" | "price-low" | "price-high" | "rating">("featured");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
+  const [products, setProducts] = useState<Product[]>(PRODUCTS);
+  const [categories, setCategories] = useState<Category[]>(CATEGORIES);
+  const [stores, setStores] = useState<Store[]>(STORES);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [liveProds, liveCats, liveStores] = await Promise.all([
+          getLiveProducts(),
+          getLiveCategories(),
+          getLiveStores(),
+        ]);
+        if (liveProds && liveProds.length > 0) setProducts(liveProds);
+        if (liveCats && liveCats.length > 0) setCategories(liveCats);
+        if (liveStores && liveStores.length > 0) setStores(liveStores);
+      } catch (err) {
+        console.warn("Fallback to cache:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
   // Filtering
-  const filteredProducts = PRODUCTS.filter((p) => {
+  const filteredProducts = products.filter((p) => {
     if (selectedCategory !== "all" && p.category !== selectedCategory) return false;
     if (selectedStore !== "all" && p.storeId !== selectedStore) return false;
     if (organicOnly && !p.organic) return false;
@@ -107,9 +134,9 @@ export default function CatalogPage() {
                       }`}
                     >
                       <span>All Departments</span>
-                      <span className="text-[11px] text-slate-400">{PRODUCTS.length}</span>
+                      <span className="text-[11px] text-slate-400">{products.length}</span>
                     </button>
-                    {CATEGORIES.map((c) => (
+                    {categories.map((c) => (
                       <button
                         key={c.id}
                         onClick={() => setSelectedCategory(c.id)}
@@ -134,9 +161,9 @@ export default function CatalogPage() {
                         selectedStore === "all" ? "bg-fresh-50 text-fresh-700 font-bold" : "text-slate-600 hover:bg-slate-50"
                       }`}
                     >
-                      <span>All Stores (45+)</span>
+                      <span>All Stores ({stores.length})</span>
                     </button>
-                    {STORES.map((s) => (
+                    {stores.map((s) => (
                       <button
                         key={s.id}
                         onClick={() => setSelectedStore(s.id)}
@@ -185,7 +212,7 @@ export default function CatalogPage() {
                     Marketplace & Catalog
                   </h1>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Showing <span className="font-bold text-slate-800">{filteredProducts.length}</span> organic grocery items
+                    Showing <span className="font-bold text-slate-800">{filteredProducts.length}</span> organic grocery items (Live Supabase Sync)
                   </p>
                 </div>
 

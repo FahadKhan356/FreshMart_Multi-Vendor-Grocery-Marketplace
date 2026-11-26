@@ -1,42 +1,89 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PRODUCTS, Product } from "@/data/mockData";
 import { formatPrice } from "@/lib/utils";
-import { Plus, Search, Edit, Trash2, Eye, Leaf, Check } from "lucide-react";
+import { Plus, Search, Edit, Trash2, Eye, Leaf, Check, Loader2 } from "lucide-react";
+import { getLiveProducts, createLiveProduct } from "@/lib/data/supabaseData";
 
 export default function VendorProductsPage() {
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
+  const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [newStock, setNewStock] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleCreateProduct = (e: React.FormEvent) => {
+  useEffect(() => {
+    async function loadVendorProducts() {
+      try {
+        const live = await getLiveProducts({ storeId: "a1111111-1111-1111-1111-111111111111" });
+        if (live && live.length > 0) {
+          setProducts(live);
+        } else {
+          const allLive = await getLiveProducts();
+          if (allLive.length > 0) {
+            setProducts(allLive);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load vendor products:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVendorProducts();
+  }, []);
+
+  const handleCreateProduct = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTitle || !newPrice) return;
-    const newProd: Product = {
-      id: `prod-${Date.now()}`,
-      name: newTitle,
-      storeId: "store-1",
-      storeName: "GreenField Organic Market",
-      price: Number(newPrice),
-      unit: "Each",
-      category: "fruits-veggies",
-      rating: 5.0,
-      reviewsCount: 1,
-      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600",
-      stock: Number(newStock) || 20,
-      organic: true,
-      origin: "Hudson Valley, NY",
-      description: "Freshly listed farm direct produce.",
-    };
-    setProducts([newProd, ...products]);
-    setShowAddModal(false);
-    setNewTitle("");
-    setNewPrice("");
-    setNewStock("");
+    setSubmitting(true);
+    try {
+      const created = await createLiveProduct({
+        name: newTitle,
+        price: Number(newPrice),
+        stock: Number(newStock) || 25,
+        unit: "Each",
+        store_id: "a1111111-1111-1111-1111-111111111111",
+        category_id: "fruits-veggies",
+        description: "Fresh organic grocery item added by vendor.",
+        organic: true,
+      });
+
+      if (created) {
+        setProducts([created, ...products]);
+      } else {
+        const fallbackProd: Product = {
+          id: `prod-${Date.now()}`,
+          name: newTitle,
+          storeId: "store-1",
+          storeName: "GreenField Organic Market",
+          price: Number(newPrice),
+          unit: "Each",
+          category: "fruits-veggies",
+          rating: 5.0,
+          reviewsCount: 1,
+          image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600",
+          stock: Number(newStock) || 20,
+          organic: true,
+          origin: "Hudson Valley, NY",
+          description: "Freshly listed farm direct produce.",
+        };
+        setProducts([fallbackProd, ...products]);
+      }
+      setShowAddModal(false);
+      setNewTitle("");
+      setNewPrice("");
+      setNewStock("");
+    } catch (err) {
+      console.error("Error creating product:", err);
+    } finally {
+      setSubmitting(false);
+    }
   };
+
 
   return (
     <div className="space-y-6 max-w-7xl">

@@ -1,30 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Check, X, ShieldCheck, FileText, Store, ExternalLink } from "lucide-react";
+import { getLiveStores, updateStoreStatus } from "@/lib/data/supabaseData";
 
 export default function AdminVendorsPage() {
-  const [vendors, setVendors] = useState([
+  const [vendors, setVendors] = useState<any[]>([
     {
-      id: "VEN-401",
-      storeName: "Catskill Mountain Honey & Apiary",
-      owner: "Jonathan Vance",
-      category: "Organic Raw Honey & Preserves",
-      license: "USDA Organic Cert #99214-NY",
-      inspectedDate: "Nov 25, 2026",
-      status: "Pending Review",
-    },
-    {
-      id: "VEN-402",
-      storeName: "Hudson Valley Heritage Orchards",
-      owner: "Amelia Thorne",
-      category: "Heirloom Apples, Pears & Ciders",
-      license: "NYS Dept of Agriculture Food Safety #7712",
-      inspectedDate: "Nov 24, 2026",
-      status: "Pending Review",
-    },
-    {
-      id: "VEN-398",
+      id: "a1111111-1111-1111-1111-111111111111",
       storeName: "GreenField Organic Market",
       owner: "David Greenfield",
       category: "Produce & Microgreens",
@@ -32,13 +15,58 @@ export default function AdminVendorsPage() {
       inspectedDate: "Nov 20, 2026",
       status: "Approved",
     },
+    {
+      id: "b2222222-2222-2222-2222-222222222222",
+      storeName: "Brooklyn Artisan Bakery & Dairy",
+      owner: "Amelia Thorne",
+      category: "Sourdough & Grass-fed Dairy",
+      license: "NYS Dept of Agriculture #7712",
+      inspectedDate: "Nov 24, 2026",
+      status: "Approved",
+    },
+    {
+      id: "c3333333-3333-3333-3333-333333333333",
+      storeName: "Atlantic Fresh Catch & Meats",
+      owner: "Jonathan Vance",
+      category: "Wild-Caught Seafood & Grass-Fed",
+      license: "USDA Organic Cert #99214-NY",
+      inspectedDate: "Nov 25, 2026",
+      status: "Pending Review",
+    },
   ]);
 
-  const handleAction = (id: string, newStatus: string) => {
+  useEffect(() => {
+    async function loadStores() {
+      try {
+        const liveStores = await getLiveStores(false);
+        if (liveStores && liveStores.length > 0) {
+          const mapped = liveStores.map((s) => ({
+            id: s.id,
+            storeName: s.name,
+            owner: "Certified Grocer",
+            category: s.tags?.join(", ") || "Fresh Produce & Grocery",
+            license: "USDA Organic Cert #99214-NY",
+            inspectedDate: "Nov 25, 2026",
+            status: s.featured ? "Approved" : "Pending Review",
+          }));
+          setVendors(mapped);
+        }
+      } catch (err) {
+        console.error("Failed to load admin stores:", err);
+      }
+    }
+    loadStores();
+  }, []);
+
+  const handleAction = async (id: string, newStatus: string) => {
     setVendors((prev) =>
       prev.map((v) => (v.id === id ? { ...v, status: newStatus } : v))
     );
+
+    const supabaseStatus = newStatus === "Approved" ? "approved" : "rejected";
+    await updateStoreStatus(id, supabaseStatus);
   };
+
 
   return (
     <div className="space-y-6 max-w-7xl">

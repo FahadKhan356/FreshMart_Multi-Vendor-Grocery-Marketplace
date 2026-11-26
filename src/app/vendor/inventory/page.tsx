@@ -1,22 +1,52 @@
 "use client";
 
-import { useState } from "react";
-import { PRODUCTS } from "@/data/mockData";
+import { useState, useEffect } from "react";
+import { PRODUCTS, Product } from "@/data/mockData";
+import { getLiveProducts } from "@/lib/data/supabaseData";
+import { updateProductStock } from "@/lib/actions/products";
 import { formatPrice } from "@/lib/utils";
 import { AlertTriangle, Boxes, Check, Search, Sliders } from "lucide-react";
 
 export default function VendorInventoryPage() {
-  const [stockLevels, setStockLevels] = useState(
+  const [stockLevels, setStockLevels] = useState<any[]>(
     PRODUCTS.map((p) => ({ ...p, isAvailable: p.stock > 0 }))
   );
+  const [loading, setLoading] = useState(true);
 
-  const toggleAvailability = (id: string) => {
+  useEffect(() => {
+    async function loadInventory() {
+      try {
+        const live = await getLiveProducts({ storeId: "a1111111-1111-1111-1111-111111111111" });
+        if (live && live.length > 0) {
+          setStockLevels(live.map((p) => ({ ...p, isAvailable: p.stock > 0 })));
+        }
+      } catch (err) {
+        console.error("Failed to load live inventory:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadInventory();
+  }, []);
+
+  const toggleAvailability = async (id: string) => {
+    const target = stockLevels.find((s) => s.id === id);
+    if (!target) return;
+    const newStatus = !target.isAvailable;
+    
     setStockLevels((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, isAvailable: !item.isAvailable } : item
+        item.id === id ? { ...item, isAvailable: newStatus } : item
       )
     );
+
+    try {
+      await updateProductStock(id, target.stock, newStatus);
+    } catch (err) {
+      console.warn("Stock update fallback:", err);
+    }
   };
+
 
   return (
     <div className="space-y-6 max-w-7xl">

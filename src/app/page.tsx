@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { FlashDealsBanner } from "@/components/ui/FlashDealsBanner";
-import { PRODUCTS, STORES, CATEGORIES } from "@/data/mockData";
+import { PRODUCTS, STORES, CATEGORIES, Product, Store, Category } from "@/data/mockData";
+import { getLiveProducts, getLiveStores, getLiveCategories } from "@/lib/data/supabaseData";
 import { 
   Zap, 
-  Store, 
+  Store as StoreIcon, 
   ShieldCheck, 
   Star, 
   ArrowRight, 
@@ -18,15 +19,40 @@ import {
   ShoppingBag,
   TrendingUp,
   Clock,
-  CheckCircle2
+  CheckCircle2,
+  Loader2
 } from "lucide-react";
 
 export default function HomePage() {
   const [productFilter, setProductFilter] = useState<"all" | "organic" | "local">("all");
+  const [products, setProducts] = useState<Product[]>(PRODUCTS);
+  const [stores, setStores] = useState<Store[]>(STORES);
+  const [categories, setCategories] = useState<Category[]>(CATEGORIES);
+  const [loading, setLoading] = useState(true);
 
-  const filteredProducts = PRODUCTS.filter((p) => {
+  useEffect(() => {
+    async function loadLiveData() {
+      try {
+        const [liveProds, liveStores, liveCats] = await Promise.all([
+          getLiveProducts(),
+          getLiveStores(),
+          getLiveCategories(),
+        ]);
+        if (liveProds && liveProds.length > 0) setProducts(liveProds);
+        if (liveStores && liveStores.length > 0) setStores(liveStores);
+        if (liveCats && liveCats.length > 0) setCategories(liveCats);
+      } catch (err) {
+        console.warn("Using offline fallback:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadLiveData();
+  }, []);
+
+  const filteredProducts = products.filter((p) => {
     if (productFilter === "organic") return p.organic;
-    if (productFilter === "local") return p.origin.includes("NY") || p.origin.includes("Brooklyn");
+    if (productFilter === "local") return (p.origin || "").includes("NY") || (p.origin || "").includes("Brooklyn");
     return true;
   });
 
@@ -60,7 +86,7 @@ export default function HomePage() {
                 </h1>
 
                 <p className="text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
-                  Shop directly from 45+ local organic family farms, boutique bakeries, artisanal butchers, and specialty markets across Brooklyn, harvested fresh this morning.
+                  Shop directly from certified organic family farms, artisan sourdough bakeries, and wild seafood mongers across Brooklyn, harvested fresh this morning.
                 </p>
 
                 {/* CTAs */}
@@ -76,17 +102,17 @@ export default function HomePage() {
                     href="/stores"
                     className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 backdrop-blur-md transition-colors"
                   >
-                    <Store className="w-4 h-4 text-emerald-300" />
-                    <span>Explore 45+ Local Stores</span>
+                    <StoreIcon className="w-4 h-4 text-emerald-300" />
+                    <span>Explore Stores ({stores.length})</span>
                   </Link>
                 </div>
 
                 {/* Micro trust proof */}
                 <div className="flex items-center gap-3 pt-2">
                   <div className="flex -space-x-2 overflow-hidden">
-                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-emerald-950 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANtb9FUR8SNrfhhh_2zSi3VJBOWmixdSAL5fl70nUfnhJ2nwA1NhPQg6kVhc5Er2mUgiZGnLxz3Z-1_RKaP__ubArECHKYPf5sKV689XqEDKM-aYhDuAYxRs4DNYqutVJ4JdsqvFy_47dz9H1_DAd2pozMmoD5Clq0ki1gskaKuwutB0Crvxiiocj2qT73Rle0DwLqcnYd9zy-kg3_KJtqela3Z6kzG5vubPMnJClG" alt="Farmer" />
-                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-emerald-950 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7E13dHpbUaVKFaIzrnQeKorK39GfEssNzrZELxKKT8PcqnuWy7LnWDJFBqUKkd5tXIL0KHrtE2D5TokjgVEQmergPnGVUubfWldABVJZHYlxjbSuIuf4mc6yCnj55B5TBFOd0_57bgk8Gx92Jl7qfTVLX5otZZ-MXlz-iumB_4UNcZPG0R7-mGhI7fkWWPt3W8p6Qm2hNLiQU0nv1QmvRHBnFYEeeoA5wv9a-4H9U" alt="Baker" />
-                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-emerald-950 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBswS68lvoQpNUxFtSWesmhcbT1OnGTdWhSAJbQTBsSxkkeU4APtaC_LbL6KCtl2M78hcrrLlRNw0XVJy1p5nQ6v4E1l215Ge6KId3PYIJuJ_AXzgTFCEc2U1f6Mo8eRJBlPEPRUtjU4QIgHuXEndH95V8R_-Ars3AwJ6Z7QCQIv-CHoPV_ZaooCHljKx5FI8N6TTcYwVHRe8YAdNsQaoywapEFmEirzPZFY_XSF7PT" alt="Butcher" />
+                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-emerald-950 object-cover" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=100&q=80" alt="Farmer" />
+                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-emerald-950 object-cover" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=100&q=80" alt="Baker" />
+                    <img className="inline-block h-8 w-8 rounded-full ring-2 ring-emerald-950 object-cover" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=100&q=80" alt="Butcher" />
                   </div>
                   <p className="text-xs text-slate-300">
                     Trusted by <span className="font-bold text-white">34,000+ Brooklyn families</span> today
@@ -136,11 +162,11 @@ export default function HomePage() {
 
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-fresh-500/20 text-fresh-400 flex items-center justify-center shrink-0">
-                  <Store className="w-4 h-4" />
+                  <StoreIcon className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white">45+ local stores</p>
-                  <p className="text-[11px] text-slate-400">Independent boutique shops</p>
+                  <p className="text-xs font-bold text-white">{stores.length} live stores</p>
+                  <p className="text-[11px] text-slate-400">Independent verified grocers</p>
                 </div>
               </div>
 
@@ -149,7 +175,7 @@ export default function HomePage() {
                   <Leaf className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white">12,000+ organic</p>
+                  <p className="text-xs font-bold text-white">100% Organic Direct</p>
                   <p className="text-[11px] text-slate-400">Certified farm items</p>
                 </div>
               </div>
@@ -169,7 +195,7 @@ export default function HomePage() {
           {/* Flash Harvest Deals with Countdown */}
           <FlashDealsBanner />
 
-          {/* Grocery Categories Carousel/Grid */}
+          {/* Grocery Categories Grid */}
           <section className="mt-14">
             <div className="flex items-end justify-between mb-6">
               <div>
@@ -187,7 +213,7 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3">
-              {CATEGORIES.map((cat) => (
+              {categories.map((cat) => (
                 <Link
                   key={cat.id}
                   href={`/catalog?category=${cat.id}`}
@@ -211,7 +237,7 @@ export default function HomePage() {
               <div>
                 <div className="inline-flex items-center gap-1.5 text-xs font-bold text-fresh-600 uppercase tracking-wider mb-1">
                   <TrendingUp className="w-3.5 h-3.5" />
-                  <span>Picked Fresh Daily</span>
+                  <span>Picked Fresh Daily • Live from Supabase</span>
                 </div>
                 <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
                   Brooklyn's Most Loved Groceries
@@ -226,7 +252,7 @@ export default function HomePage() {
                     productFilter === "all" ? "bg-white text-slate-900 font-bold shadow-sm" : "hover:text-slate-900"
                   }`}
                 >
-                  All Items
+                  All Items ({products.length})
                 </button>
                 <button
                   onClick={() => setProductFilter("organic")}
@@ -267,13 +293,13 @@ export default function HomePage() {
                 </h2>
               </div>
               <Link href="/stores" className="text-xs font-bold text-fresh-600 hover:text-fresh-700 flex items-center gap-1">
-                <span>View All 45 Stores</span>
+                <span>View All Stores ({stores.length})</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {STORES.map((store) => (
+              {stores.map((store) => (
                 <Link
                   key={store.id}
                   href={`/stores/${store.slug}`}
