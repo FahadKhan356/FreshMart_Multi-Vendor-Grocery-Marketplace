@@ -11,7 +11,7 @@ export const ShippingAddressSchema = z.object({
 });
 
 export const CheckoutOrderSchema = z.object({
-  customerId: z.string().uuid().optional(),
+  customerId: z.string().optional(),
   couponCode: z.string().optional(),
   paymentMethod: z.enum(["card", "cod"]).default("card"),
   deliveryFeeOverride: z.number().min(0).optional(),

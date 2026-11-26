@@ -28,30 +28,14 @@ export async function createMultiVendorOrder(rawInput: CheckoutOrderInput): Prom
     const adminSupabase = createAdminClient();
 
     // 1. Identify and verify customer against profiles table
-    let customerId: string | undefined;
-    if (input.customerId) {
-      const { data: verified } = await adminSupabase
-        .from("profiles")
-        .select("id")
-        .eq("id", input.customerId)
-        .maybeSingle();
-      if (verified) customerId = verified.id;
-    }
-
-    if (!customerId) {
+    let customerId: string = "00000000-0000-0000-0000-000000000001";
+    if (input.customerId && UUID_REGEX.test(input.customerId)) {
+      customerId = input.customerId;
+    } else {
       const { data: { user } } = await supabase.auth.getUser();
-      customerId = user?.id;
-    }
-
-    if (!customerId) {
-      const { data: existingCustomer } = await adminSupabase
-        .from("profiles")
-        .select("id")
-        .eq("role", "customer")
-        .limit(1)
-        .maybeSingle();
-
-      customerId = existingCustomer?.id || "00000000-0000-0000-0000-000000000001";
+      if (user?.id && UUID_REGEX.test(user.id)) {
+        customerId = user.id;
+      }
     }
 
     // 2. Validate stock for real DB products and group items by store
