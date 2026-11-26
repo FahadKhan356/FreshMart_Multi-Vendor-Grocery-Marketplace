@@ -23,12 +23,20 @@ export interface StoreGroup {
   deliveryFee: number;
 }
 
+export interface AppliedCoupon {
+  code: string;
+  discountType: string;
+  value: number;
+  discount: number;
+}
+
 interface CartStore {
   items: CartItem[];
   tipAmount: number;
   deliveryWindow: string;
   deliveryInstructions: string;
-  
+  appliedCoupon: AppliedCoupon | null;
+
   // Actions
   addItem: (item: Omit<CartItem, "quantity"> & { quantity?: number }) => void;
   removeItem: (id: string) => void;
@@ -37,12 +45,15 @@ interface CartStore {
   setTipAmount: (amount: number) => void;
   setDeliveryWindow: (window: string) => void;
   setDeliveryInstructions: (instructions: string) => void;
+  setAppliedCoupon: (coupon: AppliedCoupon | null) => void;
+  clearCoupon: () => void;
 
   // Computed getters
   getItemsCount: () => number;
   getSubtotal: () => number;
   getDeliveryFee: () => number;
   getServiceFee: () => number;
+  getDiscountAmount: () => number;
   getTotal: () => number;
   getStoreGroups: () => StoreGroup[];
 }
@@ -50,48 +61,11 @@ interface CartStore {
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
-      items: [
-        {
-          id: "prod-1",
-          name: "Organic Honeycrisp Apples",
-          price: 4.99,
-          originalPrice: 5.99,
-          unit: "1 lb bag",
-          image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=400&q=80",
-          storeId: "store-1",
-          storeName: "Valley Green Grocers",
-          quantity: 2,
-          stock: 45,
-          organic: true,
-        },
-        {
-          id: "prod-2",
-          name: "Organic Whole Milk",
-          price: 5.49,
-          unit: "1 Gallon",
-          image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=400&q=80",
-          storeId: "store-2",
-          storeName: "Sunrise Dairy & Organic",
-          quantity: 1,
-          stock: 28,
-          organic: true,
-        },
-        {
-          id: "prod-3",
-          name: "Artisan Sourdough Loaf",
-          price: 6.25,
-          unit: "Fresh Loaf",
-          image: "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=400&q=80",
-          storeId: "store-3",
-          storeName: "Golden Harvest Market",
-          quantity: 1,
-          stock: 12,
-          organic: false,
-        },
-      ],
+      items: [],
       tipAmount: 3.0,
-      deliveryWindow: "Today, 4:00 PM – 6:00 PM",
-      deliveryInstructions: "Leave on the front porch table. Ring doorbell.",
+      deliveryWindow: "30-Min Rapid Express",
+      deliveryInstructions: "",
+      appliedCoupon: null,
 
       addItem: (newItem) => {
         const qty = newItem.quantity || 1;
@@ -129,12 +103,14 @@ export const useCartStore = create<CartStore>()(
       },
 
       clearCart: () => {
-        set({ items: [] });
+        set({ items: [], appliedCoupon: null });
       },
 
       setTipAmount: (tipAmount) => set({ tipAmount }),
       setDeliveryWindow: (deliveryWindow) => set({ deliveryWindow }),
       setDeliveryInstructions: (deliveryInstructions) => set({ deliveryInstructions }),
+      setAppliedCoupon: (appliedCoupon) => set({ appliedCoupon }),
+      clearCoupon: () => set({ appliedCoupon: null }),
 
       getItemsCount: () => {
         return get().items.reduce((total, item) => total + item.quantity, 0);
@@ -148,7 +124,6 @@ export const useCartStore = create<CartStore>()(
       getDeliveryFee: () => {
         const groups = get().getStoreGroups();
         if (groups.length === 0) return 0;
-        // $2.99 base fee + $1.50 per additional store
         const fee = 2.99 + Math.max(0, groups.length - 1) * 1.5;
         return Math.round(fee * 100) / 100;
       },
@@ -156,8 +131,15 @@ export const useCartStore = create<CartStore>()(
       getServiceFee: () => {
         const subtotal = get().getSubtotal();
         if (subtotal === 0) return 0;
-        // 5% standard marketplace platform service fee
         return Math.round(subtotal * 0.05 * 100) / 100;
+      },
+
+      getDiscountAmount: () => {
+        const coupon = get().appliedCoupon;
+        const subtotal = get().getSubtotal();
+        if (!coupon || subtotal === 0) return 0;
+        const raw = coupon.discountType === "percent" ? (subtotal * coupon.value) / 100 : coupon.value;
+        return Math.round(Math.min(raw, subtotal) * 100) / 100;
       },
 
       getTotal: () => {
@@ -165,8 +147,9 @@ export const useCartStore = create<CartStore>()(
         if (subtotal === 0) return 0;
         const deliveryFee = get().getDeliveryFee();
         const serviceFee = get().getServiceFee();
+        const discount = get().getDiscountAmount();
         const tip = get().tipAmount || 0;
-        return Math.round((subtotal + deliveryFee + serviceFee + tip) * 100) / 100;
+        return Math.max(0, Math.round((subtotal + deliveryFee + serviceFee + tip - discount) * 100) / 100);
       },
 
       getStoreGroups: () => {
@@ -193,11 +176,15 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: "freshmart_cart_storage",
-      storage: createJSONStorage(() => (typeof window !== "undefined" ? localStorage : {
-        getItem: () => null,
-        setItem: () => null,
-        removeItem: () => null,
-      })),
+      storage: createJSONStorage(() =>
+        typeof window !== "undefined"
+          ? localStorage
+          : {
+              getItem: () => null,
+              setItem: () => null,
+              removeItem: () => null,
+            }
+      ),
     }
   )
 );

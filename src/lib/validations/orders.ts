@@ -11,6 +11,10 @@ export const ShippingAddressSchema = z.object({
 });
 
 export const CheckoutOrderSchema = z.object({
+  customerId: z.string().uuid().optional(),
+  couponCode: z.string().optional(),
+  paymentMethod: z.enum(["card", "cod"]).default("card"),
+  deliveryFeeOverride: z.number().min(0).optional(),
   shippingAddress: ShippingAddressSchema,
   deliveryWindow: z.string().default("Today, 4:00 PM – 6:00 PM"),
   deliveryInstructions: z.string().optional(),
@@ -30,6 +34,7 @@ export const CheckoutOrderSchema = z.object({
 });
 
 export const RefundRequestSchema = z.object({
+  customerId: z.string().uuid().optional(),
   orderId: z.string(),
   vendorOrderId: z.string().optional(),
   storeId: z.string(),

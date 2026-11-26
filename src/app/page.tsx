@@ -8,6 +8,8 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { FlashDealsBanner } from "@/components/ui/FlashDealsBanner";
 import { PRODUCTS, STORES, CATEGORIES, Product, Store, Category } from "@/data/mockData";
 import { getLiveProducts, getLiveStores, getLiveCategories } from "@/lib/data/supabaseData";
+import { getCustomerWishlistIds } from "@/lib/data/customerData";
+import { useAuthStore } from "@/lib/store/authStore";
 import { 
   Zap, 
   Store as StoreIcon, 
@@ -28,7 +30,15 @@ export default function HomePage() {
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
   const [stores, setStores] = useState<Store[]>(STORES);
   const [categories, setCategories] = useState<Category[]>(CATEGORIES);
+  const [wishlistIds, setWishlistIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuthStore();
+
+  useEffect(() => {
+    if (user?.id) {
+      getCustomerWishlistIds(user.id).then(setWishlistIds);
+    }
+  }, [user?.id]);
 
   useEffect(() => {
     async function loadLiveData() {
@@ -276,7 +286,11 @@ export default function HomePage() {
             {/* Product Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  initialWishlisted={wishlistIds.includes(product.id)}
+                />
               ))}
             </div>
           </section>

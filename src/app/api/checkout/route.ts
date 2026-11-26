@@ -1,50 +1,66 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { isStripeConfigured, markOrderPaid } from "@/lib/server/orderHelpers";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { orderId, orderNumber, total, items, customerEmail } = body;
+    const { orderId, orderNumber, total, items, customerEmail, paymentMethod } = body;
 
-    if (!orderId || !total) {
+    if (!orderId || total === undefined) {
       return NextResponse.json({ error: "Missing required order parameters." }, { status: 400 });
     }
 
     const host = req.headers.get("origin") || req.headers.get("host") || "http://localhost:3000";
     const origin = host.startsWith("http") ? host : `https://${host}`;
+    const adminSupabase = createAdminClient();
 
-    // Test or placeholder mode fallback
-    const isMockStripe = !process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY.includes("placeholder");
-
-    if (isMockStripe) {
-      // In development/test mode without an active live Stripe secret key,
-      // simulate instant payment success and redirect directly to order success
-      const adminSupabase = createAdminClient();
+    // Cash on Delivery path
+    if (paymentMethod === "cod") {
+      const now = new Date().toISOString();
       await adminSupabase
         .from("orders")
         .update({
-          payment_status: "paid",
-          order_status: "paid",
-          stripe_payment_intent_id: `pi_mock_${Date.now()}`,
-          stripe_checkout_session_id: `cs_mock_${Date.now()}`,
+          payment_method: "cod",
+          payment_status: "pending",
+          order_status: "preparing",
+          updated_at: now,
+        })
+        .eq("id", orderId);
+
+      await adminSupabase
+        .from("vendor_orders")
+        .update({ status: "accepted", updated_at: now })
+        .eq("order_id", orderId)
+        .eq("status", "pending");
+
+      return NextResponse.json({
+        url: `${origin}/order-success?order_id=${orderId}&orderNumber=${orderNumber || ""}&mode=cod`,
+        sessionId: `cod_${orderId}`,
+      });
+    }
+
+    // Test/Fallback mode when Stripe secret key is not configured
+    if (!isStripeConfigured()) {
+      const mockSessionId = `cs_mock_${Date.now()}`;
+      await adminSupabase
+        .from("orders")
+        .update({
+          stripe_checkout_session_id: mockSessionId,
           updated_at: new Date().toISOString(),
         })
         .eq("id", orderId);
 
-      // Auto update vendor orders to accepted
-      await adminSupabase
-        .from("vendor_orders")
-        .update({ status: "accepted", updated_at: new Date().toISOString() })
-        .eq("order_id", orderId);
+      await markOrderPaid(adminSupabase, orderId, `pi_mock_${Date.now()}`);
 
       return NextResponse.json({
-        url: `${origin}/order-success?order_id=${orderId}&orderNumber=${orderNumber || "FM-100293"}&mock=true`,
-        sessionId: `cs_mock_${Date.now()}`,
+        url: `${origin}/order-success?order_id=${orderId}&orderNumber=${orderNumber || ""}&mode=test`,
+        sessionId: mockSessionId,
       });
     }
 
-    // Build real Stripe line items
+    // Real Stripe Checkout
     const line_items = (items || []).map((item: any) => ({
       price_data: {
         currency: "usd",
@@ -58,7 +74,6 @@ export async function POST(req: NextRequest) {
       quantity: item.quantity,
     }));
 
-    // If no line items passed or small mismatch, pass single multi-vendor grocery basket line item
     if (line_items.length === 0) {
       line_items.push({
         price_data: {
@@ -85,7 +100,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const adminSupabase = createAdminClient();
     await adminSupabase
       .from("orders")
       .update({
@@ -101,7 +115,7 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     console.error("Stripe checkout error:", err);
     return NextResponse.json(
-      { error: err.message || "Failed to initiate Stripe Checkout." },
+      { error: err.message || "Failed to initiate checkout." },
       { status: 500 }
     );
   }

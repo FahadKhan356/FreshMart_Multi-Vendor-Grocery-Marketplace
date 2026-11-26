@@ -6,47 +6,48 @@ import { useParams } from "next/navigation";
 import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { STORES, PRODUCTS, Store, Product } from "@/data/mockData";
+import { Store, Product } from "@/data/mockData";
 import { getLiveStoreBySlug, getLiveProducts } from "@/lib/data/supabaseData";
-import { 
-  Star, 
-  Clock, 
-  MapPin, 
-  ShieldCheck, 
-  Search, 
+import { getActiveCoupons, getCustomerWishlistIds } from "@/lib/data/customerData";
+import { useAuthStore } from "@/lib/store/authStore";
+import {
+  Star,
+  Clock,
+  MapPin,
+  ShieldCheck,
+  Search,
   ChevronRight,
-  Percent
+  Percent,
+  Loader2,
 } from "lucide-react";
 
 export default function StoreDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  
-  const [store, setStore] = useState<Store>(
-    () => STORES.find((s) => s.slug === slug) || STORES[0]
-  );
-  const [products, setProducts] = useState<Product[]>(PRODUCTS);
+
+  const [store, setStore] = useState<Store | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [wishlistIds, setWishlistIds] = useState<string[]>([]);
+  const [activeCoupon, setActiveCoupon] = useState<{ code: string; discount_type: string; value: number; min_order: number } | null>(null);
   const [activeCategory, setActiveCategory] = useState("all");
   const [storeSearch, setStoreSearch] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const { user } = useAuthStore();
 
   useEffect(() => {
     async function loadStoreData() {
       try {
         if (!slug) return;
-        const liveStore = await getLiveStoreBySlug(slug);
+        const [liveStore, coupons] = await Promise.all([
+          getLiveStoreBySlug(slug),
+          getActiveCoupons(),
+        ]);
+        if (coupons.length > 0) setActiveCoupon(coupons[0]);
         if (liveStore) {
           setStore(liveStore);
           const liveProducts = await getLiveProducts({ storeId: liveStore.id });
-          if (liveProducts.length > 0) {
-            setProducts(liveProducts);
-          }
-        } else {
-          // fallback to all live products
-          const liveProducts = await getLiveProducts();
-          if (liveProducts.length > 0) {
-            setProducts(liveProducts);
-          }
+          setProducts(liveProducts);
         }
       } catch (err) {
         console.error("Failed to load live store data:", err);
@@ -57,11 +58,17 @@ export default function StoreDetailPage() {
     loadStoreData();
   }, [slug]);
 
+  useEffect(() => {
+    if (user?.id) {
+      getCustomerWishlistIds(user.id).then(setWishlistIds);
+    }
+  }, [user?.id]);
+
   const storeProducts = products.filter((p) => {
     const matchesCategory =
       activeCategory === "all" ||
       (activeCategory === "organic" && p.organic) ||
-      (activeCategory === "flash" && p.discountBadge);
+      (activeCategory === "flash" && (p.discountBadge || p.originalPrice));
     const matchesSearch =
       !storeSearch ||
       p.name.toLowerCase().includes(storeSearch.toLowerCase()) ||
@@ -69,13 +76,42 @@ export default function StoreDetailPage() {
     return matchesCategory && matchesSearch;
   });
 
+  if (loading) {
+    return (
+      <>
+        <CustomerHeader />
+        <main className="min-h-screen bg-slate-50 flex items-center justify-center py-24">
+          <div className="flex items-center gap-2 text-xs text-slate-500 font-semibold">
+            <Loader2 className="w-4 h-4 animate-spin text-fresh-600" />
+            <span>Loading store inventory...</span>
+          </div>
+        </main>
+        <CustomerFooter />
+      </>
+    );
+  }
+
+  if (!store) {
+    return (
+      <>
+        <CustomerHeader />
+        <main className="min-h-screen bg-slate-50 py-24 text-center px-4">
+          <h1 className="text-2xl font-extrabold text-slate-900">Store Not Found</h1>
+          <p className="text-xs text-slate-500 mt-2">This store may be pending review or unavailable.</p>
+          <Link href="/stores" className="inline-block mt-6 px-5 py-2.5 rounded-xl bg-fresh-600 text-white text-xs font-bold">
+            Browse All Stores
+          </Link>
+        </main>
+        <CustomerFooter />
+      </>
+    );
+  }
 
   return (
     <>
       <CustomerHeader />
 
       <main className="min-h-screen bg-slate-50 pb-20">
-        
         {/* Store Hero Banner */}
         <div className="relative h-64 sm:h-80 w-full bg-slate-900 overflow-hidden">
           <img
@@ -84,7 +120,7 @@ export default function StoreDetailPage() {
             className="w-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-          
+
           <div className="absolute top-6 left-6 flex items-center gap-2 text-xs font-medium text-white/80">
             <Link href="/" className="hover:text-white">Home</Link>
             <ChevronRight className="w-3 h-3 text-white/50" />
@@ -95,11 +131,9 @@ export default function StoreDetailPage() {
         </div>
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 -mt-20 relative z-10">
-          
           {/* Store Info Card */}
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xl shadow-slate-900/5 mb-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
-              
               <div className="flex items-start gap-4">
                 <div className="w-20 h-20 rounded-2xl border-2 border-white bg-white shadow-lg overflow-hidden shrink-0">
                   <img src={store.logo} alt={store.name} className="w-full h-full object-cover" />
@@ -130,43 +164,51 @@ export default function StoreDetailPage() {
                 </div>
               </div>
 
-              {/* Store Specific Offer Pill */}
-              <div className="p-4 rounded-2xl bg-fresh-50 border border-fresh-200/70 shrink-0 space-y-1">
-                <div className="flex items-center gap-1.5 text-fresh-800 text-xs font-bold">
-                  <Percent className="w-4 h-4 text-fresh-600" />
-                  <span>Store Offer: Spend $35 get Free Delivery</span>
+              {/* Active Marketplace Offer */}
+              {activeCoupon && (
+                <div className="p-4 rounded-2xl bg-fresh-50 border border-fresh-200/70 shrink-0 space-y-1">
+                  <div className="flex items-center gap-1.5 text-fresh-800 text-xs font-bold">
+                    <Percent className="w-4 h-4 text-fresh-600" />
+                    <span>
+                      Save {activeCoupon.discount_type === "percent" ? `${activeCoupon.value}%` : `$${activeCoupon.value.toFixed(2)}`} on orders ${activeCoupon.min_order}+
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-fresh-700 font-medium">
+                    Use code <span className="font-extrabold">{activeCoupon.code}</span> in Cart
+                  </p>
                 </div>
-                <p className="text-[11px] text-fresh-700 font-medium">Use code GREENFRESH at checkout</p>
-              </div>
-
+              )}
             </div>
 
             {/* In-store Search & Category bar */}
             <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto no-scrollbar pb-1 text-xs font-bold">
                 <button
+                  type="button"
                   onClick={() => setActiveCategory("all")}
                   className={`px-4 py-2 rounded-xl transition-all ${
                     activeCategory === "all" ? "bg-fresh-600 text-white shadow-sm" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                   }`}
                 >
-                  All Store Items
+                  All Store Items ({products.length})
                 </button>
                 <button
+                  type="button"
                   onClick={() => setActiveCategory("organic")}
                   className={`px-4 py-2 rounded-xl transition-all ${
                     activeCategory === "organic" ? "bg-fresh-600 text-white shadow-sm" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                   }`}
                 >
-                  Fresh Produce
+                  100% Organic
                 </button>
                 <button
+                  type="button"
                   onClick={() => setActiveCategory("flash")}
                   className={`px-4 py-2 rounded-xl transition-all ${
                     activeCategory === "flash" ? "bg-fresh-600 text-white shadow-sm" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                   }`}
                 >
-                  Today's Discounts
+                  Today&apos;s Discounts
                 </button>
               </div>
 
@@ -191,12 +233,21 @@ export default function StoreDetailPage() {
             <span className="text-xs text-slate-500 font-medium">Delivered directly in refrigerated insulation packs</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {storeProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
+          {storeProducts.length === 0 ? (
+            <div className="bg-white rounded-2xl border border-slate-200 p-10 text-center text-xs text-slate-500">
+              No items match your search in this store.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {storeProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  initialWishlisted={wishlistIds.includes(product.id)}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </main>
 

@@ -2,21 +2,33 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RoleGuard } from "@/components/shared/RoleGuard";
-import { 
-  Bike, 
-  Navigation, 
-  FileText, 
-  DollarSign, 
-  User, 
-  Bell, 
-  MapPin, 
-  Power,
-  ChevronRight,
+import { useAuthStore } from "@/lib/store/authStore";
+import {
+  getCourierLayoutData,
+  markCourierNotificationsRead,
+  toggleCourierOnlineStatus,
+} from "@/lib/actions/courier";
+import type { CourierNotificationDTO, CourierProfileDTO } from "@/lib/data/courier";
+import {
+  Bike,
+  Navigation,
+  FileText,
+  DollarSign,
+  User,
+  Bell,
   Menu,
-  X
+  X,
+  Check,
 } from "lucide-react";
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "CR";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
+}
 
 export default function CourierLayout({
   children,
@@ -24,11 +36,74 @@ export default function CourierLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const user = useAuthStore((s) => s.user);
+  const [profile, setProfile] = useState<CourierProfileDTO | null>(null);
   const [online, setOnline] = useState(true);
+  const [togglingOnline, setTogglingOnline] = useState(false);
+  const [activeCount, setActiveCount] = useState(0);
+  const [latestTemp, setLatestTemp] = useState<number | null>(null);
+  const [notifications, setNotifications] = useState<CourierNotificationDTO[]>([]);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const [statusError, setStatusError] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const loadLayoutData = useCallback(async () => {
+    if (!user?.id || (user.role !== "courier" && user.role !== "admin")) return;
+    const res = await getCourierLayoutData(user.id);
+    if (res.success && res.profile) {
+      setProfile(res.profile);
+      setOnline(res.profile.isOnline);
+      setActiveCount(res.activeCount ?? 0);
+      setLatestTemp(res.latestTemp ?? null);
+      setNotifications(res.notifications ?? []);
+    }
+  }, [user?.id, user?.role]);
+
+  useEffect(() => {
+    loadLayoutData();
+  }, [loadLayoutData, pathname]);
+
+  useEffect(() => {
+    const handler = () => {
+      loadLayoutData();
+    };
+    window.addEventListener("freshmart:courier-updated", handler);
+    return () => window.removeEventListener("freshmart:courier-updated", handler);
+  }, [loadLayoutData]);
+
+  const handleToggleOnline = async () => {
+    if (!user?.id || togglingOnline) return;
+    const nextOnline = !online;
+    setTogglingOnline(true);
+    setStatusError(null);
+    setOnline(nextOnline);
+    const res = await toggleCourierOnlineStatus(user.id, nextOnline);
+    if (!res.success) {
+      setOnline(!nextOnline);
+      setStatusError(res.error || "Failed to update status.");
+    }
+    setTogglingOnline(false);
+  };
+
+  const handleMarkAllRead = async () => {
+    if (!user?.id) return;
+    const res = await markCourierNotificationsRead(user.id);
+    if (res.success) {
+      setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
+    }
+  };
+
+  const displayName = profile?.fullName || user?.fullName || "Courier Partner";
+  const displayVehicle = profile?.vehicle || "Eco E-Bike";
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
+
   const navItems = [
-    { name: "Assigned Deliveries", path: "/courier", icon: Bike, badge: "2 Active" },
+    {
+      name: "Assigned Deliveries",
+      path: "/courier",
+      icon: Bike,
+      badge: `${activeCount} Active`,
+    },
     { name: "Live Route & Navigation", path: "/courier/live-route", icon: Navigation },
     { name: "Batch Manifest & Temp", path: "/courier/manifest", icon: FileText },
     { name: "Earnings & Tips", path: "/courier/earnings", icon: DollarSign },
@@ -37,7 +112,6 @@ export default function CourierLayout({
 
   return (
     <div className="min-h-screen bg-slate-100/70 flex flex-col lg:flex-row">
-      
       {/* Mobile Top Header */}
       <div className="lg:hidden bg-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800 sticky top-0 z-40">
         <div className="flex items-center gap-2">
@@ -46,25 +120,36 @@ export default function CourierLayout({
           </div>
           <div>
             <span className="font-bold text-sm block leading-none">FreshMart Courier</span>
-            <span className="text-[10px] text-emerald-400 font-semibold">● Online & Receiving</span>
+            <span
+              className={`text-[10px] font-semibold ${
+                online ? "text-emerald-400" : "text-slate-400"
+              }`}
+            >
+              {online ? "● Online & Receiving" : "● Offline • Shift Paused"}
+            </span>
           </div>
         </div>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="p-2 rounded-lg bg-slate-800 text-slate-300"
+          aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {/* Left Sidebar */}
-      <aside className={`w-72 bg-slate-900 text-slate-300 flex flex-col justify-between shrink-0 border-r border-slate-800 fixed lg:sticky top-0 h-screen z-50 lg:z-30 transition-transform ${
-        mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-      }`}>
+      <aside
+        className={`w-72 bg-slate-900 text-slate-300 flex flex-col justify-between shrink-0 border-r border-slate-800 fixed lg:sticky top-0 h-screen z-50 lg:z-30 transition-transform ${
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        }`}
+      >
         <div className="p-6 space-y-6">
-          
           <div>
-            <Link href="/" className="inline-flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-white transition-colors mb-4">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-white transition-colors mb-4"
+            >
               <span>← Back to Customer Store</span>
             </Link>
 
@@ -74,10 +159,10 @@ export default function CourierLayout({
               </div>
               <div className="overflow-hidden">
                 <h3 className="font-bold text-sm text-white truncate leading-tight">
-                  Marcus Vance
+                  {displayName}
                 </h3>
-                <p className="text-[11px] text-amber-400 font-semibold mt-0.5">
-                  Eco E-Bike • Tier 1 Courier
+                <p className="text-[11px] text-amber-400 font-semibold mt-0.5 truncate">
+                  {displayVehicle}
                 </p>
               </div>
             </div>
@@ -111,7 +196,6 @@ export default function CourierLayout({
               );
             })}
           </nav>
-
         </div>
 
         {/* Courier Duty Switch */}
@@ -119,8 +203,10 @@ export default function CourierLayout({
           <div className="flex items-center justify-between text-xs">
             <span className="text-slate-400 font-medium">On Duty Status</span>
             <button
-              onClick={() => setOnline(!online)}
-              className={`w-11 h-6 rounded-full transition-colors relative ${
+              onClick={handleToggleOnline}
+              disabled={togglingOnline}
+              aria-label="Toggle online status"
+              className={`w-11 h-6 rounded-full transition-colors relative disabled:opacity-60 ${
                 online ? "bg-emerald-500" : "bg-slate-700"
               }`}
             >
@@ -134,12 +220,12 @@ export default function CourierLayout({
           <p className="text-[11px] text-slate-500">
             {online ? "Receiving hyper-local orders within 3.5 miles." : "Offline. Shift paused."}
           </p>
+          {statusError && <p className="text-[11px] text-rose-400">{statusError}</p>}
         </div>
       </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
-        
         {/* Header */}
         <header className="h-16 bg-white border-b border-slate-200/80 px-6 sm:px-8 flex items-center justify-between sticky top-0 z-20 shadow-xs">
           <div className="flex items-center gap-4">
@@ -149,19 +235,66 @@ export default function CourierLayout({
             <span className="hidden sm:inline text-xs text-slate-300">•</span>
             <span className="hidden sm:inline text-xs font-semibold text-emerald-600 flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Thermal Bag Locked (3.4°C)
+              {latestTemp !== null
+                ? `Thermal Bag Locked (${latestTemp.toFixed(1)}°C)`
+                : "Thermal Bag Standby"}
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="relative cursor-pointer p-2 rounded-full hover:bg-slate-100 text-slate-600">
+          <div className="flex items-center gap-4 relative">
+            <button
+              onClick={() => setNotifOpen((o) => !o)}
+              className="relative cursor-pointer p-2 rounded-full hover:bg-slate-100 text-slate-600"
+              aria-label="Notifications"
+            >
               <Bell className="w-4 h-4" />
-              <span className="w-2 h-2 rounded-full bg-emerald-500 absolute top-1.5 right-1.5" />
-            </div>
+              {unreadCount > 0 && (
+                <span className="w-2 h-2 rounded-full bg-emerald-500 absolute top-1.5 right-1.5" />
+              )}
+            </button>
 
-            <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center">
-              MV
-            </div>
+            {notifOpen && (
+              <div className="absolute right-0 top-12 w-80 bg-white rounded-2xl border border-slate-200 shadow-xl z-50 overflow-hidden">
+                <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-900">
+                    Notifications ({unreadCount} unread)
+                  </span>
+                  {unreadCount > 0 && (
+                    <button
+                      onClick={handleMarkAllRead}
+                      className="text-[11px] font-bold text-emerald-600 hover:underline flex items-center gap-1"
+                    >
+                      <Check className="w-3 h-3" /> Mark read
+                    </button>
+                  )}
+                </div>
+                <div className="max-h-72 overflow-y-auto divide-y divide-slate-100">
+                  {notifications.length === 0 ? (
+                    <p className="p-4 text-xs text-slate-400 text-center">No notifications yet.</p>
+                  ) : (
+                    notifications.map((n) => (
+                      <div
+                        key={n.id}
+                        className={`p-3 text-xs space-y-0.5 ${
+                          n.isRead ? "bg-white" : "bg-emerald-50/40"
+                        }`}
+                      >
+                        <p className="font-bold text-slate-900">{n.title}</p>
+                        <p className="text-slate-600">{n.message}</p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+
+            <Link
+              href="/courier/profile"
+              className="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center"
+              title={displayName}
+            >
+              {getInitials(displayName)}
+            </Link>
           </div>
         </header>
 
@@ -170,9 +303,7 @@ export default function CourierLayout({
             {children}
           </RoleGuard>
         </div>
-
       </div>
-
     </div>
   );
 }

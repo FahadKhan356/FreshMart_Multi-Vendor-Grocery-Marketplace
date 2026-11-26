@@ -6,10 +6,11 @@ import { CustomerHeader } from "@/components/layout/CustomerHeader";
 import { CustomerFooter } from "@/components/layout/CustomerFooter";
 import { STORES, Store } from "@/data/mockData";
 import { getLiveStores } from "@/lib/data/supabaseData";
-import { Star, ArrowRight, MapPin, Clock, ShieldCheck } from "lucide-react";
+import { Star, ArrowRight, MapPin, Clock, Search } from "lucide-react";
 
 export default function StoresPage() {
   const [stores, setStores] = useState<Store[]>(STORES);
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,25 +29,47 @@ export default function StoresPage() {
     loadStores();
   }, []);
 
+  const filtered = stores.filter((s) => {
+    if (!search.trim()) return true;
+    const q = search.toLowerCase();
+    return (
+      s.name.toLowerCase().includes(q) ||
+      s.description.toLowerCase().includes(q) ||
+      s.address.toLowerCase().includes(q)
+    );
+  });
+
   return (
     <>
       <CustomerHeader />
 
       <main className="min-h-screen bg-slate-50 py-10">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6">
-          
-          <div className="mb-8">
-            <span className="text-xs font-bold uppercase tracking-wider text-fresh-600">Verified Farm Direct</span>
-            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
-              Independent Grocery Stores & Family Farms
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mt-1">
-              Order directly from certified organic farms, century-old Italian delis, artisanal sourdough bakeries, and wild seafood mongers across Brooklyn.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-fresh-600">Verified Farm Direct</span>
+              <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
+                Independent Grocery Stores &amp; Family Farms
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mt-1">
+                Order directly from certified organic farms, century-old Italian delis, artisanal sourdough bakeries, and wild seafood mongers across Brooklyn.
+              </p>
+            </div>
+
+            <div className="relative w-full md:w-72">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search stores or neighborhoods..."
+                className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-fresh-600"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {stores.map((store) => (
+            {filtered.map((store) => (
               <Link
                 key={store.id}
                 href={`/stores/${store.slug}`}
@@ -110,6 +133,11 @@ export default function StoresPage() {
             ))}
           </div>
 
+          {!loading && filtered.length === 0 && (
+            <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center text-xs text-slate-500">
+              No stores matched &ldquo;{search}&rdquo;.
+            </div>
+          )}
         </div>
       </main>
 
